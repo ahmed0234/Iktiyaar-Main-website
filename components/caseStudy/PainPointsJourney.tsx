@@ -81,7 +81,7 @@ const ProblemAdSpend = () => {
             Critical Issue 01
           </div>
           <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            The Google Ads <span className="text-red-500">Hemorrhage</span>
+            The Google Ads <span className="text-red-500">Money Leak</span>
           </h3>
           <p className="text-slate-600 text-lg leading-relaxed">
             They were pouring budget into search campaigns, but the money was evaporating. Broad match keywords were draining funds on irrelevant clicks.
@@ -174,10 +174,10 @@ const ProblemConversion = () => {
             Critical Issue 02
           </div>
           <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            The Conversion <span className="text-orange-500">Black Hole</span>
+            The Hidden <span className="text-orange-500">Conversion Killer</span>
           </h3>
-          <p className="text-slate-600 text-lg leading-relaxed">
-            Traffic was being sent to a generic homepage with no clear call-to-action. Potential customers were arriving, getting confused, and leaving immediately.
+          <p className="text-slate-600 text-lg leading-relaxed font-semibold">
+            Traffic was being sent to a generic homepage with no clear call to action. Potential customers were arriving, getting confused, and leaving immediately.
           </p>
         </div>
 
@@ -271,9 +271,9 @@ const ProblemUnpredictable = () => {
             Critical Issue 03
           </div>
           <h3 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-            The Feast or Famine <span className="text-slate-500">Cycle</span>
+            The Unpredictable Lead <span className="text-slate-500">Flow</span>
           </h3>
-          <p className="text-slate-600 text-lg leading-relaxed">
+          <p className="text-slate-600 text-lg font-semibold leading-relaxed">
             Relying purely on referrals and unpredictable ad campaigns meant they had zero control over their pipeline. 
           </p>
         </div>
@@ -353,7 +353,7 @@ export default function PainPointsJourney() {
           <Activity className="w-4 h-4" /> The Autopsy
         </div>
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-          A Business On The <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-orange-500">Brink.</span>
+        A Company on the <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-orange-500">Edge.</span>
         </h2>
         <p className="text-slate-600 font-poppins font-semibold text-lg sm:text-xl leading-relaxed">
           Before we stepped in, Holloway Roofing was running blind. We didn't just find minor inefficiencies we uncovered massive structural leaks threatening their growth.

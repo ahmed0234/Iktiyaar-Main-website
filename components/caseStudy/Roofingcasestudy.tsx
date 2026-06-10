@@ -613,7 +613,7 @@ export default function RoofingCaseStudy() {
     {
       label: "Monthly Leads",
       from: 15,
-      to: 110,
+      to: 312,
       suffix: "+",
       sub: "Up from 15/mo before",
       color: "from-blue-500 to-blue-400",
@@ -860,12 +860,12 @@ export default function RoofingCaseStudy() {
               <Zap className="w-3 h-3" /> The Turning Point
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              When Chaos Became a{" "}
+              From Chaos to{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
-                System
+                Control
               </span>
             </h2>
-            <p className="text-slate-500 max-w-lg mx-auto text-sm leading-relaxed">
+            <p className="text-slate-600 max-w-lg mx-auto text-sm leading-relaxed">
               We audited everything. Replaced the guesswork with a layered,
               trackable growth architecture built specifically for local
               roofing.
@@ -1089,7 +1089,7 @@ export default function RoofingCaseStudy() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center">
-                   <Image
+                  <Image
                     src="https://images.unsplash.com/photo-1733348137468-90b917d2ebf1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Marcus Bui"
                     width={200}
