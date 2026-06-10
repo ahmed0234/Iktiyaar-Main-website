@@ -12,7 +12,6 @@ import {
 // ─── Company Data ──────────────────────────────────────────────────────────────
 const companies = [
   { name: "Casey Insurance", logo: "/companies/Casey Insurance.jpg" },
-  { name: "Hiscox", logo: "/companies/Hiscox.png" },
   { name: "Pristine Clean", logo: "/companies/Pristine Clean.png" },
   {
     name: "Ridgewell Colorado",

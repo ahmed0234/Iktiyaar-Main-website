@@ -27,9 +27,7 @@ const footerLinks = {
   company: {
     title: "Company",
     links: [
-      { label: "About Us", href: "/about" },
       { label: "Contact Us", href: "/contact" },
-      { label: "Blogs", href: "/blog" },
     ],
   },
 };

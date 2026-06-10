@@ -2,12 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
   output: "export",
+  trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,
   },
 };
 
-export default nextConfig;
+export default nextConfig;  

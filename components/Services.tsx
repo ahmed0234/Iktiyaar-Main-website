@@ -10,6 +10,7 @@ import {
   useInView,
 } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 // ─── Service Data ─────────────────────────────────────────────────────────────
 const services = [
@@ -29,15 +30,13 @@ const services = [
   },
   {
     title: "Operations & Automation",
-    description:
-      "CRMs, workflows, and reporting that eliminate chaos.",
+    description: "CRMs, workflows, and reporting that eliminate chaos.",
     icon: "/services/operations.png",
     features: ["CRM Setup", "Workflow Automation", "Analytics"],
   },
   {
     title: "Staffing & Execution",
-    description:
-      "We hire, manage, and execute — so you don't.",
+    description: "We hire, manage, and execute — so you don't.",
     icon: "/services/staffing.png",
     features: ["Dedicated Teams", "Project Management", "Quality Assurance"],
   },
@@ -63,10 +62,15 @@ function SplitTextReveal({
   return (
     <span ref={ref} className={className}>
       {words.map((word, wordIndex) => (
-        <span key={wordIndex} className="inline-flex overflow-hidden mr-[0.3em]">
+        <span
+          key={wordIndex}
+          className="inline-flex overflow-hidden mr-[0.3em]"
+        >
           <motion.span
             initial={{ y: "110%", rotateX: -80 }}
-            animate={isInView ? { y: "0%", rotateX: 0 } : { y: "110%", rotateX: -80 }}
+            animate={
+              isInView ? { y: "0%", rotateX: 0 } : { y: "110%", rotateX: -80 }
+            }
             transition={{
               duration: 0.8,
               delay: delay + wordIndex * 0.08,
@@ -100,7 +104,10 @@ function CurvedDivider({ index }: { index: number }) {
   ];
 
   return (
-    <div ref={ref} className="hidden lg:flex items-center justify-center self-stretch py-8">
+    <div
+      ref={ref}
+      className="hidden lg:flex items-center justify-center self-stretch py-8"
+    >
       <motion.svg
         width="3"
         height="100%"
@@ -110,7 +117,13 @@ function CurvedDivider({ index }: { index: number }) {
         fill="none"
       >
         <defs>
-          <linearGradient id={`divider-grad-${index}`} x1="0" y1="0" x2="0" y2="1">
+          <linearGradient
+            id={`divider-grad-${index}`}
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
             <stop offset="0%" stopColor="rgba(59,130,246,0)" />
             <stop offset="30%" stopColor="rgba(59,130,246,0.25)" />
             <stop offset="50%" stopColor="rgba(96,165,250,0.4)" />
@@ -124,8 +137,16 @@ function CurvedDivider({ index }: { index: number }) {
           strokeWidth="1.5"
           strokeLinecap="round"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={isInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-          transition={{ duration: 1.2, delay: 0.4 + index * 0.15, ease: "easeOut" }}
+          animate={
+            isInView
+              ? { pathLength: 1, opacity: 1 }
+              : { pathLength: 0, opacity: 0 }
+          }
+          transition={{
+            duration: 1.2,
+            delay: 0.4 + index * 0.15,
+            ease: "easeOut",
+          }}
         />
         {/* Glowing dot that travels along the divider */}
         <motion.circle
@@ -149,7 +170,12 @@ function CurvedDivider({ index }: { index: number }) {
             ease: "easeInOut",
           }}
         >
-          <animate attributeName="filter" values="blur(0px);blur(2px);blur(0px)" dur="3s" repeatCount="indefinite" />
+          <animate
+            attributeName="filter"
+            values="blur(0px);blur(2px);blur(0px)"
+            dur="3s"
+            repeatCount="indefinite"
+          />
         </motion.circle>
       </motion.svg>
     </div>
@@ -173,12 +199,24 @@ function ServiceCard({
   const mouseY = useMotionValue(0);
 
   const springConfig = { stiffness: 200, damping: 25 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), springConfig);
+  const rotateX = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [8, -8]),
+    springConfig,
+  );
+  const rotateY = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [-8, 8]),
+    springConfig,
+  );
 
   // Glare follow
-  const glareX = useSpring(useTransform(mouseX, [-0.5, 0.5], [20, 80]), springConfig);
-  const glareY = useSpring(useTransform(mouseY, [-0.5, 0.5], [20, 80]), springConfig);
+  const glareX = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [20, 80]),
+    springConfig,
+  );
+  const glareY = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [20, 80]),
+    springConfig,
+  );
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
@@ -252,7 +290,7 @@ function ServiceCard({
               background: useTransform(
                 [glareX, glareY],
                 ([gx, gy]) =>
-                  `radial-gradient(circle at ${gx}% ${gy}%, rgba(59,130,246,0.06) 0%, transparent 60%)`
+                  `radial-gradient(circle at ${gx}% ${gy}%, rgba(59,130,246,0.06) 0%, transparent 60%)`,
               ),
             }}
           />
@@ -423,21 +461,10 @@ export default function Services() {
 
           {/* Main title with split text animation */}
           <h2 className="text-4xl sm:text-5xl lg:text-[3.6rem] font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-            <SplitTextReveal
-              text="Your Entire Growth Engine."
-              delay={0.1}
-            />
+            <SplitTextReveal text="Your Entire Growth Engine." delay={0.1} />
             <br className="hidden sm:block" />
-            <SplitTextReveal
-              text="Under One"
-              delay={0.5}
-            />
-            {" "}
-            <SplitTextReveal
-              text="Roof."
-              delay={0.7}
-              isBlue
-            />
+            <SplitTextReveal text="Under One" delay={0.5} />{" "}
+            <SplitTextReveal text="Roof." delay={0.7} isBlue />
           </h2>
 
           {/* Animated underline below heading */}
@@ -457,7 +484,8 @@ export default function Services() {
             transition={{ duration: 0.6, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
             className="mt-2 text-base lg:text-lg text-slate-500 max-w-xl mx-auto font-medium leading-relaxed"
           >
-            Everything your business needs to acquire, convert, and retain — managed entirely by us.
+            Everything your business needs to acquire, convert, and retain —
+            managed entirely by us.
           </motion.p>
         </div>
 
@@ -473,78 +501,89 @@ export default function Services() {
         </div>
 
         {/* ─── CTA Button ─────────────────────────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-center"
-        >
-          <motion.button
-            onMouseEnter={() => setCtaHovered(true)}
-            onMouseLeave={() => setCtaHovered(false)}
-            whileHover={{ scale: 1.04, y: -3 }}
-            whileTap={{ scale: 0.97 }}
-            className="group/cta relative flex items-center justify-center gap-3 overflow-hidden rounded-full px-10 py-5 font-bold text-white text-[16px] tracking-wide transition-all duration-500 cursor-pointer"
-            style={{
-              background: "linear-gradient(to top, #0f172a 0%, #1e293b 40%, #334155 100%)",
-              boxShadow: ctaHovered
-                ? "0 20px 50px -12px rgba(15,23,42,0.5), 0 8px 20px -8px rgba(15,23,42,0.3), inset 0 1px 0 rgba(255,255,255,0.1)"
-                : "0 10px 30px -8px rgba(15,23,42,0.35), 0 4px 12px -4px rgba(15,23,42,0.2), inset 0 1px 0 rgba(255,255,255,0.08)",
-            }}
+        <Link href={"/contact"}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            className="flex justify-center"
           >
-            {/* Top highlight edge for 3D effect */}
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-            {/* Bottom dark edge for depth */}
-            <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-slate-900/50 to-transparent" />
-
-            {/* Shimmer sweep */}
-            <motion.div
-              animate={{ x: ["-200%", "200%"] }}
-              transition={{
-                repeat: Infinity,
-                duration: 3.5,
-                ease: "linear",
-              }}
-              className="absolute inset-0 z-0 h-full w-1/3 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent skew-x-[-25deg] pointer-events-none group-hover/cta:via-white/[0.15] transition-all duration-500"
-            />
-
-            {/* Hover color shift overlay */}
-            <motion.div
-              className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500"
+            <motion.button
+              onMouseEnter={() => setCtaHovered(true)}
+              onMouseLeave={() => setCtaHovered(false)}
+              whileHover={{ scale: 1.04, y: -3 }}
+              whileTap={{ scale: 0.97 }}
+              className="group/cta relative flex items-center justify-center gap-3 overflow-hidden rounded-full px-10 py-5 font-bold text-white text-[16px] tracking-wide transition-all duration-500 cursor-pointer"
               style={{
                 background:
-                  "linear-gradient(to top, #1e293b 0%, #334155 50%, #475569 100%)",
-                opacity: ctaHovered ? 1 : 0,
+                  "linear-gradient(to top, #0f172a 0%, #1e293b 40%, #334155 100%)",
+                boxShadow: ctaHovered
+                  ? "0 20px 50px -12px rgba(15,23,42,0.5), 0 8px 20px -8px rgba(15,23,42,0.3), inset 0 1px 0 rgba(255,255,255,0.1)"
+                  : "0 10px 30px -8px rgba(15,23,42,0.35), 0 4px 12px -4px rgba(15,23,42,0.2), inset 0 1px 0 rgba(255,255,255,0.08)",
               }}
-            />
-
-            {/* Side glow accents */}
-            <div
-              className="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full transition-opacity duration-500 pointer-events-none"
-              style={{
-                opacity: ctaHovered ? 0.5 : 0,
-                background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)",
-              }}
-            />
-            <div
-              className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full transition-opacity duration-500 pointer-events-none"
-              style={{
-                opacity: ctaHovered ? 0.5 : 0,
-                background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)",
-              }}
-            />
-
-            <span className="relative z-10 drop-shadow-md">Get My Growth Audit</span>
-            <motion.span
-              className="relative z-10"
-              animate={{ x: ctaHovered ? 3 : 0, scale: ctaHovered ? 1.15 : 1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
             >
-              <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
-            </motion.span>
-          </motion.button>
-        </motion.div>
+              {/* Top highlight edge for 3D effect */}
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+              {/* Bottom dark edge for depth */}
+              <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-slate-900/50 to-transparent" />
+
+              {/* Shimmer sweep */}
+              <motion.div
+                animate={{ x: ["-200%", "200%"] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 3.5,
+                  ease: "linear",
+                }}
+                className="absolute inset-0 z-0 h-full w-1/3 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent skew-x-[-25deg] pointer-events-none group-hover/cta:via-white/[0.15] transition-all duration-500"
+              />
+
+              {/* Hover color shift overlay */}
+              <motion.div
+                className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-500"
+                style={{
+                  background:
+                    "linear-gradient(to top, #1e293b 0%, #334155 50%, #475569 100%)",
+                  opacity: ctaHovered ? 1 : 0,
+                }}
+              />
+
+              {/* Side glow accents */}
+
+              <div
+                className="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full transition-opacity duration-500 pointer-events-none"
+                style={{
+                  opacity: ctaHovered ? 0.5 : 0,
+                  background:
+                    "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)",
+                }}
+              />
+              <div
+                className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full transition-opacity duration-500 pointer-events-none"
+                style={{
+                  opacity: ctaHovered ? 0.5 : 0,
+                  background:
+                    "radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)",
+                }}
+              />
+
+              <span className="relative z-10 drop-shadow-md">
+                Get My Growth Audit
+              </span>
+              <motion.span
+                className="relative z-10"
+                animate={{
+                  x: ctaHovered ? 3 : 0,
+                  scale: ctaHovered ? 1.15 : 1,
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+              >
+                <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
+              </motion.span>
+            </motion.button>
+          </motion.div>
+        </Link>
       </div>
     </section>
   );

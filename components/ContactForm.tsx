@@ -34,16 +34,11 @@ const validators = {
       : v.replace(/\D/g, "").length < 7
         ? "Enter a valid phone number"
         : "",
-  website: (v) =>
-    v.trim() && !/^https?:\/\/.+/.test(v)
-      ? "Must start with http:// or https://"
-      : "",
+  website: (v) => "",
   message: (v) =>
     !v.trim()
       ? "Message is required"
-      : v.trim().length < 20
-        ? "Please write at least 20 characters"
-        : "",
+      : "",
 };
 
 /* ── Dummy API ───────────────────────────────────────────── */

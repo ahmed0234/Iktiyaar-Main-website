@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -190,40 +191,46 @@ export default function Hero() {
               profitable without you managing anything.
             </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 3.3,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
-            >
-              <motion.button
-                whileHover={{ scale: 1.04, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className="group/btn relative flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full bg-linear-to-b from-blue-500 to-blue-700 px-8 py-4 font-semibold text-white transition-all duration-300 shadow-[0_5px_15px_rgba(37,99,235,0.3)] hover:shadow-[0_12px_30px_rgba(37,99,235,0.4)] border border-blue-400/40 ring-1 ring-inset ring-white/20"
+            <Link href={"/contact"}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 3.3,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
               >
-                {/* Hover Glow Sweep */}
-                <div className="absolute inset-0 z-0 bg-linear-to-r from-blue-500 via-blue-400 to-blue-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <motion.button
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="group/btn relative flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full bg-linear-to-b from-blue-500 to-blue-700 px-8 py-4 font-semibold text-white transition-all duration-300 shadow-[0_5px_15px_rgba(37,99,235,0.3)] hover:shadow-[0_12px_30px_rgba(37,99,235,0.4)] border border-blue-400/40 ring-1 ring-inset ring-white/20"
+                >
+                  {/* Hover Glow Sweep */}
+                  <div className="absolute inset-0 z-0 bg-linear-to-r from-blue-500 via-blue-400 to-blue-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                {/* Continuous Idle Glassy Shimmer */}
-                <motion.div
-                  animate={{ x: ["-200%", "200%"] }}
-                  transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
-                  className="absolute inset-0 z-0 h-full w-1/3 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] pointer-events-none group-hover/btn:via-white/40 group-hover/btn:w-1/2 transition-all duration-500"
-                />
+                  {/* Continuous Idle Glassy Shimmer */}
+                  <motion.div
+                    animate={{ x: ["-200%", "200%"] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 3,
+                      ease: "linear",
+                    }}
+                    className="absolute inset-0 z-0 h-full w-1/3 bg-linear-to-r from-transparent via-white/20 to-transparent skew-x-[-25deg] pointer-events-none group-hover/btn:via-white/40 group-hover/btn:w-1/2 transition-all duration-500"
+                  />
 
-                <span className="relative z-10 drop-shadow-md font-bold text-[17px] tracking-wide cursor-pointer">
-                  Get a free consultation
-                </span>
-                <ArrowRight
-                  strokeWidth={2.5}
-                  className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1"
-                />
-              </motion.button>
-            </motion.div>
+                  <span className="relative z-10 drop-shadow-md font-bold text-[17px] tracking-wide cursor-pointer">
+                    Get a free consultation
+                  </span>
+                  <ArrowRight
+                    strokeWidth={2.5}
+                    className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1"
+                  />
+                </motion.button>
+              </motion.div>
+            </Link>
           </div>
 
           {/* Right Side: Creative Visual Zone */}

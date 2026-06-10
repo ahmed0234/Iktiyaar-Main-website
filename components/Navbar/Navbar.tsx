@@ -18,12 +18,9 @@ const navLinks = [
       { name: "Cold Email Marketing", href: "/services/cold-email" },
     ],
   },
-  {
-    name: "About Us",
-    href: "/about",
-    dropdown: [{ name: "Blog", href: "/blog" }],
-  },
+
   { name: "Contact Us", href: "/contact" },
+   { name: "Case Studies", href: "/case-studies" },
 ];
 
 export default function Navbar() {
@@ -85,32 +82,34 @@ export default function Navbar() {
             }`}
           >
             {/* Logo Section */}
-            <Link href="/" className="shrink-0 relative group z-10">
-              <motion.div
-                initial={{ opacity: 0, x: -20, filter: "blur(8px)" }}
-                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.1,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                whileHover={{ rotateX: 5, rotateY: -5, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-2 relative flex items-center justify-center w-[160px] md:w-[190px] h-[44px] md:h-[50px] rounded-full bg-linear-to-b from-[#2563EB] to-[#1E3A8A] shadow-[0_4px_20px_rgba(37,99,235,0.4)] overflow-hidden transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(37,99,235,0.6)]"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                {/* Inner highlight for 3D effect */}
-                <div className="absolute inset-0 rounded-full border-t border-white/30" />
-                <img
-                  src="/navlogo.png"
-                  alt="Ikhtiyaar Logo"
-                  className="object-contain p-2"
-                />
-              </motion.div>
-            </Link>
+            <div className="flex-1 flex justify-start">
+              <Link href="/" className="shrink-0 relative group z-10">
+                <motion.div
+                  initial={{ opacity: 0, x: -20, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.1,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  whileHover={{ rotateX: 5, rotateY: -5, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-2 relative flex items-center justify-center w-[160px] md:w-[190px] h-[44px] md:h-[50px] rounded-full bg-linear-to-b from-[#2563EB] to-[#1E3A8A] shadow-[0_4px_20px_rgba(37,99,235,0.4)] overflow-hidden transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(37,99,235,0.6)]"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  {/* Inner highlight for 3D effect */}
+                  <div className="absolute inset-0 rounded-full border-t border-white/30" />
+                  <img
+                    src="/navlogo.png"
+                    alt="Ikhtiyaar Logo"
+                    className="object-contain p-2"
+                  />
+                </motion.div>
+              </Link>
+            </div>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center space-x-1 px-8 py-2 md:py-2.5 rounded-full bg-white/40 backdrop-blur-lg border border-slate-200/65 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
+            <nav className="hidden md:flex items-center justify-center gap-1 px-6 py-2 md:py-2.5 rounded-full bg-white/40 backdrop-blur-lg border border-slate-200/65 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
               {navLinks.map((link, index) => (
                 <div
                   key={link.name}
@@ -173,7 +172,7 @@ export default function Navbar() {
                           filter: "blur(4px)",
                         }}
                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute top-full left-0 mt-2 w-56 rounded-2xl bg-white/80 backdrop-blur-2xl border border-slate-200/60 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] overflow-hidden"
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-2xl bg-white/80 backdrop-blur-2xl border border-slate-200/60 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] overflow-hidden"
                       >
                         <div className="py-2 flex flex-col">
                           {link.dropdown.map((item) => (
@@ -196,8 +195,8 @@ export default function Navbar() {
             </nav>
 
             {/* Desktop CTA Button */}
-            <div className="hidden md:block">
-              <Link href={`/`}>
+            <div className="hidden md:flex flex-1 justify-end">
+              <Link href={`/contact`}>
                 <motion.div
                   initial={{
                     opacity: 0,
