@@ -352,10 +352,10 @@ export default function CaseStudyFinalCTA() {
               }}
               className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-slate-900 leading-[1.05] tracking-tight"
             >
-              If We Built This For Them {" "}
+              Today it's their success story {" "}
               <span className="relative inline-block">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
-                  What Could We Build For You?
+                  Tomorrow it could be yours
                 </span>
                 {/* underline squiggle */}
                 <svg
