@@ -499,7 +499,7 @@ function CTABanner() {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute right-24 -bottom-4 w-16 h-16 rounded-xl border border-white/10 bg-white/5 pointer-events-none" />
       {/* Content */}
-      <div className="relative z-10 px-8 sm:px-12 py-10 sm:py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+      {/* <div className="relative z-10 px-8 sm:px-12 py-10 sm:py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-center sm:text-left">
           <motion.h3 initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.7 }}
@@ -539,7 +539,7 @@ function CTABanner() {
             </motion.div>
           </Link>
         </motion.div>
-      </div>
+      </div> */}
     </motion.div>
   );
 }

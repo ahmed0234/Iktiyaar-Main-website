@@ -33,6 +33,7 @@ import {
   MousePointerClick,
 } from "lucide-react";
 import Image from "next/image";
+import PainPointsJourney from "./PainPointsJourney";
 
 // ─── Animated Counter ──────────────────────────────────────────────────────────
 function AnimatedCounter({ from, to, suffix = "", prefix = "", duration = 2 }) {
@@ -653,7 +654,7 @@ export default function RoofingCaseStudy() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28">
         {/* ── 0. Section Header ─────────────────────────────────────────── */}
-        <div className="text-center space-y-4" ref={heroRef}>
+        <div className="text-center space-y-4 mb-16" ref={heroRef}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -690,10 +691,10 @@ export default function RoofingCaseStudy() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-3xl bg-white/80 backdrop-blur border border-slate-100 shadow-sm overflow-hidden"
+          className="relative rounded-3xl bg-white/80 backdrop-blur border border-slate-100 shadow-sm overflow-hidden mb-18"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-transparent pointer-events-none" />
-          <div className="relative flex flex-col lg:flex-row items-center gap-10 p-8 lg:p-12">
+          <div className="relative flex flex-col lg:flex-row items-center gap-10 p-8 lg:p-12 ">
             {/* Portrait */}
             <div className="flex-shrink-0 text-center lg:text-left">
               <div className="relative inline-block">
@@ -778,29 +779,8 @@ export default function RoofingCaseStudy() {
           </div>
         </motion.div>
 
-        {/* ── 2. Pain Cards ─────────────────────────────────────────────── */}
-        <div className="space-y-8">
-          <div className="text-center space-y-3">
-            <Badge>
-              <AlertTriangle className="w-3 h-3 text-red-400" /> The Struggle
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              What Was{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-400">
-                Going Wrong?
-              </span>
-            </h2>
-            <p className="text-slate-500 max-w-lg mx-auto text-sm leading-relaxed">
-              Before we stepped in, Holloway Roofing was running blind. Six
-              compounding problems were keeping the business stuck.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {painPoints.map((p, i) => (
-              <PainCard key={p.title} {...p} delay={i * 0.08} />
-            ))}
-          </div>
-        </div>
+        {/* ── 2. Pain Journey ───────────────────────────────────────────── */}
+        <PainPointsJourney />
 
         {/* ── 3. Owner Testimonial ──────────────────────────────────────── */}
         <motion.div

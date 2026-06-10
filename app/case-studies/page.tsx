@@ -1,3 +1,4 @@
+import CaseStudyFinalCTA from "@/components/caseStudy/Casestudyfinalcta";
 import CaseStudyHero from "@/components/caseStudy/CaseStudyHero";
 import CaseStudyTransformation from "@/components/caseStudy/CaseStudyTransformation";
 import RoofingCaseStudy from "@/components/caseStudy/Roofingcasestudy";
@@ -8,6 +9,7 @@ const CaseStudiesPage = () => {
       <CaseStudyHero />
       <RoofingCaseStudy />
       <CaseStudyTransformation />
+      <CaseStudyFinalCTA />
     </main>
   );
 };
