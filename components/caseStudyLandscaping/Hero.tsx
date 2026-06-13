@@ -31,6 +31,7 @@ import {
   Sparkles,
   Phone,
 } from "lucide-react";
+import Image from "next/image";
 
 // ─── Design tokens (same ecosystem as RoofingCaseStudy) ───────────────────────
 // blue-600 #2563eb | blue-500 #3b82f6 | blue-400 #60a5fa
@@ -348,9 +349,9 @@ function GrowthCommandCenter({ inView }) {
               <Calendar className="w-3 h-3 text-slate-400" />
             </div>
             <div className="grid grid-cols-7 gap-0.5">
-              {["M", "T", "W", "T", "F", "S", "S"].map((d) => (
+              {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
                 <p
-                  key={d}
+                  key={i}
                   className="text-[7px] font-bold text-slate-300 text-center"
                 >
                   {d}
@@ -578,9 +579,9 @@ export default function LandscapingCaseStudyHero() {
               className="text-slate-600 text-base leading-[1.65] max-w-lg font-medium"
             >
               GreenScape Pro relied on referrals and seasonal luck for over a
-              decade. We rebuilt their entire lead generation system from
-              Google Ads to landing pages to call tracking and turned
-              unpredictable growth into a repeatable monthly machine.
+              decade. We rebuilt their entire lead generation system from Google
+              Ads to landing pages to call tracking and turned unpredictable
+              growth into a repeatable monthly machine.
             </motion.p>
 
             {/* Key metrics strip */}
@@ -674,7 +675,7 @@ export default function LandscapingCaseStudyHero() {
                   <span className="font-bold text-slate-900">
                     without relying on luck
                   </span>{" "}
-                   but every agency we tried made promises they couldn't keep."
+                  but every agency we tried made promises they couldn't keep."
                 </p>
 
                 {/* owner identity */}
@@ -720,6 +721,16 @@ export default function LandscapingCaseStudyHero() {
                           opacity="0.7"
                         />
                       </svg> */}
+                      <Image
+                        src="https://images.unsplash.com/photo-1720805752653-10ddccea4c94?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="James Harmon, founder of GreenScape Pro, reviewing landscaping plans on-site in Austin"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                        className="rounded-full object-cover hover:scale-105 transition-transform duration-[1.5s] ease-[0.16,1,0.3,1]"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUE/8QAIRAAAQQCAgMAAAAAAAAAAAAAAQIDBBEABRIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8Amk1W9Y7MhSiIUE8RlMlJOMZGM9xVl0pbdO2WPFjxWY6GUBCUoTgAClKUH//Z"
+                        priority
+                      />
                     </div>
                     <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center">
                       <CheckCircle2 className="w-2.5 h-2.5 text-white" />
