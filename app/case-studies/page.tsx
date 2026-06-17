@@ -1,17 +1,14 @@
-import CaseStudyFinalCTA from "@/components/caseStudy/Casestudyfinalcta";
-import CaseStudyHero from "@/components/caseStudy/CaseStudyHero";
-import CaseStudyTransformation from "@/components/caseStudy/CaseStudyTransformation";
-import RoofingCaseStudy from "@/components/caseStudy/Roofingcasestudy";
+import { Metadata } from "next";
+import CaseStudiesGallery from "@/components/caseStudies/CaseStudiesGallery";
+
+export const metadata: Metadata = {
+  title: "Client Transformations & Case Studies | Ikhtiyaar",
+  description:
+    "Explore the strategies, systems, and data behind our most successful partnerships. Real businesses. Real challenges. Real results.",
+};
 
 const CaseStudiesPage = () => {
-  return (
-    <main className="font-sans">
-      <CaseStudyHero />
-      <RoofingCaseStudy />
-      <CaseStudyTransformation />
-      <CaseStudyFinalCTA />
-    </main>
-  );
+  return <CaseStudiesGallery />;
 };
 
 export default CaseStudiesPage;

@@ -36,6 +36,7 @@ import {
   Eye,
   ThumbsUp,
 } from "lucide-react";
+import Link from "next/link";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function useCountUp(to, duration = 2, inView) {
@@ -352,7 +353,7 @@ export default function CaseStudyFinalCTA() {
               }}
               className="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-slate-900 leading-[1.05] tracking-tight"
             >
-              Today it's their success story {" "}
+              Today it's their success story{" "}
               <span className="relative inline-block">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
                   Tomorrow it could be yours
@@ -661,7 +662,7 @@ export default function CaseStudyFinalCTA() {
         {/* ════════════════════════════════════════════════════════════════
             6.  CTA — THE MAIN EVENT
         ════════════════════════════════════════════════════════════════ */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -669,16 +670,13 @@ export default function CaseStudyFinalCTA() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="relative rounded-3xl overflow-hidden"
           >
-            {/* Deep background */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
             <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-transparent to-transparent" />
             <DotGrid opacity={0.04} />
-            {/* glow orbs */}
             <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/20 rounded-full blur-[100px]" />
             <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-400/10 rounded-full blur-[120px]" />
 
             <div className="relative grid lg:grid-cols-2 gap-12 p-8 lg:p-16 items-center">
-              {/* Left: copy */}
               <div className="space-y-6">
                 <h2 className="text-xl sm:text-xl lg:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-400 tracking-tight flex items-center gap-3 pb-2">
                   <Calendar className="w-10 h-10 text-blue-500 flex-shrink-0" /> Free Strategy Call
@@ -692,7 +690,6 @@ export default function CaseStudyFinalCTA() {
                   predictable growth with no obligation to move forward.
                 </p>
 
-                {/* What you'll get */}
                 <div className="space-y-2.5">
                   {[
                     "A complete audit of your current ad spend and ROI",
@@ -714,7 +711,6 @@ export default function CaseStudyFinalCTA() {
                   ))}
                 </div>
 
-                {/* Risk reversal chips */}
                 <div className="flex flex-wrap gap-2">
                   {[
                     "No pressure",
@@ -732,7 +728,6 @@ export default function CaseStudyFinalCTA() {
                 </div>
               </div>
 
-              {/* Right: form panel */}
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 space-y-5">
                 <p className="text-white font-bold text-lg">
                   Check if your business qualifies
@@ -783,7 +778,6 @@ export default function CaseStudyFinalCTA() {
                   className="relative w-full rounded-xl overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400" />
-                  {/* shimmer */}
                   <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                   <span className="relative flex items-center justify-center gap-2 text-white font-bold py-3.5 text-sm">
                     Get My Free Growth Plan{" "}
@@ -798,7 +792,7 @@ export default function CaseStudyFinalCTA() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </div> */}
 
         {/* ════════════════════════════════════════════════════════════════
             7.  RISK REVERSAL — address the burned-before buyer
@@ -890,22 +884,17 @@ export default function CaseStudyFinalCTA() {
             {/* Final CTA strip */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a
-                href="#"
+                href="/contact"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="relative inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold px-8 py-4 rounded-full shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow text-sm group overflow-hidden"
               >
                 <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                <span className="relative">Get My Free Growth Plan</span>
+                <Link href={`/contact`}>
+                  <span className="relative">Get My Free Growth Plan</span>
+                </Link>
                 <ChevronRight className="w-4 h-4 relative group-hover:translate-x-0.5 transition-transform" />
               </motion.a>
-
-              <a
-                href="tel:+1"
-                className="inline-flex items-center gap-2 text-slate-600 font-semibold text-sm hover:text-blue-600 transition-colors"
-              >
-                <PhoneCall className="w-4 h-4" /> Or call us directly
-              </a>
             </div>
 
             {/* final reassurance */}
