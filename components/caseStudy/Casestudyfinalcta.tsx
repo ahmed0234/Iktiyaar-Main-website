@@ -874,9 +874,9 @@ export default function CaseStudyFinalCTA() {
                   aren't guessing.
                 </span>
               </p>
-              <p className="text-slate-500 text-base leading-relaxed max-w-xl mx-auto">
+              <p className="text-slate-600 text-lg leading-relaxed max-w-xl mx-auto">
                 They built a system. Holloway Roofing built one. The next
-                success story we publish could be yours — but only if you decide
+                success story we publish could be yours but only if you decide
                 to stop waiting and start building.
               </p>
             </div>

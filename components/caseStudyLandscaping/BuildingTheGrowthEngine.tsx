@@ -56,7 +56,15 @@ function useCountUp(to: number, duration = 2, trigger: boolean) {
 }
 
 // ── Word-mask reveal ───────────────────────────────────────────────
-function MaskReveal({ text, delay = 0, className = "" }: { text: string; delay?: number; className?: string }) {
+function MaskReveal({
+  text,
+  delay = 0,
+  className = "",
+}: {
+  text: string;
+  delay?: number;
+  className?: string;
+}) {
   const [ref, inView] = useReveal("-30px");
   return (
     <span ref={ref} className={className}>
@@ -70,7 +78,11 @@ function MaskReveal({ text, delay = 0, className = "" }: { text: string; delay?:
             style={{ display: "inline-block" }}
             initial={{ y: "112%", opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: delay + i * 0.048 }}
+            transition={{
+              duration: 0.65,
+              ease: [0.16, 1, 0.3, 1],
+              delay: delay + i * 0.048,
+            }}
           >
             {w}
           </motion.span>
@@ -92,7 +104,9 @@ function SceneLabel({ children }: { children: React.ReactNode }) {
       className="flex items-center gap-3 mb-5"
     >
       <div className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-200" />
-      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-blue-400">{children}</span>
+      <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-blue-400">
+        {children}
+      </span>
       <div className="h-px flex-1 bg-gradient-to-l from-transparent to-blue-200" />
     </motion.div>
   );
@@ -107,7 +121,14 @@ function AmbientBg() {
       <div className="absolute bottom-0 right-1/3 w-[450px] h-[450px] rounded-full bg-blue-600/[0.03] blur-[130px]" />
       <svg className="absolute inset-0 w-full h-full opacity-[0.02]">
         <defs>
-          <pattern id="engine-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+          <pattern
+            id="engine-dots"
+            x="0"
+            y="0"
+            width="24"
+            height="24"
+            patternUnits="userSpaceOnUse"
+          >
             <circle cx="2" cy="2" r="1.4" fill="#3b82f6" />
           </pattern>
         </defs>
@@ -168,7 +189,9 @@ function Scene1() {
         >
           Homeowners were searching for landscaping every single day.
           <br />
-          <span className="text-slate-700 font-semibold">GreenScape just wasn&apos;t there to be found.</span>
+          <span className="text-slate-700 font-semibold">
+            GreenScape just wasn&apos;t there to be found.
+          </span>
         </motion.p>
       </div>
 
@@ -184,7 +207,8 @@ function Scene1() {
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-red-400" />
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-red-500 mb-5 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500" /> Before Ikhtiyaar
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500" /> Before
+              Ikhtiyaar
             </p>
             <div className="relative h-36 overflow-hidden">
               {[
@@ -199,7 +223,11 @@ function Scene1() {
                   key={item.label}
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.7 + i * 0.1, type: "spring", stiffness: 200 }}
+                  transition={{
+                    delay: 0.7 + i * 0.1,
+                    type: "spring",
+                    stiffness: 200,
+                  }}
                   style={{ left: item.x, top: item.y, rotate: item.r }}
                   className="absolute"
                 >
@@ -210,11 +238,21 @@ function Scene1() {
               ))}
               {/* broken lines */}
               <svg className="absolute inset-0 w-full h-full opacity-20">
-                {[[15, 22, 60, 12], [60, 12, 8, 62], [8, 62, 65, 57], [65, 57, 35, 75]].map(([x1, y1, x2, y2], i) => (
+                {[
+                  [15, 22, 60, 12],
+                  [60, 12, 8, 62],
+                  [8, 62, 65, 57],
+                  [65, 57, 35, 75],
+                ].map(([x1, y1, x2, y2], i) => (
                   <motion.line
                     key={i}
-                    x1={`${x1}%`} y1={`${y1}%`} x2={`${x2}%`} y2={`${y2}%`}
-                    stroke="#ef4444" strokeWidth="1.5" strokeDasharray="3 4"
+                    x1={`${x1}%`}
+                    y1={`${y1}%`}
+                    x2={`${x2}%`}
+                    y2={`${y2}%`}
+                    stroke="#ef4444"
+                    strokeWidth="1.5"
+                    strokeDasharray="3 4"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={inView ? { pathLength: 1, opacity: 1 } : {}}
                     transition={{ duration: 0.6, delay: 1.0 + i * 0.12 }}
@@ -237,7 +275,8 @@ function Scene1() {
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400" />
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-blue-500 mb-5 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" /> After The System
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" /> After
+              The System
             </p>
             <div className="relative h-36">
               {/* central hub */}
@@ -263,7 +302,11 @@ function Scene1() {
                   key={item.label}
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 1.2 + i * 0.08, type: "spring", stiffness: 220 }}
+                  transition={{
+                    delay: 1.2 + i * 0.08,
+                    type: "spring",
+                    stiffness: 220,
+                  }}
                   style={{ left: item.x, top: item.y }}
                   className="absolute"
                 >
@@ -274,14 +317,29 @@ function Scene1() {
               ))}
               {/* connection lines */}
               <svg className="absolute inset-0 w-full h-full">
-                {[[12, 12, 50, 50], [70, 12, 50, 50], [8, 70, 50, 50], [70, 70, 50, 50], [38, 4, 50, 50]].map(([x1, y1, x2, y2], i) => (
+                {[
+                  [12, 12, 50, 50],
+                  [70, 12, 50, 50],
+                  [8, 70, 50, 50],
+                  [70, 70, 50, 50],
+                  [38, 4, 50, 50],
+                ].map(([x1, y1, x2, y2], i) => (
                   <motion.line
                     key={i}
-                    x1={`${x1}%`} y1={`${y1}%`} x2={`${x2}%`} y2={`${y2}%`}
-                    stroke="#3b82f6" strokeWidth="1.5" strokeOpacity="0.4"
+                    x1={`${x1}%`}
+                    y1={`${y1}%`}
+                    x2={`${x2}%`}
+                    y2={`${y2}%`}
+                    stroke="#3b82f6"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.4"
                     initial={{ pathLength: 0 }}
                     animate={inView ? { pathLength: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 1.3 + i * 0.1, ease: "easeInOut" }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 1.3 + i * 0.1,
+                      ease: "easeInOut",
+                    }}
                   />
                 ))}
               </svg>
@@ -304,7 +362,8 @@ function Scene1() {
             So we built one.
           </p>
           <p className="text-slate-500 font-medium text-lg max-w-xl mx-auto">
-            Not a campaign. Not a quick fix. A complete, compounding lead generation infrastructure.
+            Not a campaign. Not a quick fix. A complete, compounding lead
+            generation infrastructure.
           </p>
         </motion.div>
       </div>
@@ -320,14 +379,78 @@ function Scene2() {
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const systems = [
-    { label: "Google Ads", icon: Search, color: "#2563eb", bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-700", angle: -90 },
-    { label: "Landing Pages", icon: Globe, color: "#2563eb", bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-700", angle: -45 },
-    { label: "Local SEO", icon: Target, color: "#059669", bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700", angle: 0 },
-    { label: "Call Tracking", icon: PhoneCall, color: "#059669", bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700", angle: 45 },
-    { label: "Lead Attribution", icon: Activity, color: "#7c3aed", bg: "bg-violet-50", border: "border-violet-200", text: "text-violet-700", angle: 90 },
-    { label: "Conversion Opt.", icon: TrendingUp, color: "#7c3aed", bg: "bg-violet-50", border: "border-violet-200", text: "text-violet-700", angle: 135 },
-    { label: "Reporting", icon: BarChart2, color: "#d97706", bg: "bg-amber-50", border: "border-amber-200", text: "text-amber-700", angle: 180 },
-    { label: "Continuous Testing", icon: RefreshCw, color: "#d97706", bg: "bg-amber-50", border: "border-amber-200", text: "text-amber-700", angle: 225 },
+    {
+      label: "Google Ads",
+      icon: Search,
+      color: "#2563eb",
+      bg: "bg-blue-50",
+      border: "border-blue-200",
+      text: "text-blue-700",
+      angle: -90,
+    },
+    {
+      label: "Landing Pages",
+      icon: Globe,
+      color: "#2563eb",
+      bg: "bg-blue-50",
+      border: "border-blue-200",
+      text: "text-blue-700",
+      angle: -45,
+    },
+    {
+      label: "Local SEO",
+      icon: Target,
+      color: "#059669",
+      bg: "bg-emerald-50",
+      border: "border-emerald-200",
+      text: "text-emerald-700",
+      angle: 0,
+    },
+    {
+      label: "Call Tracking",
+      icon: PhoneCall,
+      color: "#059669",
+      bg: "bg-emerald-50",
+      border: "border-emerald-200",
+      text: "text-emerald-700",
+      angle: 45,
+    },
+    {
+      label: "Lead Attribution",
+      icon: Activity,
+      color: "#7c3aed",
+      bg: "bg-violet-50",
+      border: "border-violet-200",
+      text: "text-violet-700",
+      angle: 90,
+    },
+    {
+      label: "Conversion Opt.",
+      icon: TrendingUp,
+      color: "#7c3aed",
+      bg: "bg-violet-50",
+      border: "border-violet-200",
+      text: "text-violet-700",
+      angle: 135,
+    },
+    {
+      label: "Reporting",
+      icon: BarChart2,
+      color: "#d97706",
+      bg: "bg-amber-50",
+      border: "border-amber-200",
+      text: "text-amber-700",
+      angle: 180,
+    },
+    {
+      label: "Continuous Testing",
+      icon: RefreshCw,
+      color: "#d97706",
+      bg: "bg-amber-50",
+      border: "border-amber-200",
+      text: "text-amber-700",
+      angle: 225,
+    },
   ];
 
   useEffect(() => {
@@ -364,7 +487,8 @@ function Scene2() {
           transition={{ delay: 0.6 }}
           className="text-slate-500 text-base sm:text-lg font-medium max-w-xl mx-auto mt-4"
         >
-          Eight interconnected systems, each feeding the next, all reporting to one engine.
+          Eight interconnected systems, each feeding the next, all reporting to
+          one engine.
         </motion.p>
       </div>
 
@@ -379,8 +503,12 @@ function Scene2() {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <circle
-              cx="190" cy="190" r={radius}
-              fill="none" stroke="#e2e8f0" strokeWidth="1.5"
+              cx="190"
+              cy="190"
+              r={radius}
+              fill="none"
+              stroke="#e2e8f0"
+              strokeWidth="1.5"
               strokeDasharray="6 4"
             />
             {systems.map((sys, i) => {
@@ -390,10 +518,19 @@ function Scene2() {
               return (
                 <motion.line
                   key={i}
-                  x1="190" y1="190" x2={x1} y2={y1}
-                  stroke={activeIndex === i || activeIndex === -1 ? sys.color : "#e2e8f0"}
+                  x1="190"
+                  y1="190"
+                  x2={x1}
+                  y2={y1}
+                  stroke={
+                    activeIndex === i || activeIndex === -1
+                      ? sys.color
+                      : "#e2e8f0"
+                  }
                   strokeWidth="1.5"
-                  strokeOpacity={activeIndex === -1 ? 0.4 : activeIndex === i ? 0.9 : 0.15}
+                  strokeOpacity={
+                    activeIndex === -1 ? 0.4 : activeIndex === i ? 0.9 : 0.15
+                  }
                   strokeDasharray={activeIndex === -1 ? "4 3" : "none"}
                   initial={{ pathLength: 0 }}
                   animate={inView ? { pathLength: 1 } : {}}
@@ -414,12 +551,20 @@ function Scene2() {
               {/* pulse ring */}
               <motion.div
                 animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0, 0.4] }}
-                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 2.5,
+                  ease: "easeInOut",
+                }}
                 className="absolute inset-0 rounded-3xl bg-blue-500/20"
               />
               <div className="relative w-28 h-28 rounded-3xl bg-gradient-to-br from-blue-700 to-blue-500 shadow-2xl shadow-blue-500/30 flex flex-col items-center justify-center text-center p-2">
                 <Zap className="w-7 h-7 text-white mb-1" />
-                <p className="text-[9px] font-black text-white/90 uppercase tracking-wider leading-tight">Ikhtiyaar<br />Growth Engine</p>
+                <p className="text-[9px] font-black text-white/90 uppercase tracking-wider leading-tight">
+                  Ikhtiyaar
+                  <br />
+                  Growth Engine
+                </p>
               </div>
             </div>
           </motion.div>
@@ -435,7 +580,11 @@ function Scene2() {
                 key={sys.label}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={inView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.9 + i * 0.1 }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: 0.9 + i * 0.1,
+                }}
                 style={{
                   position: "absolute",
                   left: x - 28,
@@ -457,7 +606,9 @@ function Scene2() {
                     />
                   )}
                   <Icon className="w-4 h-4" style={{ color: sys.color }} />
-                  <p className={`text-[7px] font-bold text-center leading-tight ${sys.text} px-1`}>
+                  <p
+                    className={`text-[7px] font-bold text-center leading-tight ${sys.text} px-1`}
+                  >
                     {sys.label}
                   </p>
                 </motion.div>
@@ -474,9 +625,18 @@ function Scene2() {
           className="hidden lg:flex flex-col gap-3 ml-16 max-w-xs"
         >
           {[
-            { title: "Every system feeds data back", body: "Nothing runs in isolation. Every ad click, form fill, and call is tracked and attributed." },
-            { title: "Every test compounds results", body: "Continuous A/B testing means the system gets smarter every single month." },
-            { title: "Every channel is intentional", body: "No spray-and-pray. Each channel serves a specific role in a deliberate funnel." },
+            {
+              title: "Every system feeds data back",
+              body: "Nothing runs in isolation. Every ad click, form fill, and call is tracked and attributed.",
+            },
+            {
+              title: "Every test compounds results",
+              body: "Continuous A/B testing means the system gets smarter every single month.",
+            },
+            {
+              title: "Every channel is intentional",
+              body: "No spray-and-pray. Each channel serves a specific role in a deliberate funnel.",
+            },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -490,7 +650,9 @@ function Scene2() {
               </div>
               <div>
                 <p className="text-sm font-bold text-slate-800">{item.title}</p>
-                <p className="text-xs text-slate-500 leading-relaxed mt-0.5">{item.body}</p>
+                <p className="text-xs text-slate-500 leading-relaxed mt-0.5">
+                  {item.body}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -507,10 +669,14 @@ function FlowParticle({ delay, trigger }: { delay: number; trigger: boolean }) {
   return (
     <motion.div
       initial={{ x: 0, opacity: 0 }}
-      animate={trigger ? {
-        x: ["0%", "16.6%", "33.2%", "49.8%", "66.4%", "83%", "100%"],
-        opacity: [0, 1, 1, 1, 1, 1, 0],
-      } : {}}
+      animate={
+        trigger
+          ? {
+              x: ["0%", "16.6%", "33.2%", "49.8%", "66.4%", "83%", "100%"],
+              opacity: [0, 1, 1, 1, 1, 1, 0],
+            }
+          : {}
+      }
       transition={{
         duration: 3.2,
         delay,
@@ -528,18 +694,66 @@ function Scene3() {
   const [ref, inView] = useReveal("-60px");
 
   const steps = [
-    { label: "Google Search", sublabel: "User types landscaping query", icon: Search, color: "blue" },
-    { label: "Landing Page", sublabel: "Service-specific, intent-matched", icon: Globe, color: "blue" },
-    { label: "Lead Form", sublabel: "Frictionless, mobile-first", icon: Layers, color: "blue" },
-    { label: "Call Tracking", sublabel: "Source attributed instantly", icon: PhoneCall, color: "emerald" },
-    { label: "Qualified Lead", sublabel: "Scored & routed automatically", icon: Target, color: "emerald" },
-    { label: "Estimate Booked", sublabel: "Same-day response workflow", icon: CheckCircle2, color: "emerald" },
-    { label: "Booked Project", sublabel: "Revenue confirmed", icon: TrendingUp, color: "emerald" },
+    {
+      label: "Google Search",
+      sublabel: "User types landscaping query",
+      icon: Search,
+      color: "blue",
+    },
+    {
+      label: "Landing Page",
+      sublabel: "Service-specific, intent-matched",
+      icon: Globe,
+      color: "blue",
+    },
+    {
+      label: "Lead Form",
+      sublabel: "Frictionless, mobile-first",
+      icon: Layers,
+      color: "blue",
+    },
+    {
+      label: "Call Tracking",
+      sublabel: "Source attributed instantly",
+      icon: PhoneCall,
+      color: "emerald",
+    },
+    {
+      label: "Qualified Lead",
+      sublabel: "Scored & routed automatically",
+      icon: Target,
+      color: "emerald",
+    },
+    {
+      label: "Estimate Booked",
+      sublabel: "Same-day response workflow",
+      icon: CheckCircle2,
+      color: "emerald",
+    },
+    {
+      label: "Booked Project",
+      sublabel: "Revenue confirmed",
+      icon: TrendingUp,
+      color: "emerald",
+    },
   ];
 
-  const colorMap: Record<string, { bg: string; border: string; text: string; dot: string }> = {
-    blue: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-700", dot: "bg-blue-500" },
-    emerald: { bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-700", dot: "bg-emerald-500" },
+  const colorMap: Record<
+    string,
+    { bg: string; border: string; text: string; dot: string }
+  > = {
+    blue: {
+      bg: "bg-blue-50",
+      border: "border-blue-200",
+      text: "text-blue-700",
+      dot: "bg-blue-500",
+    },
+    emerald: {
+      bg: "bg-emerald-50",
+      border: "border-emerald-200",
+      text: "text-emerald-700",
+      dot: "bg-emerald-500",
+    },
   };
 
   return (
@@ -548,20 +762,20 @@ function Scene3() {
 
       <div className="text-center mb-12">
         <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.06] tracking-tight">
-          <MaskReveal text="Every Lead." delay={0.05} />
-          {" "}
+          <MaskReveal text="Every Lead." delay={0.05} />{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
             <MaskReveal text="Every Step." delay={0.22} />
-          </span>
-          {" "}
+          </span>{" "}
           <MaskReveal text="Completely Visible." delay={0.38} />
         </h3>
         <motion.p
-          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.6 }}
           className="text-slate-500 text-base sm:text-lg font-medium max-w-xl mx-auto mt-4"
         >
-          For the first time, every opportunity could be tracked from first click to booked project.
+          For the first time, every opportunity could be tracked from first
+          click to booked project.
         </motion.p>
       </div>
 
@@ -573,7 +787,11 @@ function Scene3() {
             <motion.div
               initial={{ scaleX: 0 }}
               animate={inView ? { scaleX: 1 } : {}}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              transition={{
+                duration: 1.2,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.3,
+              }}
               className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-200 via-blue-400 to-emerald-400 origin-left"
             />
 
@@ -590,10 +808,16 @@ function Scene3() {
                   key={step.label}
                   initial={{ opacity: 0, y: 20, scale: 0.8 }}
                   animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 + i * 0.12 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.4 + i * 0.12,
+                  }}
                   className="relative z-10 flex flex-col items-center"
                 >
-                  <div className={`w-12 h-12 rounded-2xl ${c.bg} border-2 ${c.border} flex items-center justify-center shadow-sm`}>
+                  <div
+                    className={`w-12 h-12 rounded-2xl ${c.bg} border-2 ${c.border} flex items-center justify-center shadow-sm`}
+                  >
                     <Icon className={`w-5 h-5 ${c.text}`} />
                   </div>
                 </motion.div>
@@ -613,8 +837,14 @@ function Scene3() {
                   transition={{ delay: 0.8 + i * 0.1 }}
                   className="flex flex-col items-center text-center max-w-[80px]"
                 >
-                  <p className={`text-[12px] font-bold ${c.text} leading-tight mb-0.5`}>{step.label}</p>
-                  <p className="text-[9px] text-slate-400 leading-tight">{step.sublabel}</p>
+                  <p
+                    className={`text-[12px] font-bold ${c.text} leading-tight mb-0.5`}
+                  >
+                    {step.label}
+                  </p>
+                  <p className="text-[9px] text-slate-400 leading-tight">
+                    {step.sublabel}
+                  </p>
                 </motion.div>
               );
             })}
@@ -635,7 +865,9 @@ function Scene3() {
                 transition={{ delay: 0.3 + i * 0.1 }}
                 className="relative flex items-center gap-4 pl-3 pb-5"
               >
-                <div className={`relative z-10 w-10 h-10 rounded-2xl ${c.bg} border-2 ${c.border} flex items-center justify-center flex-shrink-0`}>
+                <div
+                  className={`relative z-10 w-10 h-10 rounded-2xl ${c.bg} border-2 ${c.border} flex items-center justify-center flex-shrink-0`}
+                >
                   <Icon className={`w-4 h-4 ${c.text}`} />
                 </div>
                 <div>
@@ -655,10 +887,12 @@ function Scene3() {
           className="mt-8 bg-white/80 backdrop-blur-sm border border-emerald-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm max-w-2xl mx-auto"
         >
           <div>
-            <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-1">Before vs After</p>
+            <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-1">
+              Before vs After
+            </p>
             <p className="text-lg font-black text-slate-900">
-              From <span className="text-red-500">9 booked projects/mo</span>{" "}
-              to <span className="text-emerald-600">61 booked projects/mo</span>
+              From <span className="text-red-500">9 booked projects/mo</span> to{" "}
+              <span className="text-emerald-600">61 booked projects/mo</span>
             </p>
           </div>
           <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-2 flex-shrink-0">
@@ -695,13 +929,17 @@ function Scene4() {
     },
     {
       before: "Seasonal slowdowns felt completely out of control",
-      after: "Campaigns were scaled during peak seasons and throttled strategically",
+      after:
+        "Campaigns were scaled during peak seasons and throttled strategically",
       icon: Settings,
     },
   ];
 
   return (
-    <section ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <section
+      ref={ref}
+      className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16"
+    >
       <SceneLabel>Scene 04 · What Actually Changed</SceneLabel>
 
       <div className="text-center mb-12">
@@ -713,11 +951,13 @@ function Scene4() {
           </span>
         </h3>
         <motion.p
-          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.55 }}
           className="text-slate-500 text-base sm:text-lg font-medium max-w-xl mx-auto mt-4"
         >
-          Results don&apos;t come from tactics. They come from the transformation in how the business operates.
+          Results don&apos;t come from tactics. They come from the
+          transformation in how the business operates.
         </motion.p>
       </div>
 
@@ -729,7 +969,11 @@ function Scene4() {
               key={i}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.12 }}
+              transition={{
+                duration: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.3 + i * 0.12,
+              }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
               className="group relative rounded-3xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-sm overflow-hidden cursor-default"
             >
@@ -743,9 +987,13 @@ function Scene4() {
                 {/* Before */}
                 <div className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-red-50 border border-red-200 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-[8px] font-black text-red-500">B</span>
+                    <span className="text-[8px] font-black text-red-500">
+                      B
+                    </span>
                   </div>
-                  <p className="text-sm md:text-base text-slate-500 leading-relaxed line-through decoration-red-300">{item.before}</p>
+                  <p className="text-sm md:text-base text-slate-500 leading-relaxed line-through decoration-red-300">
+                    {item.before}
+                  </p>
                 </div>
 
                 {/* After */}
@@ -753,7 +1001,9 @@ function Scene4() {
                   <div className="w-5 h-5 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <CheckCircle2 className="w-3 h-3 text-emerald-500" />
                   </div>
-                  <p className="text-sm md:text-base font-semibold text-slate-800 leading-relaxed">{item.after}</p>
+                  <p className="text-sm md:text-base font-semibold text-slate-800 leading-relaxed">
+                    {item.after}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -771,38 +1021,91 @@ function Scene5() {
   const [ref, inView] = useReveal("-60px");
 
   const months = [
-    { month: "Month 1", headline: "Visibility", body: "Search ads go live. Landing pages deployed. First qualified leads start arriving.", metric: "+23 leads", color: "blue" },
-    { month: "Month 2", headline: "Traction", body: "Conversion rates improve as ad copy and landing pages are refined from real data.", metric: "+41 leads", color: "blue" },
-    { month: "Month 3", headline: "Momentum", body: "SEO rankings begin climbing. Organic leads compound on top of paid results.", metric: "+68 leads", color: "blue" },
-    { month: "Month 4", headline: "Pipeline", body: "Booking flow is optimized. Estimates convert at 72%. Revenue becomes predictable.", metric: "+94 leads", color: "emerald" },
-    { month: "Month 5", headline: "Acceleration", body: "Growth is compounding. Each week performs better than the last. The system is self-improving.", metric: "+112 leads", color: "emerald" },
-    { month: "Month 6", headline: "System", body: "127+ monthly leads. 61 booked projects. Consistent, trackable, scalable acquisition.", metric: "+127 leads", color: "emerald" },
+    {
+      month: "Month 1",
+      headline: "Visibility",
+      body: "Search ads go live. Landing pages deployed. First qualified leads start arriving.",
+      metric: "+23 leads",
+      color: "blue",
+    },
+    {
+      month: "Month 2",
+      headline: "Traction",
+      body: "Conversion rates improve as ad copy and landing pages are refined from real data.",
+      metric: "+41 leads",
+      color: "blue",
+    },
+    {
+      month: "Month 3",
+      headline: "Momentum",
+      body: "SEO rankings begin climbing. Organic leads compound on top of paid results.",
+      metric: "+68 leads",
+      color: "blue",
+    },
+    {
+      month: "Month 4",
+      headline: "Pipeline",
+      body: "Booking flow is optimized. Estimates convert at 72%. Revenue becomes predictable.",
+      metric: "+94 leads",
+      color: "emerald",
+    },
+    {
+      month: "Month 5",
+      headline: "Acceleration",
+      body: "Growth is compounding. Each week performs better than the last. The system is self-improving.",
+      metric: "+112 leads",
+      color: "emerald",
+    },
+    {
+      month: "Month 6",
+      headline: "System",
+      body: "127+ monthly leads. 61 booked projects. Consistent, trackable, scalable acquisition.",
+      metric: "+127 leads",
+      color: "emerald",
+    },
   ];
 
   const heights = [22, 36, 50, 64, 78, 100];
-  const colorMap: Record<string, { bar: string; badge: string; badgeBg: string; badgeText: string }> = {
-    blue: { bar: "from-blue-400 to-blue-600", badge: "bg-blue-50 border-blue-200", badgeText: "text-blue-700", badgeBg: "" },
-    emerald: { bar: "from-emerald-400 to-emerald-600", badge: "bg-emerald-50 border-emerald-200", badgeText: "text-emerald-700", badgeBg: "" },
+  const colorMap: Record<
+    string,
+    { bar: string; badge: string; badgeBg: string; badgeText: string }
+  > = {
+    blue: {
+      bar: "from-blue-400 to-blue-600",
+      badge: "bg-blue-50 border-blue-200",
+      badgeText: "text-blue-700",
+      badgeBg: "",
+    },
+    emerald: {
+      bar: "from-emerald-400 to-emerald-600",
+      badge: "bg-emerald-50 border-emerald-200",
+      badgeText: "text-emerald-700",
+      badgeBg: "",
+    },
   };
 
   return (
-    <section ref={ref} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <section
+      ref={ref}
+      className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16"
+    >
       <SceneLabel>Scene 05 · The Compound Effect</SceneLabel>
 
       <div className="text-center mb-12">
         <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.06] tracking-tight">
-          <MaskReveal text="Growth That" delay={0.05} />
-          {" "}
+          <MaskReveal text="Growth That" delay={0.05} />{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-emerald-500">
             <MaskReveal text="Compounds." delay={0.22} />
           </span>
         </h3>
         <motion.p
-          initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.55 }}
           className="text-slate-500 text-base sm:text-lg font-medium max-w-xl mx-auto mt-4"
         >
-          Systems don&apos;t plateau. Each month of data makes the next month smarter.
+          Systems don&apos;t plateau. Each month of data makes the next month
+          smarter.
         </motion.p>
       </div>
 
@@ -864,16 +1167,26 @@ function Scene5() {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.5 + i * 0.1 }}
+              transition={{
+                duration: 0.55,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.5 + i * 0.1,
+              }}
               className="rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-5 shadow-sm space-y-3"
             >
               <div className="flex items-center justify-between">
-                <span className={`text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${c.badge} ${c.badgeText}`}>
+                <span
+                  className={`text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${c.badge} ${c.badgeText}`}
+                >
                   {m.month}
                 </span>
-                <span className={`text-[10px] font-black ${c.badgeText}`}>{m.metric}</span>
+                <span className={`text-[10px] font-black ${c.badgeText}`}>
+                  {m.metric}
+                </span>
               </div>
-              <p className="text-base font-black text-slate-900">{m.headline}</p>
+              <p className="text-base font-black text-slate-900">
+                {m.headline}
+              </p>
               <p className="text-xs text-slate-500 leading-relaxed">{m.body}</p>
             </motion.div>
           );
@@ -894,7 +1207,10 @@ function Scene6() {
       {/* Full-width ambient band */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/40 to-transparent pointer-events-none" />
 
-      <div ref={ref} className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+      <div
+        ref={ref}
+        className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center"
+      >
         <SceneLabel>Scene 06 · Owner Reaction</SceneLabel>
 
         {/* Large quote mark */}
@@ -914,13 +1230,15 @@ function Scene6() {
           className="relative z-10 space-y-6"
         >
           <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-[1.2] tracking-tight max-w-4xl mx-auto">
-            For the first time, we weren&apos;t wondering where the next project was coming from.
+            For the first time, we weren&apos;t wondering where the next project
+            was coming from.
           </p>
           <p className="text-lg sm:text-xl text-slate-500 font-medium leading-relaxed max-w-3xl mx-auto">
-            We could see how people were finding us, what was working, and where our next
-            opportunities were coming from.{" "}
+            We could see how people were finding us, what was working, and where
+            our next opportunities were coming from.{" "}
             <span className="text-slate-700 font-semibold">
-              It felt like we finally stopped relying on luck and started operating with a system.
+              It felt like we finally stopped relying on luck and started
+              operating with a system.
             </span>
           </p>
 
@@ -932,12 +1250,12 @@ function Scene6() {
           >
             <div className="flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl px-5 py-3 shadow-sm">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-400 flex items-center justify-center">
-                {/* <span className="text-[10px] font-black text-white">DR</span>
-                 */}
               </div>
               <div className="text-left">
                 <p className="text-sm font-bold text-slate-900">Daniel Reyes</p>
-                <p className="text-xs text-slate-500">Founder & Owner · GreenScape Pro, Austin TX</p>
+                <p className="text-xs text-slate-500">
+                  Founder & Owner · GreenScape Pro, Austin TX
+                </p>
               </div>
             </div>
           </motion.div>
@@ -958,7 +1276,9 @@ function Scene6() {
           transition={{ delay: 1.1 }}
           className="flex flex-col items-center gap-2 mt-10"
         >
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">The Results</p>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+            The Results
+          </p>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -1011,7 +1331,10 @@ export default function BuildingTheGrowthEngine() {
         >
           Growth didn&apos;t happen because we ran ads.
           <br />
-          <span className="text-slate-700 font-semibold">Growth happened because we installed a complete lead generation system.</span>
+          <span className="text-slate-700 font-semibold">
+            Growth happened because we installed a complete lead generation
+            system.
+          </span>
         </motion.p>
 
         <motion.div

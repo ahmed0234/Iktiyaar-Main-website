@@ -814,15 +814,16 @@ export default function CaseStudyHero() {
                   />
                 </motion.button>
               </Link>
-
-              <motion.button
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-2 px-6 py-4 rounded-full border border-slate-200 bg-white text-slate-700 font-semibold text-[15px] shadow-sm hover:border-blue-200 hover:text-blue-700 hover:shadow-md transition-all duration-300"
-              >
-                <Zap className="w-4 h-4" />
-                View Full Case Study
-              </motion.button>
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.03, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center gap-2 px-6 py-4 rounded-full border border-slate-200 bg-white text-slate-700 font-semibold text-[15px] shadow-sm hover:border-blue-200 hover:text-blue-700 hover:shadow-md transition-all duration-300"
+                >
+                  <Zap className="w-4 h-4" />
+                  See What's Possible
+                </motion.button>
+              </Link>
             </motion.div>
           </motion.div>
 

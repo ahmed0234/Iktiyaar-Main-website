@@ -767,13 +767,13 @@ export default function LandscapingCaseStudyHero() {
             >
               <Magnetic>
                 <motion.a
-                  href="#case-study"
+                  href="/contact"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow group"
                 >
                   <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  <span className="relative">Read The Full Story</span>
+                  <span className="relative">Get Results Like This</span>
                   <ChevronRight className="w-4 h-4 relative group-hover:translate-x-0.5 transition-transform" />
                 </motion.a>
               </Magnetic>

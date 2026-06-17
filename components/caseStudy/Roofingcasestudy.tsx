@@ -1108,7 +1108,7 @@ export default function RoofingCaseStudy() {
               <div className="hidden sm:block w-px h-10 bg-white/20" />
 
               <motion.a
-                href="#"
+                href="/contact"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 bg-white text-blue-600 font-bold px-6 py-3 rounded-full text-sm shadow-lg hover:shadow-xl transition-shadow"
