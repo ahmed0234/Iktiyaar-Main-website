@@ -1,11 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // images: {
-  //   unoptimized: true,
-  // },
-  // output: "export",
-  // trailingSlash: true,
+  output: "export",
+  trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -17,6 +14,7 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
+    unoptimized: true,
   },
 };
 
