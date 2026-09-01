@@ -7,8 +7,8 @@ import Link from "next/link";
 import { GoogleGLogo, HostingerLogo, CurvedUnderline } from "./HeroLogos";
 
 const problemItems = [
-  "Not random Facebook leads.",
-  "Not shared leads sold to 5 other contractors.",
+  "Not shared leads.",
+  "Not random traffic.",
   "Not “brand awareness.”",
 ];
 
@@ -29,7 +29,9 @@ export default function HeroLeftContent() {
 
           <GoogleGLogo className="w-4 h-4 shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.04)]" />
           <div className="flex items-center gap-2 text-xs sm:text-[13px]">
-            <span className="font-bold text-slate-800 tracking-tight">Google Search</span>
+            <span className="font-bold text-slate-800 tracking-tight">
+              Google Search
+            </span>
             <span className="text-[10px] sm:text-[11px] font-semibold text-blue-600 px-2 py-0.5 rounded-full bg-gradient-to-b from-blue-50 to-blue-100/50 border border-blue-200/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(37,99,235,0.04)]">
               Partner
             </span>
@@ -43,7 +45,9 @@ export default function HeroLeftContent() {
 
           <HostingerLogo className="w-4.5 h-4.5 shrink-0 drop-shadow-[0_1px_2px_rgba(103,61,230,0.12)]" />
           <div className="flex items-center gap-2 text-xs sm:text-[13px]">
-            <span className="font-bold text-slate-800 tracking-tight">Hostinger</span>
+            <span className="font-bold text-slate-800 tracking-tight">
+              Hostinger
+            </span>
             <span className="text-[10px] sm:text-[11px] font-semibold text-[#673DE6] px-2 py-0.5 rounded-full bg-gradient-to-b from-purple-50 to-purple-100/50 border border-purple-200/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(103,61,230,0.04)]">
               Partner
             </span>
@@ -76,11 +80,10 @@ export default function HeroLeftContent() {
         transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl pt-0.5"
       >
-        We help contractors get found by homeowners who are{" "}
+        We help contractors turn Google searches into{" "}
         <strong className="font-semibold text-slate-900">
-          already searching for the work you do
+          qualified homeowner inquiries, estimates and jobs
         </strong>{" "}
-        using Google Ads + SEO.
       </motion.p>
 
       {/* 4. Objection / Problem Cards (3 compact rows) */}
@@ -117,9 +120,9 @@ export default function HeroLeftContent() {
             <Check className="w-3.5 h-3.5 stroke-[3]" />
           </div>
           <p className="text-[15px] sm:text-base text-slate-700 leading-snug font-semibold">
-            We build you a system that brings homeowners to{" "}
+            We put your business in front of homeowners who are{" "}
             <span className="font-semibold text-[#0066FF]">
-              your business, your website, your phone and your sales team.
+              already searching for the work you do.
             </span>
           </p>
         </motion.div>
@@ -160,12 +163,14 @@ export default function HeroLeftContent() {
           href="#contact"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-poppins font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer"
         >
-          <span>SEE IF THIS CAN WORK IN MY MARKET</span>
+          <span>SEE WHAT GOOGLE LOOKS LIKE IN MY MARKET</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
         </Link>
         <p className="text-slate-500 text-xs sm:text-[13.5px] text-center sm:text-left leading-relaxed">
-          No long sales pitch. We’ll look at your market, your competition and the{" "}
-          <strong className="font-bold text-slate-800">numbers</strong> first.
+          We’ll look at your <strong>market</strong> ,{" "}
+          <strong>competition</strong>{" "}
+          <strong>search volume and click costs</strong> , before telling you to
+          spend a dollar.{" "}
         </p>
       </motion.div>
     </div>

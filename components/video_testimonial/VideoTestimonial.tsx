@@ -156,7 +156,7 @@ export default function VideoTestimonial() {
   }, [activeModal]);
 
   return (
-    <section className="relative py-10 sm:py-10 md:py-6 overflow-hidden bg-white">
+    <section id="video-testimonial" className="relative py-10 sm:py-10 md:py-6 overflow-hidden bg-white">
       {/* ─── AMBIENT ATMOSPHERIC BACKGROUND GLOWS ─── */}
       <div className="absolute top-1/4 -left-40 w-[500px] h-[500px] bg-gradient-to-tr from-blue-100/40 via-sky-50/30 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 -right-40 w-[550px] h-[550px] bg-gradient-to-bl from-blue-100/40 via-indigo-50/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />

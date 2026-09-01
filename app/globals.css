@@ -10,6 +10,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-poppins: var(--font-poppins);
+  --font-caveat: var(--font-caveat);
   --font-clash: "Clash Grotesk", sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
   --font-heading: var(--font-sans);

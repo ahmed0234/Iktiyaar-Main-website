@@ -7,12 +7,18 @@ import AccordionSection from "@/components/AccordionSection";
 import GrowthCTA from "@/components/GrowthCTA";
 import NewHeroSection from "@/components/NewHeroSection";
 import VideoTestimonial from "@/components/video_testimonial/VideoTestimonial";
+import Partner from "@/components/Partner";
+import MyselfvideoSection from "@/components/MySelfVideo/MyselfvideoSection";
+import ProblemSection from "@/public/Problem/ProblemSection";
 
 const page = () => {
   return (
     <main className="font-sans">
       <NewHeroSection />
-      <VideoTestimonial/>
+      <Partner />
+      <MyselfvideoSection />
+      <VideoTestimonial />
+      <ProblemSection />
       {/* <TrustedCompanies /> */}
       <Services />
       {/* <Testimonials /> */}
