@@ -10,6 +10,7 @@ import VideoTestimonial from "@/components/video_testimonial/VideoTestimonial";
 import Partner from "@/components/Partner";
 import MyselfvideoSection from "@/components/MySelfVideo/MyselfvideoSection";
 import ProblemSection from "@/public/Problem/ProblemSection";
+import Positioning from "@/components/Positioning/Positioning";
 
 const page = () => {
   return (
@@ -19,6 +20,7 @@ const page = () => {
       <MyselfvideoSection />
       <VideoTestimonial />
       <ProblemSection />
+      <Positioning />
       {/* <TrustedCompanies /> */}
       <Services />
       {/* <Testimonials /> */}
