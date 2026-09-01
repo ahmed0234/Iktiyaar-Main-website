@@ -60,9 +60,15 @@ export default function NewHeroSection() {
 
           {/* Right Column: Integrated 3D Marketing System Visual */}
           <motion.div
-            style={{
+            initial={{ opacity: 0, x: 20 }}
+            animate={{
+              opacity: 1,
+              x: 0,
               rotateX: visualRotateX,
               rotateY: visualRotateY,
+            }}
+            transition={{ duration: 0.55, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            style={{
               x: visualTranslateX,
               y: visualTranslateY,
             }}

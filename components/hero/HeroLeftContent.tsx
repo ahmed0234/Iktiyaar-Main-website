@@ -17,9 +17,9 @@ export default function HeroLeftContent() {
     <div className="flex flex-col items-start text-left w-full space-y-4 sm:space-y-4.5">
       {/* 1. Top Glassy Trust Badges (Google Search Partner & Hostinger Partner) */}
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-wrap items-center gap-2.5 sm:gap-3"
       >
         {/* Google Search Partner */}
@@ -57,9 +57,9 @@ export default function HeroLeftContent() {
 
       {/* 2. Main Headline: Exactly 2 lines on desktop, bold, powerful & wide */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.5, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
         className="w-full"
       >
         <h1 className="text-[34px] sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[52px] font-extrabold tracking-tight text-slate-900 leading-[1.12] sm:leading-[1.1] max-w-none">
@@ -75,9 +75,9 @@ export default function HeroLeftContent() {
 
       {/* 3. Supporting Paragraph */}
       <motion.p
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.45, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
         className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl pt-0.5"
       >
         We help contractors turn Google searches into{" "}
@@ -91,11 +91,11 @@ export default function HeroLeftContent() {
         {problemItems.map((text, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, x: -15 }}
+            initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
-              duration: 0.45,
-              delay: 0.25 + idx * 0.08,
+              duration: 0.38,
+              delay: 0.18 + idx * 0.06,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="flex items-center gap-3.5 px-4.5 py-2.5 sm:py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)] hover:border-blue-200/90 hover:bg-white/95 hover:shadow-[0_4px_16px_-2px_rgba(37,99,235,0.06)] transition-all duration-200 group"
@@ -111,9 +111,9 @@ export default function HeroLeftContent() {
 
         {/* 5. Solution Card (Visually prominent) */}
         <motion.div
-          initial={{ opacity: 0, x: -15 }}
+          initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-start sm:items-center gap-3.5 px-4.5 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-blue-50/90 via-blue-50/60 to-white/70 backdrop-blur-md border border-blue-200/90 shadow-[0_4px_20px_-4px_rgba(37,99,235,0.08)] hover:border-blue-300 transition-all duration-200"
         >
           <div className="w-5.5 h-5.5 rounded-full bg-blue-100/90 border border-blue-300 flex items-center justify-center text-[#0066FF] shrink-0 mt-0.5 sm:mt-0 shadow-xs">
@@ -129,9 +129,9 @@ export default function HeroLeftContent() {
 
         {/* 6. Proof / Outcome Card */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.45, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-4 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-blue-50/90 via-white/90 to-blue-50/60 backdrop-blur-md border border-blue-200/90 shadow-[0_8px_28px_-6px_rgba(37,99,235,0.10)] relative overflow-hidden group hover:border-blue-300 transition-all duration-300"
         >
           <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-100/90 border border-blue-200 flex items-center justify-center text-[#0066FF] shrink-0 shadow-xs group-hover:scale-105 transition-transform duration-300">
@@ -154,9 +154,9 @@ export default function HeroLeftContent() {
 
       {/* 7. Primary CTA Button + Friction Reducer */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.45, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="w-full max-w-xl pt-1.5 space-y-2"
       >
         <Link
