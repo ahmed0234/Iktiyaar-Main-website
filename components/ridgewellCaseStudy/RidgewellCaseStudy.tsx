@@ -599,7 +599,7 @@ export default function RidgewellCaseStudy() {
               </div>
               <div className="relative flex-1 min-h-[170px] sm:min-h-[190px] w-full overflow-hidden rounded-2xl border border-slate-100/80 shadow-[inset_0_2px_10px_rgba(15,23,42,0.08),0_8px_24px_-8px_rgba(0,102,255,0.10)]">
                 <Image
-                  src="/RidgewellColoradoCaseStudy/ridgewellcolorado.png"
+                  src="/RidgewellColoradoCaseStudy/ridgewellcolorado.webp"
                   alt="Ridgewell landscaping project in Colorado"
                   fill
                   className="object-cover"

@@ -99,7 +99,7 @@ const testimonials: TestimonialItem[] = [
     duration: "01:12",
     statPrimary: "$110K Revenue",
     statSecondary: "in 90 Days",
-    thumbnail: "/videoTestimonialThumbnails/1stTestimonail.png",
+    thumbnail: "/videoTestimonialThumbnails/1stTestimonail.webp",
     youtubeId: "zLIhI9GthRs",
     quoteSnippet:
       "Working with Ikhtiyaar completely transformed our outbound acquisition engine, scaling us to over $110K in closed revenue within our first 90 days.",
@@ -112,7 +112,7 @@ const testimonials: TestimonialItem[] = [
     duration: "00:58",
     statPrimary: "$90k Revenue",
     statSecondary: "in 90 Days",
-    thumbnail: "/videoTestimonialThumbnails/2ndTestimonial.png",
+    thumbnail: "/videoTestimonialThumbnails/2ndTestimonial.webp",
     youtubeId: "QLyqYDhV__I",
     quoteSnippet:
       "Ikhtiyaar built a reliable client acquisition system that helped us generate $90k in revenue within 90 days.",
@@ -124,7 +124,7 @@ const testimonials: TestimonialItem[] = [
     duration: "01:18",
     statPrimary: "$180K+ revenue",
     statSecondary: "from Google Ads",
-    thumbnail: "/video_testimonial/brandon_white.jpg",
+    thumbnail: "/video_testimonial/brandon_white.webp",
     videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     quoteSnippet:
       "Working with Ikhtiyaar felt like having an in-house CMO. Transparent tracking, high ROI, and zero fluff.",
