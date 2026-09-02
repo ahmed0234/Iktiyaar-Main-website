@@ -12,6 +12,9 @@ import Partner from "@/components/Partner";
 import ProblemSection from "@/public/Problem/ProblemSection";
 import Positioning from "@/components/Positioning/Positioning";
 import RidgewellCaseStudy from "@/components/ridgewellCaseStudy/RidgewellCaseStudy";
+import SEOCaseStudy from "@/components/CaseyInsuranceCaseStudy/SEOCaseStudy";
+import FAQ from "@/components/FAQ";
+import FinalCTA from "@/components/FinalCTA";
 
 const page = () => {
   return (
@@ -23,6 +26,9 @@ const page = () => {
       <ProblemSection />
       <Positioning />
       <RidgewellCaseStudy />
+      <SEOCaseStudy />
+      <FAQ />
+      <FinalCTA />
       {/* <TrustedCompanies /> */}
       {/* <Services /> */}
       {/* <Testimonials /> */}

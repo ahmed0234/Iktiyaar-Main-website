@@ -160,7 +160,7 @@ export default function HeroLeftContent() {
         className="w-full max-w-xl pt-1.5 space-y-2"
       >
         <Link
-          href="#contact"
+          href="/contact"
           className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-poppins font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer"
         >
           <span>SEE WHAT GOOGLE LOOKS LIKE IN MY MARKET</span>

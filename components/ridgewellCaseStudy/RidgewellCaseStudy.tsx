@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   MapPin,
   X,
@@ -368,25 +369,25 @@ function ConnectingDashedArrow() {
 const metricCardsData = [
   {
     dishType: "clicks" as const,
-    value: "1,389",
+    value: "1,362",
     label: "Clicks",
     watermark: "wave" as const,
   },
   {
     dishType: "cpc" as const,
-    value: "$4.55",
+    value: "$4.56",
     label: "Average CPC",
     watermark: "bars" as const,
   },
   {
     dishType: "conversions" as const,
-    value: "85",
+    value: "82.33",
     label: "Conversions",
     watermark: "avatars" as const,
   },
   {
     dishType: "costPerConversion" as const,
-    value: "$75.27",
+    value: "$75.69",
     label: "Cost Per\nConversion",
     watermark: "target" as const,
   },
@@ -863,9 +864,9 @@ export default function RidgewellCaseStudy() {
                   Approximately
                 </p>
 
-                {/* Main Prominent Stat: ~$50,000+ */}
+                {/* Main Prominent Stat: ~$150,000+ */}
                 <p className="text-[38px] sm:text-[44px] font-black text-white leading-none tracking-tight mt-0.5 drop-shadow-[0_3px_10px_rgba(0,0,0,0.3)]">
-                  ~$50,000+
+                  ~$150,000+
                 </p>
 
                 {/* "Profit Generated" */}
@@ -1252,22 +1253,13 @@ export default function RidgewellCaseStudy() {
 
               {/* Primary CTA Button */}
               <div className="relative z-10 mt-8 sm:mt-10">
-                <button
-                  onClick={() => {
-                    const target =
-                      document.getElementById("contact") ||
-                      document.getElementById("contact-us") ||
-                      document.getElementById("booking") ||
-                      document.getElementById("growth-cta");
-                    if (target) {
-                      target.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
+                <Link
+                  href="/contact"
                   className="group relative inline-flex items-center justify-center gap-2.5 px-7 sm:px-10 py-4 sm:py-4.5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#0062FF] to-[#0052EA] text-white font-black text-[12.5px] sm:text-[14px] lg:text-[14.5px] tracking-wide uppercase shadow-[0_14px_32px_-4px_rgba(0,98,255,0.48),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:shadow-[0_18px_38px_-4px_rgba(0,98,255,0.60)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
                 >
                   <span>SHOW ME WHAT THIS COULD LOOK LIKE FOR MY BUSINESS</span>
                   <ArrowRight size={16} strokeWidth={2.8} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                </Link>
               </div>
 
             </div>
