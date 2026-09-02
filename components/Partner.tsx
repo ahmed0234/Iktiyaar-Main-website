@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Check, ArrowDown } from "lucide-react";
 
@@ -210,14 +211,14 @@ const Partner = () => {
               {/* Main Content: Circular Badge + Text Details */}
               <div className="flex items-center gap-5 sm:gap-6">
                 {/* Circular Badge Container */}
-                <div className="w-26 h-26 sm:w-28 sm:h-28 md:w-30 md:h-30 rounded-full bg-white border-2 border-purple-100 ring-4 ring-purple-50 shadow-[0_6px_20px_rgba(103,61,230,0.08)] flex flex-col items-center justify-between shrink-0 pt-2.5 pb-0 text-center overflow-hidden relative group-hover:scale-105 transition-transform duration-300">
-                  <HostingerHIcon className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 mt-0.5" />
-                  <span className="text-[10px] sm:text-[11px] md:text-[11.5px] font-black text-[#1F1646] tracking-wider leading-none">
-                    HOSTINGER
-                  </span>
-                  <div className="w-full bg-[#673DE6] text-white text-[8px] sm:text-[8.5px] font-black tracking-widest uppercase py-1">
-                    PARTNER
-                  </div>
+                <div className="relative w-26 h-26 sm:w-28 sm:h-28 md:w-30 md:h-30 rounded-full bg-white border-2 border-purple-100 ring-4 ring-purple-50 shadow-[0_6px_20px_rgba(103,61,230,0.08)] flex items-center justify-center shrink-0 overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                  <Image
+                    src="/partner/Hostinger Badge.webp"
+                    alt="Hostinger Partner Badge"
+                    fill
+                    className="object-cover scale-[1.06] rounded-full"
+                    sizes="(max-width: 768px) 112px, 120px"
+                  />
                 </div>
 
                 {/* Right Details */}

@@ -79,39 +79,43 @@ function RightDashedArrow({ className = "" }: { className?: string }) {
 interface TestimonialItem {
   id: string;
   name: string;
+  role?: string;
   company: string;
   duration: string;
   statPrimary: string;
   statSecondary: string;
   thumbnail: string;
+  youtubeId?: string;
   videoSrc?: string;
   quoteSnippet: string;
 }
 
 const testimonials: TestimonialItem[] = [
   {
-    id: "mike-johnson",
-    name: "Mike Johnson",
-    company: "Johnson Roofing",
-    duration: "01:24",
-    statPrimary: "$210K+ in revenue",
-    statSecondary: "in 90 days",
-    thumbnail: "/video_testimonial/mike_johnson.jpg",
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    id: "michael-swisher",
+    name: "Michael Swisher",
+    role: "Owner",
+    company: "Swisher Capital",
+    duration: "01:12",
+    statPrimary: "$110K Revenue",
+    statSecondary: "in 90 Days",
+    thumbnail: "/videoTestimonialThumbnails/1stTestimonail.png",
+    youtubeId: "zLIhI9GthRs",
     quoteSnippet:
-      "We were tired of shared leads sold to 5 other roofers. Ikhtiyaar built us an exclusive Google Ads system that generated $210K in closed jobs within our first quarter.",
+      "Working with Ikhtiyaar completely transformed our outbound acquisition engine, scaling us to over $110K in closed revenue within our first 90 days.",
   },
   {
-    id: "chris-ramirez",
-    name: "Chris Ramirez",
-    company: "Ramirez Concrete",
-    duration: "01:37",
-    statPrimary: "156% more leads",
-    statSecondary: "in 60 days",
-    thumbnail: "/video_testimonial/chris_ramirez.jpg",
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    id: "john-hall",
+    name: "John Hall",
+    role: "Owner",
+    company: "J & J Cash Home Buyers",
+    duration: "00:58",
+    statPrimary: "$90k Revenue",
+    statSecondary: "in 90 Days",
+    thumbnail: "/videoTestimonialThumbnails/2ndTestimonial.png",
+    youtubeId: "QLyqYDhV__I",
     quoteSnippet:
-      "Our phone wouldn't stop ringing. The local SEO combined with target high-intent ads gave us 156% more qualified inbound project requests.",
+      "Ikhtiyaar built a reliable client acquisition system that helped us generate $90k in revenue within 90 days.",
   },
   {
     id: "brandon-white",
@@ -300,7 +304,7 @@ export default function VideoTestimonial() {
                       </h4>
                       <div className="flex items-center gap-1.5 mt-0.5">
                         <span className="text-xs sm:text-[13px] font-semibold text-[#0066FF] truncate">
-                          {item.company}
+                          {item.role ? `${item.role}, ${item.company}` : item.company}
                         </span>
                         <CheckCircle2 className="w-3.5 h-3.5 fill-[#0066FF] text-white shrink-0" />
                       </div>
@@ -426,7 +430,7 @@ export default function VideoTestimonial() {
                     <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
                       {activeModal.name} ·{" "}
                       <span className="text-blue-400 font-semibold">
-                        {activeModal.company}
+                        {activeModal.role ? `${activeModal.role}, ${activeModal.company}` : activeModal.company}
                       </span>
                     </h3>
                     <p className="text-xs text-slate-400">
@@ -449,7 +453,15 @@ export default function VideoTestimonial() {
 
               {/* Video Player Container */}
               <div className="relative aspect-video w-full bg-black flex items-center justify-center">
-                {activeModal.videoSrc ? (
+                {activeModal.youtubeId ? (
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${activeModal.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                    title={`${activeModal.name} - Testimonial Video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                ) : activeModal.videoSrc ? (
                   <video
                     src={activeModal.videoSrc}
                     poster={activeModal.thumbnail}

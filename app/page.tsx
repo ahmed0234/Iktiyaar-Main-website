@@ -11,7 +11,7 @@ import Partner from "@/components/Partner";
 // import MyselfvideoSection from "@/components/MySelfVideo/MyselfvideoSection";
 import ProblemSection from "@/public/Problem/ProblemSection";
 import Positioning from "@/components/Positioning/Positioning";
-// import RidgewellCaseStudy from "@/components/ridgewellCaseStudy/RidgewellCaseStudy";
+import RidgewellCaseStudy from "@/components/ridgewellCaseStudy/RidgewellCaseStudy";
 
 const page = () => {
   return (
@@ -22,7 +22,7 @@ const page = () => {
       <VideoTestimonial />
       <ProblemSection />
       <Positioning />
-      {/* <RidgewellCaseStudy /> */}
+      <RidgewellCaseStudy />
       {/* <TrustedCompanies /> */}
       {/* <Services /> */}
       {/* <Testimonials /> */}

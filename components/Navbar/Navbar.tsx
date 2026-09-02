@@ -20,7 +20,7 @@ const navLinks = [
   },
 
   { name: "Contact Us", href: "/contact" },
-  { name: "Case Studies", href: "/case-studies" },
+  // { name: "Case Studies", href: "/case-studies" },
 ];
 
 export default function Navbar() {
@@ -109,47 +109,48 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center justify-center gap-1 px-6 py-2 md:py-2.5 rounded-full bg-white/40 backdrop-blur-lg border border-slate-200/65 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
+            <nav className="hidden md:flex items-center justify-center px-3 py-1.5 md:py-2 rounded-full bg-white/40 backdrop-blur-lg border border-slate-200/65 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
               {navLinks.map((link, index) => (
                 <div
                   key={link.name}
-                  className="relative"
+                  className="relative flex items-center justify-center min-w-[100px] sm:min-w-[108px]"
                   onMouseEnter={() => setActiveDropdown(link.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.3 + index * 0.1,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                  >
-                    {link.dropdown ? (
-                      <div className="flex items-center space-x-1 px-4 py-2 rounded-full text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group cursor-pointer">
-                        <span>{link.name}</span>
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-300 text-slate-400 group-hover:text-blue-600 ${
-                            activeDropdown === link.name ? "rotate-180" : ""
-                          }`}
-                        />
-                        {/* Hover highlight line */}
-                        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-500 rounded-full transition-all duration-300 opacity-0 group-hover:w-1/2 group-hover:opacity-100" />
-                      </div>
-                    ) : (
-                      <Link
-                        href={link.href}
-                        className="flex items-center space-x-1 px-4 py-2 rounded-full text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group"
-                      >
-                        <span>{link.name}</span>
-                        {/* Hover highlight line */}
-                        <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-500 rounded-full transition-all duration-300 opacity-0 group-hover:w-1/2 group-hover:opacity-100" />
-                      </Link>
-                    )}
-                  </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.3 + index * 0.1,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      className="w-full flex justify-center"
+                    >
+                      {link.dropdown ? (
+                        <div className="flex items-center justify-center space-x-1 px-3.5 py-2 rounded-full text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group cursor-pointer whitespace-nowrap">
+                          <span>{link.name}</span>
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-300 text-slate-400 group-hover:text-blue-600 ${
+                              activeDropdown === link.name ? "rotate-180" : ""
+                            }`}
+                          />
+                          {/* Hover highlight line */}
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-500 rounded-full transition-all duration-300 opacity-0 group-hover:w-1/2 group-hover:opacity-100" />
+                        </div>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="flex items-center justify-center space-x-1 px-3.5 py-2 rounded-full text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group whitespace-nowrap"
+                        >
+                          <span>{link.name}</span>
+                          {/* Hover highlight line */}
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-500 rounded-full transition-all duration-300 opacity-0 group-hover:w-1/2 group-hover:opacity-100" />
+                        </Link>
+                      )}
+                    </motion.div>
 
-                  {/* Dropdown Menu */}
+                    {/* Dropdown Menu */}
                   <AnimatePresence>
                     {link.dropdown && activeDropdown === link.name && (
                       <motion.div
