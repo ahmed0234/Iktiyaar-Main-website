@@ -33,12 +33,15 @@ export const metadata: Metadata = {
 import Navbar from "@/components/Navbar/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import Footer from "@/components/Footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-5TTF2MD5ZM";
+
   return (
     <html
       lang="en"
@@ -57,6 +60,7 @@ export default function RootLayout({
         <Footer />
         {/* </SmoothScroll> */}
       </body>
+      <GoogleAnalytics gaId={gaId} />
     </html>
   );
 }
