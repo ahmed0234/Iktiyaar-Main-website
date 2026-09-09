@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import { Target, Search, Check } from "lucide-react";
 import { CurvedUnderline } from "@/components/hero/HeroLogos";
-import RightSideVisual from "@/public/Positioning/RightSideImage.png";
+import RightSideVisual from "@/public/Positioning/RightSideImage.webp";
 
 /* ─── Scroll Reveal Wrapper ───────────────────────────────────────────── */
 function Reveal({

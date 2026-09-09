@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
-import MiddleCardImg from '@/public/NewProblemSection/MiddleCard.png';
+import MiddleCardImg from '@/public/NewProblemSection/MiddleCard.webp';
 import Link from 'next/link';
 import {
   Calendar,

@@ -117,18 +117,6 @@ const testimonials: TestimonialItem[] = [
     quoteSnippet:
       "Ikhtiyaar built a reliable client acquisition system that helped us generate $90k in revenue within 90 days.",
   },
-  {
-    id: "brandon-white",
-    name: "Brandon White",
-    company: "B&W Remodeling",
-    duration: "01:18",
-    statPrimary: "$180K+ revenue",
-    statSecondary: "from Google Ads",
-    thumbnail: "/video_testimonial/brandon_white.webp",
-    videoSrc: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    quoteSnippet:
-      "Working with Ikhtiyaar felt like having an in-house CMO. Transparent tracking, high ROI, and zero fluff.",
-  },
 ];
 
 // ─── Avatar stack data ────────────────────────────────────────────────────────
@@ -235,8 +223,8 @@ export default function VideoTestimonial() {
           </motion.div>
         </div>
 
-        {/* ─── 3-COLUMN VIDEO TESTIMONIAL CARDS ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-7 lg:gap-8 items-stretch">
+        {/* ─── 2-COLUMN CENTERED VIDEO TESTIMONIAL CARDS ─── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-8 lg:gap-10 items-stretch max-w-[960px] mx-auto w-full">
           {testimonials.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -245,22 +233,22 @@ export default function VideoTestimonial() {
               viewport={{ once: true }}
               transition={{
                 duration: 0.6,
-                delay: 0.15 + idx * 0.1,
+                delay: 0.15 + idx * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center w-full max-w-md sm:max-w-lg md:max-w-none mx-auto"
             >
               {/* Video Thumbnail Card */}
               <div
                 onClick={() => setActiveModal(item)}
-                className="w-full relative rounded-[28px] sm:rounded-[32px] overflow-hidden bg-slate-900 border border-slate-200/80 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.12),0_0_30px_rgba(59,130,246,0.06)] hover:shadow-[0_25px_60px_-10px_rgba(0,102,255,0.18)] hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer aspect-[4/3.8] flex flex-col justify-between"
+                className="w-full relative rounded-[28px] sm:rounded-[32px] overflow-hidden bg-slate-900 border border-slate-200/80 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.12),0_0_30px_rgba(59,130,246,0.06)] hover:shadow-[0_25px_60px_-10px_rgba(0,102,255,0.18)] hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer aspect-[4/3.6] flex flex-col justify-between"
               >
                 {/* Background Image */}
                 <Image
                   src={item.thumbnail}
                   alt={`${item.name} from ${item.company}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 480px"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                   priority={idx === 0}
                 />
