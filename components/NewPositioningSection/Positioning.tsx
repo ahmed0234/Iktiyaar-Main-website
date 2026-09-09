@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import { Target, Search, Check } from "lucide-react";
 import { CurvedUnderline } from "@/components/hero/HeroLogos";
-import RightSideVisual from "@/public/positioning/RightSideImage.png";
+import RightSideVisual from "@/public/Positioning/RightSideImage.png";
 
 /* ─── Scroll Reveal Wrapper ───────────────────────────────────────────── */
 function Reveal({
@@ -163,7 +163,10 @@ const Positioning = () => {
                   "They call you.",
                   "They submit a request to you.",
                 ].map((text) => (
-                  <div key={text} className="flex items-center gap-3 group/item">
+                  <div
+                    key={text}
+                    className="flex items-center gap-3 group/item"
+                  >
                     <div className="w-6 h-6 sm:w-6.5 sm:h-6.5 rounded-full bg-gradient-to-b from-[#1A75FF] to-[#005CE6] flex items-center justify-center text-white shrink-0 shadow-[0_2px_8px_rgba(0,102,255,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] group-hover/item:scale-105 transition-transform duration-200">
                       <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3.2]" />
                     </div>
