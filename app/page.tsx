@@ -18,6 +18,7 @@ import NewProblemSection from "@/components/NewProblemSection/NewProblemSection"
 import Offer from "@/components/TheOffer/Offer";
 import EconomicsSection from "@/components/Economics/EconomicsSection";
 import NewProcessSection from "@/components/NewProcess/NewProcessSection";
+import Authority from "@/components/Authority/Authority";
 // import ProblemSection from '@/public/Problem/ProblemSection';
 
 const page = () => {
@@ -32,6 +33,7 @@ const page = () => {
       <Positioning />
       <EconomicsSection />
       <NewProcessSection />
+      <Authority />
       <RidgewellCaseStudy />
       <SEOCaseStudy />
       <FAQ />
