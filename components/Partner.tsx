@@ -117,7 +117,7 @@ const Partner = () => {
 
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* ─── SECTION HEADLINE (PROMINENT & CLEAN) ─── */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -133,7 +133,7 @@ const Partner = () => {
             </span>
             <HeaderCurveUnderline className="w-48 sm:w-60 md:w-72 h-3 sm:h-4 mt-1" />
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* ─── TWO ENHANCED CREDENTIAL CARDS ─── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7 lg:gap-8 max-w-5xl mx-auto mt-10 sm:mt-12 items-stretch">

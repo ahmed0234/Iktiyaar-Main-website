@@ -1,11 +1,11 @@
 'use client';
 
-import { ArrowRight, Check, TrendingUp, X } from 'lucide-react';
+import { ArrowRight, Check, TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { CurvedUnderline, GoogleGLogo, HostingerLogo } from './HeroLogos';
 
-const problemItems = [
+const ownershipBenefits = [
   'You own the campaigns.',
   'You own the landing pages.',
   'You own the data.',
@@ -89,9 +89,9 @@ export default function HeroLeftContent() {
         without relying only on referrals, Angi, HomeAdvisor, or shared leads.
       </motion.p>
 
-      {/* 4. Objection / Problem Cards (3 compact rows) */}
+      {/* 4. Ownership & Solution Cards */}
       <div className="w-full max-w-xl space-y-2 pt-0.5">
-        {problemItems.map((text, idx) => (
+        {ownershipBenefits.map((text, idx) => (
           <motion.div
             key={idx}
             initial={{ opacity: 0, x: -12 }}
@@ -101,10 +101,10 @@ export default function HeroLeftContent() {
               delay: 0.18 + idx * 0.06,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="flex items-center gap-3.5 px-4.5 py-2.5 sm:py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)] hover:border-blue-200/90 hover:bg-white/95 hover:shadow-[0_4px_16px_-2px_rgba(37,99,235,0.06)] transition-all duration-200 group"
+            className="flex items-center gap-3.5 px-4.5 py-2.5 sm:py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.03)] hover:border-emerald-200/90 hover:bg-white/95 hover:shadow-[0_4px_16px_-2px_rgba(16,185,129,0.08)] transition-all duration-200 group"
           >
-            <div className="w-5.5 h-5.5 rounded-full border border-red-200 bg-red-50/80 flex items-center justify-center text-red-500 shrink-0 group-hover:scale-105 group-hover:bg-red-100 group-hover:border-red-300 transition-all">
-              <X className="w-3.5 h-3.5 stroke-[2.5]" />
+            <div className="w-5.5 h-5.5 rounded-full border border-emerald-200/90 bg-emerald-50/90 flex items-center justify-center text-emerald-600 shrink-0 group-hover:scale-105 group-hover:bg-emerald-100 group-hover:border-emerald-300 transition-all shadow-xs">
+              <Check className="w-3.5 h-3.5 stroke-[2.5]" />
             </div>
             <span className="text-[15px] sm:text-base font-medium text-slate-700">
               {text}
@@ -123,15 +123,15 @@ export default function HeroLeftContent() {
             <Check className="w-3.5 h-3.5 stroke-[3]" />
           </div>
           <p className="text-[15px] sm:text-base text-slate-700 leading-snug font-semibold">
-            We put your business in front of homeowners who are{' '}
+            We just build and manage the system that{' '}
             <span className="font-semibold text-[#0066FF]">
-              already searching for the work you do.
+              brings the opportunities in.
             </span>
           </p>
         </motion.div>
 
         {/* 6. Proof / Outcome Card */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
@@ -152,7 +152,7 @@ export default function HeroLeftContent() {
               <CurvedUnderline className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-2 sm:h-2.5 text-[#0066FF]" />
             </span>
           </p>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* 7. Primary CTA Button + Friction Reducer */}
@@ -160,20 +160,17 @@ export default function HeroLeftContent() {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full max-w-xl pt-1.5 space-y-2"
+        className="w-full max-w-xl pt-1.5 space-y-2.5"
       >
         <Link
           href="/contact"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-poppins font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-poppins font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 group cursor-pointer text-center"
         >
-          <span>SEE WHAT GOOGLE LOOKS LIKE IN MY MARKET</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+          <span>See If Google Ads Makes Sense In Your Market</span>
+          <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform duration-200" />
         </Link>
-        <p className="text-slate-500 text-xs sm:text-[13.5px] text-center sm:text-left leading-relaxed">
-          We’ll look at your <strong>market</strong> ,{' '}
-          <strong>competition</strong>{' '}
-          <strong>search volume and click costs</strong> , before telling you to
-          spend a dollar.{' '}
+        <p className="text-slate-500 text-xs sm:text-[13.5px] text-center sm:text-left font-medium leading-relaxed">
+          No long-term contract. No generic lead lists. No shared leads.
         </p>
       </motion.div>
     </div>
