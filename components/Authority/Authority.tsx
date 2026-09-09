@@ -8,10 +8,11 @@ import {
   Target,
   Shield,
   Crown,
-  Ban,
   ChevronRight,
   TrendingUp,
   X,
+  Sparkles,
+  ShieldCheck,
 } from "lucide-react";
 import { PiArrowRightBold } from "react-icons/pi";
 import { CurvedUnderline } from "@/components/hero/HeroLogos";
@@ -205,7 +206,7 @@ function SectionBadge({
 
 function MetricNumber({ value }: { value: string }) {
   return (
-    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-b from-white via-[#F3F8FF] to-[#E4EFFF] border border-white ring-1 ring-[#D4E3F4] text-[12.5px] font-black text-[#0066FF] shadow-[0_6px_12px_-5px_rgba(0,102,255,0.28),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-2px_4px_rgba(0,102,255,0.08)]">
+    <span className="flex h-8 w-8 2xl:text-lg shrink-0 items-center justify-center rounded-full bg-linear-to-b from-white via-[#F3F8FF] to-[#E4EFFF] border border-white ring-1 ring-[#D4E3F4] text-[12.5px] font-black text-[#0066FF] shadow-[0_6px_12px_-5px_rgba(0,102,255,0.28),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-2px_4px_rgba(0,102,255,0.08)]">
       {value}
     </span>
   );
@@ -219,7 +220,6 @@ const Authority = () => {
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <DotGrid className="absolute top-8 left-6 sm:left-14 opacity-60" rows={7} cols={7} />
-        <DotGrid className="absolute top-8 right-6 sm:right-14 opacity-60" rows={7} cols={7} />
         <div className="absolute top-1/3 left-1/5 h-[420px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.06)_0%,transparent_70%)] blur-[80px]" />
         <div className="absolute bottom-1/4 right-1/6 h-[380px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.05)_0%,transparent_70%)] blur-[80px]" />
       </div>
@@ -228,75 +228,77 @@ const Authority = () => {
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-10 2xl:gap-12 items-stretch">
           {/* ── Left: Differentiation ── */}
           <Reveal delay={0.05} direction="up">
-            <article className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9`}>
-              <Specular />
-              <div className="pointer-events-none absolute -top-16 right-8 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.08)_0%,transparent_70%)] blur-2xl" />
+            <article className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9 flex flex-col justify-between`}>
+              <div>
+                <Specular />
+                <div className="pointer-events-none absolute -top-16 right-8 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.08)_0%,transparent_70%)] blur-2xl" />
 
-              <div className="relative flex items-start justify-between gap-4">
-                <SectionBadge icon={Target} label="Differentiation" />
-                <div className="hidden sm:flex flex-col items-end -mt-1">
-                  <span
-                    className={`${caveat.className} text-[20px] xl:text-[22px] font-bold text-[#0066FF] -rotate-2 leading-none`}
-                  >
-                    Real results. Not just leads.
-                  </span>
-                  <AnnotationArrow className="mt-1 h-9 w-14 text-[#0066FF]" />
-                </div>
-              </div>
-
-              <h2 className="relative mt-6 text-[34px] sm:text-[42px] xl:text-[48px] 2xl:text-[52px] font-black tracking-[-0.04em] leading-[1.05] text-[#0A1128]">
-                <span className="relative inline-block">
-                  Why Ikhtiyaar?
-                  <CurvedUnderline className="absolute -bottom-2 left-0 h-3.5 w-full text-[#0066FF] sm:-bottom-2.5 sm:h-4" />
-                </span>
-              </h2>
-
-              <p className="mt-5 max-w-md text-[15px] sm:text-[16.5px] leading-relaxed text-slate-500">
-                Because we care about whether the numbers work after the lead
-                comes in.
-              </p>
-
-              <div className="relative mt-7 rounded-[22px] bg-white/80 border border-[#DCEAFB] p-4 sm:p-5 shadow-[0_12px_28px_-14px_rgba(0,102,255,0.12),inset_0_1px_1px_rgba(255,255,255,1)]">
-                <p className="text-[13.5px] sm:text-[14.5px] font-medium text-slate-500">
-                  A lot of agencies stop at:
-                </p>
-                <div className="mt-3 flex flex-wrap items-center gap-3">
-                  <span className="inline-flex rounded-full bg-[#EEF4FF] border border-[#CCE0FF] px-3 py-1.5 text-[13px] sm:text-[14px] font-semibold text-slate-700">
-                    Your cost per click went down.
-                  </span>
-                  <span className="relative inline-flex items-start">
-                    <CoolSpark className="absolute -top-3 -right-4 h-6 w-6" />
+                <div className="relative flex items-start justify-between gap-4">
+                  <SectionBadge icon={Target} label="Differentiation" />
+                  <div className="hidden sm:flex flex-col items-end -mt-1">
                     <span
-                      className={`${caveat.className} relative text-[28px] sm:text-[32px] font-bold leading-none text-[#0066FF]`}
+                      className={`${caveat.className} text-[20px] xl:text-[22px] font-bold text-[#0066FF] -rotate-2 leading-none`}
                     >
-                      Cool.
-                      <CoolUnderline className="absolute -bottom-1 left-0 h-3 w-full" />
+                      Real results. Not just leads.
                     </span>
-                  </span>
+                    <AnnotationArrow className="mt-1 h-9 w-14 text-[#0066FF]" />
+                  </div>
                 </div>
 
-                <p className="relative mt-5 text-[26px] sm:text-[32px] xl:text-[34px] font-black tracking-[-0.03em] leading-[1.1] text-[#0066FF]">
+                <h2 className="relative mt-6 text-[34px] sm:text-[42px] xl:text-[48px] 2xl:text-[52px] font-black tracking-[-0.04em] leading-[1.05] text-[#0A1128]">
                   <span className="relative inline-block">
-                    But did you make money?
-                    <MoneyUnderline className="absolute -bottom-1 left-0 h-3.5 w-full" />
+                    Why Ikhtiyaar?
+                    <CurvedUnderline className="absolute -bottom-2 left-0 h-3.5 w-full text-[#0066FF] sm:-bottom-2.5 sm:h-4" />
                   </span>
-                </p>
-              </div>
+                </h2>
 
-              <ol className="mt-6 divide-y divide-[#E6EFF8]">
-                {questions.map((question, index) => (
-                  <li
-                    key={question}
-                    className="flex items-center gap-3 py-3.5 first:pt-1 last:pb-1"
-                  >
-                    <MetricNumber value={String(index + 1)} />
-                    <p className="flex-1 text-[14.5px] sm:text-[15.5px] font-semibold leading-snug text-[#0A1128]">
-                      {question}
-                    </p>
-                    <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" />
-                  </li>
-                ))}
-              </ol>
+                <p className="mt-5 max-w-md text-[15px] sm:text-[16.5px] leading-relaxed text-slate-500">
+                  Because we care about whether the numbers work after the lead
+                  comes in.
+                </p>
+
+                <div className="relative mt-7 rounded-[22px] bg-white/80 border border-[#DCEAFB] p-4 sm:p-5 shadow-[0_12px_28px_-14px_rgba(0,102,255,0.12),inset_0_1px_1px_rgba(255,255,255,1)]">
+                  <p className="text-[13.5px] sm:text-[14.5px] font-medium text-slate-500">
+                    A lot of agencies stop at:
+                  </p>
+                  <div className="mt-3 flex flex-wrap items-center gap-3">
+                    <span className="inline-flex rounded-full bg-[#EEF4FF] border border-[#CCE0FF] px-3 py-1.5 text-[13px] sm:text-[14px] font-semibold text-slate-700">
+                      Your cost per click went down.
+                    </span>
+                    <span className="relative inline-flex items-start">
+                      <CoolSpark className="absolute -top-3 -right-4 h-6 w-6" />
+                      <span
+                        className={`${caveat.className} relative text-[28px] sm:text-[32px] font-bold leading-none text-[#0066FF]`}
+                      >
+                        Cool.
+                        <CoolUnderline className="absolute -bottom-1 left-0 h-3 w-full" />
+                      </span>
+                    </span>
+                  </div>
+
+                  <p className="relative mt-5 text-[26px] sm:text-[32px] xl:text-[34px] font-black tracking-[-0.03em] leading-[1.1] text-[#0066FF]">
+                    <span className="relative inline-block">
+                      But did you make money?
+                      <MoneyUnderline className="absolute -bottom-1 left-0 h-3.5 w-full" />
+                    </span>
+                  </p>
+                </div>
+
+                <ol className="mt-6 divide-y divide-[#deebf8]">
+                  {questions.map((question, index) => (
+                    <li
+                      key={question}
+                      className="flex items-center gap-3 py-3.5 first:pt-1 last:pb-1"
+                    >
+                      <MetricNumber value={String(index + 1)} />
+                      <p className="flex-1 text-[14.5px] sm:text-[15.5px] 2xl:text-lg font-semibold leading-snug text-[#0A1128]">
+                        {question}
+                      </p>
+                      <ChevronRight className="h-4 w-4 shrink-0 text-slate-300" />
+                    </li>
+                  ))}
+                </ol>
+              </div>
 
               <div className="mt-6 flex items-start gap-3">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0066FF] text-white shadow-[0_8px_16px_-6px_rgba(0,102,255,0.45)]">
@@ -326,79 +328,156 @@ const Authority = () => {
 
           {/* ── Right: Authority ── */}
           <Reveal delay={0.12} direction="up">
-            <article className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9`}>
-              <Specular />
-              <div className="pointer-events-none absolute -bottom-10 left-10 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.08)_0%,transparent_70%)] blur-2xl" />
+            <article className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9 flex flex-col justify-between`}>
+              <div>
+                <Specular />
+                <div className="pointer-events-none absolute -bottom-10 left-10 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.08)_0%,transparent_70%)] blur-2xl" />
 
-              <SectionBadge icon={Shield} label="Authority" />
+                <SectionBadge icon={Shield} label="Authority" />
 
-              <h2 className="mt-6 text-[30px] sm:text-[38px] xl:text-[42px] 2xl:text-[46px] font-black tracking-[-0.04em] leading-[1.08] text-[#0A1128]">
-                Built By Google Ads{" "}
-                <span className="relative inline-block">
-                  Specialists. Not A
-                  <CurvedUnderline className="absolute -bottom-1.5 left-0 h-3 w-full text-[#0066FF] sm:h-3.5" />
-                </span>{" "}
-                Full-Service Marketing Shop.
-              </h2>
+                <h2 className="mt-6 text-[30px] sm:text-[38px] xl:text-[42px] 2xl:text-[46px] font-black tracking-[-0.04em] leading-[1.08] text-[#0A1128]">
+                  Built By Google Ads{" "}
+                  <span className="relative inline-block">
+                    Specialists. Not A
+                    <CurvedUnderline className="absolute -bottom-1.5 left-0 h-3 w-full text-[#0066FF] sm:h-3.5" />
+                  </span>{" "}
+                  Full-Service Marketing Shop.
+                </h2>
 
-              <p className="mt-5 text-[15px] sm:text-[16.5px] font-medium text-slate-500">
-                Google Ads is what we do.
-              </p>
+                <p className="mt-5 text-[15px] sm:text-[16.5px] font-medium text-slate-500">
+                  Google Ads is what we do.
+                </p>
 
-              <div className="relative mt-7 overflow-hidden rounded-[24px] bg-white/85 border border-[#C9DEFF] p-4 sm:p-5 shadow-[0_18px_40px_-14px_rgba(0,102,255,0.22),0_0_0_1px_rgba(0,102,255,0.06),inset_0_1px_1px_rgba(255,255,255,1)]">
-                <div className="pointer-events-none absolute -inset-8 bg-[radial-gradient(circle_at_20%_40%,rgba(0,102,255,0.10)_0%,transparent_55%)]" />
-                <div className="relative flex items-start gap-4">
-                  <div className="relative flex h-[84px] w-[84px] shrink-0 items-center justify-center rounded-[20px] bg-linear-to-b from-white to-[#EEF4FF] border border-white ring-1 ring-[#D4E3F4] shadow-[0_14px_24px_-10px_rgba(15,23,42,0.18),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-3px_6px_rgba(0,102,255,0.06)]">
-                    <div className="relative h-[58px] w-[58px] overflow-hidden rounded-[14px] bg-[#070B14] ring-1 ring-black/20 shadow-[inset_0_1px_2px_rgba(255,255,255,0.08)]">
-                      <Image
-                        src="/Authority/image.png"
-                        alt="Google Ads"
-                        fill
-                        className="object-contain p-0.5"
-                        sizes="58px"
-                      />
+                {/* Primary Google Ads Feature Card */}
+                <div className="relative mt-7 overflow-hidden rounded-[24px] bg-white/85 border border-[#C9DEFF] p-4 sm:p-5 shadow-[0_18px_40px_-14px_rgba(0,102,255,0.22),0_0_0_1px_rgba(0,102,255,0.06),inset_0_1px_1px_rgba(255,255,255,1)]">
+                  <div className="pointer-events-none absolute -inset-8 bg-[radial-gradient(circle_at_20%_40%,rgba(0,102,255,0.10)_0%,transparent_55%)]" />
+                  <div className="relative flex items-start gap-4">
+                    <div className="relative flex h-[84px] w-[84px] shrink-0 items-center justify-center rounded-[20px] bg-linear-to-b from-white to-[#EEF4FF] border border-white ring-1 ring-[#D4E3F4] shadow-[0_14px_24px_-10px_rgba(15,23,42,0.18),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-3px_6px_rgba(0,102,255,0.06)]">
+                      <div className="relative h-[58px] w-[58px] overflow-hidden rounded-[14px] bg-[#070B14] ring-1 ring-black/20 shadow-[inset_0_1px_2px_rgba(255,255,255,0.08)]">
+                        <Image
+                          src="/Authority/image.png"
+                          alt="Google Ads"
+                          fill
+                          className="object-contain p-0.5"
+                          sizes="58px"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-[20px] sm:text-[22px] font-black tracking-tight text-[#0A1128]">
+                          Google Ads
+                        </h3>
+                        <span className="inline-flex items-center gap-1 rounded-full bg-[#EEF4FF] border border-[#CCE0FF] px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-[#0066FF]">
+                          <Crown className="h-3 w-3" />
+                          Our Specialty
+                        </span>
+                      </div>
+                      <p className="mt-2 text-[13.5px] sm:text-[14.5px] leading-relaxed text-slate-800 font-semibold">
+                        We specialize in building and managing Google Search
+                        campaigns for businesses that need more qualified inbound
+                        opportunities.
+                      </p>
                     </div>
                   </div>
+                </div>
 
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-[20px] sm:text-[22px] font-black tracking-tight text-[#0A1128]">
-                        Google Ads
-                      </h3>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-[#EEF4FF] border border-[#CCE0FF] px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-[#0066FF]">
-                        <Crown className="h-3 w-3" />
-                        Our Specialty
+                {/* Excluded Services Section: Subtle Red Accent & Enhanced Readability */}
+                <div className="relative mt-5 overflow-hidden rounded-[22px] bg-linear-to-b from-white/95 via-[#FFFBFB]/90 to-[#FFF4F5]/60 border border-[#FECDD3] p-4 sm:p-5 shadow-[0_14px_30px_-14px_rgba(225,29,72,0.10),inset_0_1px_1px_rgba(255,255,255,1)]">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="inline-flex items-center gap-2">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-b from-white to-[#FFEBEF] border border-white ring-1 ring-[#FECDD3] text-[#E11D48] shadow-[0_4px_10px_-2px_rgba(225,29,72,0.22),inset_0_1px_1px_rgba(255,255,255,1)]">
+                        <X className="h-3.5 w-3.5 stroke-[2.5]" />
+                      </span>
+                      <span className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#E11D48]">
+                        Services We Don&apos;t Do
                       </span>
                     </div>
-                    <p className="mt-2 text-[13.5px] sm:text-[14.5px] leading-relaxed text-slate-500">
-                      We specialize in building and managing Google Search
-                      campaigns for businesses that need more qualified inbound
-                      opportunities.
-                    </p>
+                    <span className="rounded-full bg-[#FFF1F2] border border-[#FECDD3] px-2.5 py-0.5 text-[10.5px] font-bold text-[#E11D48]">
+                      Zero Distraction
+                    </span>
+                  </div>
+
+                  <ul className="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {excludedServices.map((service, idx) => (
+                      <li
+                        key={service}
+                        className={`group flex items-center gap-2.5 rounded-xl bg-white/95 border border-[#FEE2E2] px-3.5 py-2.5 shadow-[0_2px_8px_-3px_rgba(225,29,72,0.06),inset_0_1px_1px_rgba(255,255,255,0.9)] hover:border-[#FDA4AF] hover:shadow-[0_6px_16px_-4px_rgba(225,29,72,0.12)] transition-all duration-200 ${
+                          idx === 4 ? "sm:col-span-2" : ""
+                        }`}
+                      >
+                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FFF1F2] border border-[#FECDD3] text-[#E11D48] transition-transform duration-200 group-hover:scale-110">
+                          <X className="h-3 w-3 stroke-[2.5]" />
+                        </span>
+                        <span className="text-[14.5px] sm:text-[15.5px] font-semibold text-slate-700 tracking-tight">
+                          {service}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Tasteful Visual Element: The Specialization Advantage */}
+                <div className="relative mt-5 overflow-hidden rounded-[22px] bg-linear-to-br from-white/95 via-[#F6FAFF]/90 to-[#EBF4FF]/75 border border-[#CCE0FF] p-4.5 sm:p-5 shadow-[0_16px_36px_-16px_rgba(0,102,255,0.18),inset_0_1px_1px_rgba(255,255,255,1)]">
+                  <div
+                    className="pointer-events-none absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.12)_0%,transparent_70%)] blur-xl"
+                    aria-hidden
+                  />
+
+                  <div className="relative flex items-center justify-between gap-3">
+                    <div className="inline-flex items-center gap-2">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#0066FF] text-white shadow-[0_4px_10px_rgba(0,102,255,0.35)]">
+                        <Sparkles className="h-3.5 w-3.5" />
+                      </span>
+                      <span className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#0066FF]">
+                        The Specialization Advantage
+                      </span>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 border border-[#CCE0FF] px-2.5 py-0.5 text-[11px] font-bold text-slate-700 shadow-2xs">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      High Intent
+                    </span>
+                  </div>
+
+                  <p className="relative mt-3 text-[14px] sm:text-[15px] font-bold leading-snug text-[#0A1128]">
+                    When we cut out the noise, 100% of your budget and our attention goes directly into high intent inbound searchers actively looking to hire.
+                  </p>
+
+                  <div className="relative mt-3.5 grid grid-cols-2 gap-2.5 pt-3 border-t border-[#D7E7FB]">
+                    <div className="flex items-center gap-2.5 rounded-xl bg-white/80 border border-[#DCEAFB] p-2.5 shadow-2xs">
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#EEF4FF] text-[#0066FF] font-black text-[12px]">
+                        100%
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">Focus</p>
+                        <p className="text-[12.5px] font-bold text-[#0A1128] truncate">Google Search Only</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2.5 rounded-xl bg-white/80 border border-[#DCEAFB] p-2.5 shadow-2xs">
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#EEF4FF] text-[#0066FF] font-black text-[12px]">
+                        0%
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">Waste</p>
+                        <p className="text-[12.5px] font-bold text-[#0A1128] truncate">Zero Agency Bloat</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-400">
-                    <X className="h-3.5 w-3.5" />
+              {/* Symmetrical Bottom Callout matching left card */}
+              <div className="mt-6 flex items-start gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0066FF] text-white shadow-[0_8px_16px_-6px_rgba(0,102,255,0.45)]">
+                  <ShieldCheck className="h-4 w-4" />
+                </span>
+                <p className="relative pt-1 text-[14.5px] sm:text-[15.5px] font-semibold leading-snug text-[#0A1128]">
+                  <span className="relative inline-block">
+                    Mastering one channel produces higher return than being average at ten.
+                    <FooterUnderline className="absolute -bottom-1 left-0 h-3 w-[85%]" />
                   </span>
-                  <p className="text-[13px] font-bold tracking-tight text-slate-400">
-                    Other Services We Don&apos;t Offer
-                  </p>
-                </div>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5">
-                  {excludedServices.map((service) => (
-                    <li
-                      key={service}
-                      className="flex items-start gap-2 text-[13.5px] sm:text-[14px] text-slate-400"
-                    >
-                      <Ban className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-300" />
-                      <span>{service}</span>
-                    </li>
-                  ))}
-                </ul>
+                </p>
               </div>
             </article>
           </Reveal>

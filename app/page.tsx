@@ -11,7 +11,7 @@ import VideoTestimonial from "@/components/video_testimonial/VideoTestimonial";
 // import MyselfvideoSection from "@/components/MySelfVideo/MyselfvideoSection";
 import SEOCaseStudy from "@/components/CaseyInsuranceCaseStudy/SEOCaseStudy";
 import FAQ from "@/components/FAQ";
-import FinalCTA from "@/components/FinalCTA";
+// import FinalCTA from "@/components/FinalCTA";
 import Positioning from "@/components/NewPositioningSection/Positioning";
 import RidgewellCaseStudy from "@/components/ridgewellCaseStudy/RidgewellCaseStudy";
 import NewProblemSection from "@/components/NewProblemSection/NewProblemSection";
@@ -19,6 +19,7 @@ import Offer from "@/components/TheOffer/Offer";
 import EconomicsSection from "@/components/Economics/EconomicsSection";
 import NewProcessSection from "@/components/NewProcess/NewProcessSection";
 import Authority from "@/components/Authority/Authority";
+import NewFinalCTA from "@/components/NewFinalCTA";
 // import ProblemSection from '@/public/Problem/ProblemSection';
 
 const page = () => {
@@ -37,7 +38,9 @@ const page = () => {
       <RidgewellCaseStudy />
       <SEOCaseStudy />
       <FAQ />
-      <FinalCTA />
+      <NewFinalCTA />
+
+      {/* <FinalCTA /> */}
       <div></div>
       {/* <TrustedCompanies /> */}
       {/* <Services /> */}

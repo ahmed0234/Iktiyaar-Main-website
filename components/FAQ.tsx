@@ -10,12 +10,8 @@ import {
   DollarSign,
   TrendingUp,
   ShieldCheck,
-  Zap,
   Lock,
-  Search,
   LayoutTemplate,
-  Users,
-  Award,
   ArrowRight,
   MessageCircleQuestion,
 } from "lucide-react";
@@ -164,189 +160,100 @@ interface FAQItem {
     summary: string;
     highlights?: string[];
     punchline?: string;
-    details?: string;
+    details?: string | string[];
   };
 }
 
 const faqList: FAQItem[] = [
   {
-    id: "failed-before",
-    question: "“I’ve tried Google Ads before. It didn’t work.”",
-    category: "Strategy & Budget",
-    icon: HelpCircle,
-    answer: {
-      summary:
-        "We hear this from almost every contractor we speak with. Sometimes Google Ads genuinely isn't a fit, but when we audit previous accounts that failed, the issues are almost always the same:",
-      highlights: [
-        "Broad-match keywords bidding on low-quality, tire-kicker queries",
-        "Driving paid traffic to a generic homepage instead of a high-converting landing page",
-        "No negative keyword lists filtering out irrelevant, expensive searches",
-        "Incorrect location radius or broken call/form conversion tracking",
-        "Letting Google's automated algorithms optimize for vanity metrics rather than real, qualified estimates",
-      ],
-      punchline:
-        "There is a huge difference between “Google Ads doesn't work” and “The campaign you ran didn't work.” We diagnose exactly which one it is before you spend a single dollar.",
-    },
-  },
-  {
-    id: "budget-spend",
-    question: "“How much do I need to spend?”",
+    id: "how-much-spend",
+    question: "How much should I spend on Google Ads?",
     category: "Strategy & Budget",
     icon: DollarSign,
     answer: {
-      summary:
-        "It depends on your market, trade, and project economics. There isn't one universal Google Ads budget for all contractors.",
-      details:
-        "A roofing contractor closing $25,000 replacements has very different unit economics than someone doing $1,500 repair jobs. Likewise, high-density metropolitan areas have different cost-per-click dynamics than rural territories.",
-      highlights: [
-        "Local search volume & real keyword cost-per-click (CPC)",
-        "Expected landing page conversion rates",
-        "Your average project value & gross margins",
-        "Your sales close rate from inbound lead to signed job",
+      summary: "Depends on your market.",
+      details: [
+        "A roofer in Austin is dealing with completely different click costs than a contractor in a smaller city.",
+        "We look at your search volume, competition, average CPC and economics before recommending a budget.",
       ],
       punchline:
-        "Math first. Budget second. We calculate the exact numbers needed to generate a positive return before setting your monthly ad spend.",
+        "We’re not going to randomly tell every contractor to spend $5,000/month.",
     },
   },
   {
-    id: "are-ads-expensive",
-    question: "“Are Google Ads expensive?”",
-    category: "Strategy & Budget",
+    id: "how-many-leads",
+    question: "How many leads will I get?",
+    category: "Leads & Growth",
     icon: TrendingUp,
     answer: {
-      summary:
-        "They can be—but cost-per-click by itself means almost nothing without context.",
+      summary: "Again, depends on the market.",
       details:
-        "If a click costs $50 but consistently converts into high-margin $20,000 remodeling or roofing jobs, you want as many $50 clicks as possible. Conversely, if a click costs $2 and produces zero signed jobs, it is completely wasted money.",
+        "Anyone promising an exact number before looking at your location, service and competition is guessing.",
       punchline:
-        "“Expensive” and “cheap” are strictly relative to the revenue generated. Our focus is never on buying the cheapest traffic—it's maximizing the net profit generated from your total ad spend.",
-    },
-  },
-  {
-    id: "how-quickly",
-    question: "“How quickly can this work?”",
-    category: "Strategy & Budget",
-    icon: Zap,
-    answer: {
-      summary:
-        "Google Ads is one of the fastest channels to place your business directly in front of homeowners actively searching for your service right now.",
-      details:
-        "While new inquiries can start landing within the first week of launching, campaigns require real data to reach peak efficiency. Over the first 30–60 days, we continuously dial in:",
-      highlights: [
-        "Which high-intent keywords deliver the highest-ticket jobs",
-        "Which zip codes and locations generate the best inquiries",
-        "Which negative keywords must be eliminated to cut waste",
-      ],
-      punchline:
-        "Initial speed is fast; compounding efficiency happens as we feed the campaign real job-closing data.",
-    },
-  },
-  {
-    id: "guarantee-leads",
-    question: "“Do you guarantee leads?”",
-    category: "Leads & Growth",
-    icon: ShieldCheck,
-    answer: {
-      summary:
-        "No serious, honest marketer can guarantee exactly how many homeowners will search for your service next month or how many will choose to hire you.",
-      details:
-        "What we do strictly control and optimize with mathematical precision is:",
-      highlights: [
-        "High-intent keyword selection and rigorous negative keyword pruning",
-        "High-converting, dedicated landing page design and speed",
-        "End-to-end call, form, and revenue tracking",
-        "Aggressive budget reallocation away from waste and into proven winners",
-      ],
-      punchline:
-        "We would rather show you transparent unit economics and honest tracking than sell you a fake lead guarantee full of loopholes.",
+        "We can estimate the opportunity before launching and then optimize around real data once the campaign starts.",
     },
   },
   {
     id: "exclusive-leads",
-    question: "“Are the leads exclusive?”",
+    question: "Are these exclusive leads?",
     category: "Leads & Growth",
     icon: Lock,
     answer: {
-      summary:
-        "Yes, 100% exclusive. We do not operate like Angie's List, HomeAdvisor, or Thumbtack.",
+      summary: "They’re not “leads” we purchase and resell.",
       details:
-        "When a prospective homeowner clicks your ad, they land exclusively on your branded landing page and call or submit an inquiry directly to your office. These are private inbound inquiries generated specifically for your business—never shared, resold, or distributed to competitors.",
+        "The customer contacts your business directly through your ads and landing page.",
       punchline:
-        "Your ads. Your landing page. Your exclusive client relationships.",
+        "They may obviously contact other contractors on their own, but we are not selling their information to anybody else.",
     },
   },
   {
-    id: "account-ownership",
-    question: "“Do I own the Google Ads account?”",
+    id: "own-account",
+    question: "Do I own the Google Ads account?",
     category: "Trust & Process",
     icon: CheckCircle2,
     answer: {
-      summary:
-        "Yes, always. You own 100% of your Google Ads account, campaign data, conversion history, and billing setup.",
-      details:
-        "We manage your campaigns using partner access. If you ever decide to stop working with us, your account, historical data, keyword learnings, and campaign architecture remain entirely yours.",
-      punchline:
-        "We don't believe in holding clients hostage by locking away their marketing infrastructure.",
+      summary: "Yes.",
+      punchline: "We believe you should own the asset you’re paying to build.",
     },
   },
   {
     id: "new-website",
-    question: "“Do I need a new website?”",
+    question: "Do I need a new website?",
     category: "Trust & Process",
     icon: LayoutTemplate,
     answer: {
-      summary:
-        "Not necessarily. If your current website is fast, modern, and built to convert paid traffic, we will use it.",
+      summary: "Usually not.",
       details:
-        "If your existing site is generic or leaking conversions, we build dedicated, high-converting standalone landing pages tailored specifically to each service campaign. This keeps ad traffic focused on booking estimates without distraction.",
+        "Depending on your current website, we may recommend dedicated landing pages for the services being advertised.",
       punchline:
-        "We don't rebuild things just to create extra work—we only implement what generates the highest conversion rate.",
+        "The goal is conversion, not redesigning your entire website for the sake of it.",
     },
   },
   {
-    id: "only-contractors",
-    question: "“Do you only work with contractors?”",
-    category: "Leads & Growth",
-    icon: Users,
-    answer: {
-      summary:
-        "Contractors and high-ticket local service businesses are our primary focus and where our deepest experience sits.",
-      details:
-        "The economics in these industries are exceptionally strong: roofing, kitchen & bath remodeling, concrete, outdoor living, waterproofing, landscaping, and custom home improvements.",
-      punchline:
-        "Just one or two additional signed projects per month can easily pay for months of marketing while adding substantial bottom-line profit.",
-    },
-  },
-  {
-    id: "can-you-do-seo",
-    question: "“Can you also do SEO?”",
-    category: "Strategy & Budget",
-    icon: Search,
-    answer: {
-      summary:
-        "Yes. While Google Ads is our primary client acquisition engine, we provide comprehensive SEO for businesses looking to build lasting organic search equity.",
-      details:
-        "For example, we scaled Casey Insurance Group past 1,000+ monthly organic visitors and 200+ total inbound leads through structured search positioning and content authority.",
-      punchline:
-        "We never push SEO into every engagement unless it aligns with your timeline, budget, and long-term expansion goals.",
-    },
-  },
-  {
-    id: "why-trust-you",
-    question: "“Why should I trust you?”",
+    id: "long-contract",
+    question: "Do I have to sign a long contract?",
     category: "Trust & Process",
-    icon: Award,
+    icon: ShieldCheck,
     answer: {
-      summary:
-        "You shouldn't trust us simply because of what is written on this website. Look at the verifiable evidence:",
+      summary: "No.",
+      punchline:
+        "We believe you should keep working with us because the campaign makes you money, not because you’re trapped in an agreement.",
+    },
+  },
+  {
+    id: "market-fit",
+    question: "What if Google Ads doesn’t make sense for my market?",
+    category: "Strategy & Budget",
+    icon: HelpCircle,
+    answer: {
+      summary: "We’ll tell you.",
       highlights: [
-        "Uncut client video testimonials with verified revenue outcomes ($110K, $90K, $180K+ in 90 days)",
-        "Verified live Google Search Console & Ads campaign dashboard screenshots",
-        "Official Google Search Partner certification and Hostinger partnership",
-        "In-depth client case studies detailing exact before-and-after results",
+        "Sometimes CPCs are too high.",
+        "Sometimes there isn’t enough search volume.",
+        "Sometimes the margins aren’t there.",
       ],
       punchline:
-        "Schedule a short analysis call. Ask us the hardest questions about your market. Let us audit your opportunity, and make your decision based on clear, transparent data.",
+        "We’d rather tell you before you spend thousands figuring it out yourself.",
     },
   },
 ];
@@ -355,7 +262,7 @@ const faqList: FAQItem[] = [
 /*  Main Component                                                     */
 /* ------------------------------------------------------------------ */
 export default function FAQ() {
-  const [openId, setOpenId] = useState<string | null>("failed-before");
+  const [openId, setOpenId] = useState<string | null>("how-much-spend");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   const categories = [
@@ -539,9 +446,22 @@ export default function FAQ() {
 
                           {/* Optional Details Paragraph */}
                           {faq.answer.details && (
-                            <p className="text-[14px] sm:text-[15px] text-slate-600 leading-relaxed mt-3">
-                              {faq.answer.details}
-                            </p>
+                            <div className="mt-3 space-y-2">
+                              {Array.isArray(faq.answer.details) ? (
+                                faq.answer.details.map((paragraph, pIdx) => (
+                                  <p
+                                    key={pIdx}
+                                    className="text-[14px] sm:text-[15px] text-slate-600 leading-relaxed"
+                                  >
+                                    {paragraph}
+                                  </p>
+                                ))
+                              ) : (
+                                <p className="text-[14px] sm:text-[15px] text-slate-600 leading-relaxed">
+                                  {faq.answer.details}
+                                </p>
+                              )}
+                            </div>
                           )}
 
                           {/* Highlights List if present */}

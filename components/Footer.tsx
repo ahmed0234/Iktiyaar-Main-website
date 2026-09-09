@@ -17,11 +17,8 @@ const footerLinks = {
   services: {
     title: "Services",
     links: [
-      { label: "Search Engine Optimization", href: "/services/seo" },
-      { label: "Meta Ads", href: "/services/meta-ads" },
       { label: "Google Ads", href: "/services/google-ads" },
-      { label: "Cold Email Marketing", href: "/services/cold-email" },
-      { label: "AI Automation", href: "/services/ai-automation" },
+      { label: "SEO", href: "/services/seo" },
     ],
   },
   company: {

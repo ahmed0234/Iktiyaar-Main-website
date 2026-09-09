@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import {
   motion,
@@ -9,346 +9,11 @@ import {
   useSpring,
   useTransform,
   useScroll,
-  AnimatePresence,
 } from "framer-motion";
-import {
-  ArrowRight,
-  TrendingUp,
-  Search,
-  BarChart3,
-  MousePointerClick,
-  Target,
-  Zap,
-  Eye,
-  DollarSign,
-  ChevronUp,
-} from "lucide-react";
-
-// ─── Animated Analytics Graph ─────────────────────────────────────────
-function AnimatedGraph() {
-  const [points, setPoints] = useState<number[]>([]);
-  const [targetPoints, setTargetPoints] = useState<number[]>([]);
-
-  useEffect(() => {
-    // Initialize with upward-trending data
-    const initial = Array.from({ length: 12 }, (_, i) => {
-      const trend = 30 + (i / 11) * 40;
-      return trend + (Math.random() - 0.4) * 15;
-    });
-    setPoints(initial);
-    setTargetPoints(initial);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTargetPoints((prev) => {
-        if (prev.length === 0) return prev;
-        return prev.map((p, i) => {
-          const trend = 30 + (i / 11) * 40;
-          const newVal = trend + (Math.random() - 0.4) * 18;
-          return Math.max(10, Math.min(85, newVal));
-        });
-      });
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (targetPoints.length === 0) return;
-    let raf: number;
-    const animate = () => {
-      setPoints((prev) => {
-        if (prev.length === 0) return targetPoints;
-        return prev.map((p, i) => p + (targetPoints[i] - p) * 0.08);
-      });
-      raf = requestAnimationFrame(animate);
-    };
-    raf = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(raf);
-  }, [targetPoints]);
-
-  if (points.length === 0) return null;
-
-  const width = 280;
-  const height = 90;
-  const stepX = width / (points.length - 1);
-
-  const pathData = points
-    .map((p, i) => {
-      const x = i * stepX;
-      const y = height - (p / 100) * height;
-      if (i === 0) return `M ${x} ${y}`;
-      const prevX = (i - 1) * stepX;
-      const prevY = height - (points[i - 1] / 100) * height;
-      const cpx1 = prevX + stepX * 0.4;
-      const cpx2 = x - stepX * 0.4;
-      return `C ${cpx1} ${prevY} ${cpx2} ${y} ${x} ${y}`;
-    })
-    .join(" ");
-
-  const areaPath = `${pathData} L ${width} ${height} L 0 ${height} Z`;
-
-  return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      className="w-full h-full"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <linearGradient id="graphGradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#4285F4" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="#4285F4" stopOpacity="0.02" />
-        </linearGradient>
-        <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#4285F4" />
-          <stop offset="50%" stopColor="#34A853" />
-          <stop offset="100%" stopColor="#4285F4" />
-        </linearGradient>
-      </defs>
-      {/* Grid lines */}
-      {[0.25, 0.5, 0.75].map((y) => (
-        <line
-          key={y}
-          x1="0"
-          y1={height * y}
-          x2={width}
-          y2={height * y}
-          stroke="#e2e8f0"
-          strokeWidth="0.5"
-          strokeDasharray="4 4"
-          opacity="0.5"
-        />
-      ))}
-      <path d={areaPath} fill="url(#graphGradient)" />
-      <path
-        d={pathData}
-        fill="none"
-        stroke="url(#lineGradient)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Current point indicator */}
-      <circle
-        cx={width}
-        cy={height - (points[points.length - 1] / 100) * height}
-        r="4"
-        fill="#4285F4"
-        stroke="white"
-        strokeWidth="2"
-      >
-        <animate
-          attributeName="r"
-          values="4;6;4"
-          dur="2s"
-          repeatCount="indefinite"
-        />
-      </circle>
-      <circle
-        cx={width}
-        cy={height - (points[points.length - 1] / 100) * height}
-        r="8"
-        fill="#4285F4"
-        opacity="0.15"
-      >
-        <animate
-          attributeName="r"
-          values="8;14;8"
-          dur="2s"
-          repeatCount="indefinite"
-        />
-        <animate
-          attributeName="opacity"
-          values="0.15;0.05;0.15"
-          dur="2s"
-          repeatCount="indefinite"
-        />
-      </circle>
-    </svg>
-  );
-}
-
-// ─── Typing Search Bar ────────────────────────────────────────────────
-function TypingSearchBar() {
-  const queries = [
-    "best plumber near me",
-    "digital marketing agency",
-    "buy running shoes online",
-    "emergency dentist open now",
-    "web design services Dubai",
-  ];
-  const [currentQuery, setCurrentQuery] = useState(0);
-  const [displayed, setDisplayed] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const query = queries[currentQuery];
-    let timeout: NodeJS.Timeout;
-
-    if (!isDeleting && displayed.length < query.length) {
-      timeout = setTimeout(
-        () => {
-          setDisplayed(query.slice(0, displayed.length + 1));
-        },
-        60 + Math.random() * 40,
-      );
-    } else if (!isDeleting && displayed.length === query.length) {
-      timeout = setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && displayed.length > 0) {
-      timeout = setTimeout(
-        () => {
-          setDisplayed(displayed.slice(0, -1));
-        },
-        25 + Math.random() * 15,
-      );
-    } else if (isDeleting && displayed.length === 0) {
-      setIsDeleting(false);
-      setCurrentQuery((prev) => (prev + 1) % queries.length);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [displayed, isDeleting, currentQuery]);
-
-  return (
-    <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-full border border-slate-200/80 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-      <div className="flex items-center gap-0.5 text-[14px] font-medium select-none shrink-0">
-        <span style={{ color: "#4285F4" }}>G</span>
-        <span style={{ color: "#EA4335" }}>o</span>
-        <span style={{ color: "#FBBC05" }}>o</span>
-        <span style={{ color: "#4285F4" }}>g</span>
-        <span style={{ color: "#34A853" }}>l</span>
-        <span style={{ color: "#EA4335" }}>e</span>
-      </div>
-      <div className="w-px h-4 bg-slate-200" />
-      <div className="flex-1 relative overflow-hidden">
-        <span className="text-[12px] text-slate-700 font-medium whitespace-nowrap">
-          {displayed}
-          <motion.span
-            animate={{ opacity: [1, 0] }}
-            transition={{
-              duration: 0.5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-            className="inline-block w-[2px] h-[13px] bg-blue-500 ml-[1px] align-middle"
-          />
-        </span>
-      </div>
-      <Search className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-    </div>
-  );
-}
-
-// ─── Animated Counter ─────────────────────────────────────────────────
-function AnimatedCounter({
-  target,
-  prefix = "",
-  suffix = "",
-  duration = 2,
-}: {
-  target: number;
-  prefix?: string;
-  suffix?: string;
-  duration?: number;
-}) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const step = target / (duration * 60);
-    const interval = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(interval);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 1000 / 60);
-    return () => clearInterval(interval);
-  }, [isInView, target, duration]);
-
-  return (
-    <span ref={ref}>
-      {prefix}
-      {count.toLocaleString()}
-      {suffix}
-    </span>
-  );
-}
-
-// ─── Live Ad Notification ─────────────────────────────────────────────
-function LiveAdNotifications() {
-  const notifications = [
-    {
-      text: "Ad clicked — 'plumber near me'",
-      icon: MousePointerClick,
-      color: "#4285F4",
-    },
-    { text: "Conversion tracked — Lead form", icon: Target, color: "#34A853" },
-    { text: "Impression — Shopping Ad", icon: Eye, color: "#FBBC05" },
-    { text: "CPC optimized — $0.47", icon: DollarSign, color: "#4285F4" },
-    { text: "Quality Score → 9/10", icon: Zap, color: "#34A853" },
-    {
-      text: "Ad clicked — 'buy shoes online'",
-      icon: MousePointerClick,
-      color: "#EA4335",
-    },
-  ];
-
-  const [currentNotif, setCurrentNotif] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentNotif((prev) => (prev + 1) % notifications.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const notif = notifications[currentNotif];
-  const Icon = notif.icon;
-
-  return (
-    <div className="h-7 relative overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentNotif}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-2 absolute inset-0"
-        >
-          <div
-            className="w-5 h-5 rounded-md flex items-center justify-center shrink-0"
-            style={{ backgroundColor: `${notif.color}15` }}
-          >
-            <Icon className="w-3 h-3" style={{ color: notif.color }} />
-          </div>
-          <span className="text-[10px] text-slate-600 font-medium whitespace-nowrap">
-            {notif.text}
-          </span>
-          <span className="relative flex h-1.5 w-1.5 ml-auto shrink-0">
-            <span
-              className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-              style={{ backgroundColor: notif.color }}
-            />
-            <span
-              className="relative inline-flex rounded-full h-1.5 w-1.5"
-              style={{ backgroundColor: notif.color }}
-            />
-          </span>
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-}
+import { ArrowRight, TrendingUp, Search, BarChart3 } from "lucide-react";
 
 // ═══════════════════════════════════════════════════════════════════════
-// ─── Main Hero Component ──────────────────────────────────────────────
+// ─── Main Google Ads Hero Component ───────────────────────────────────
 // ═══════════════════════════════════════════════════════════════════════
 export default function GoogleAdsHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -360,15 +25,16 @@ export default function GoogleAdsHero() {
 
   const gridRotateX = useTransform(springY, [-0.5, 0.5], [3, -3]);
   const gridRotateY = useTransform(springX, [-0.5, 0.5], [-3, 3]);
-  const visualRotateX = useTransform(springY, [-0.5, 0.5], [5, -5]);
-  const visualRotateY = useTransform(springX, [-0.5, 0.5], [-5, 5]);
-  const visualX = useTransform(springX, [-0.5, 0.5], [-8, 8]);
-  const visualY = useTransform(springY, [-0.5, 0.5], [-8, 8]);
+  const imageRotateX = useTransform(springY, [-0.5, 0.5], [6, -6]);
+  const imageRotateY = useTransform(springX, [-0.5, 0.5], [-6, 6]);
+  const imageX = useTransform(springX, [-0.5, 0.5], [-10, 10]);
+  const imageY = useTransform(springY, [-0.5, 0.5], [-10, 10]);
 
-  const floatX1 = useTransform(springX, [-0.5, 0.5], [-16, 16]);
-  const floatY1 = useTransform(springY, [-0.5, 0.5], [-16, 16]);
-  const floatX2 = useTransform(springX, [-0.5, 0.5], [20, -20]);
-  const floatY2 = useTransform(springY, [-0.5, 0.5], [20, -20]);
+  // Parallax for floating cards
+  const floatX1 = useTransform(springX, [-0.5, 0.5], [-18, 18]);
+  const floatY1 = useTransform(springY, [-0.5, 0.5], [-18, 18]);
+  const floatX2 = useTransform(springX, [-0.5, 0.5], [22, -22]);
+  const floatY2 = useTransform(springY, [-0.5, 0.5], [22, -22]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -388,18 +54,6 @@ export default function GoogleAdsHero() {
     mouseX.set(0);
     mouseY.set(0);
   };
-
-  // ─── Ad slot data for animated mini cards ───────────────────────────
-  const adSlots = [
-    { label: "Search Ads", value: "3.5x ROAS", color: "#4285F4", icon: Search },
-    { label: "Display Ads", value: "2.1M Reach", color: "#34A853", icon: Eye },
-    {
-      label: "Shopping Ads",
-      value: "$12 CPA",
-      color: "#FBBC05",
-      icon: DollarSign,
-    },
-  ];
 
   return (
     <section
@@ -455,287 +109,7 @@ export default function GoogleAdsHero() {
       >
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* ═══════════════════════════════════════════════════════
-               LEFT SIDE — Dynamic Animated Visual System
-              ═══════════════════════════════════════════════════════ */}
-          <div
-            className="w-full lg:w-[52%] relative flex items-center justify-center py-4 lg:py-0 order-2 lg:order-2"
-            style={{ perspective: "900px" }}
-          >
-            {/* Ambient glow */}
-            <motion.div
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5, delay: 0.4, ease: "easeOut" }}
-              className="absolute w-[380px] h-[380px] lg:w-[520px] lg:h-[520px] rounded-full bg-gradient-to-br from-blue-200/30 via-blue-100/10 to-transparent blur-3xl z-0 pointer-events-none"
-            />
-
-            {/* Main 3D Tilting Visual Container */}
-            <motion.div
-              initial={{ y: 50, scale: 0.92, opacity: 0, filter: "blur(12px)" }}
-              animate={
-                isInView
-                  ? { y: 0, scale: 1, opacity: 1, filter: "blur(0px)" }
-                  : { y: 50, scale: 0.92, opacity: 0, filter: "blur(12px)" }
-              }
-              transition={{
-                duration: 1.0,
-                delay: 0.5,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              style={{
-                rotateX: visualRotateX,
-                rotateY: visualRotateY,
-                x: visualX,
-                y: visualY,
-              }}
-              className="relative z-10 w-full max-w-[500px] transform-gpu [transform-style:preserve-3d]"
-            >
-              {/* Drop shadow layer */}
-              <div className="absolute inset-4 rounded-3xl bg-slate-900/[0.06] blur-2xl -z-10 translate-y-6" />
-
-              {/* ── Dashboard Card ──────────────────────────── */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/60 shadow-[0_25px_60px_rgba(0,0,0,0.08),0_6px_20px_rgba(0,0,0,0.04)] overflow-hidden">
-                {/* Header — Google Ads branding */}
-                <div className="px-5 pt-4 pb-3 border-b border-slate-100/80">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2.5">
-                      {/* Google Ads Logo Triangle */}
-                      <div className="w-8 h-8 relative flex items-center justify-center shrink-0">
-                        <svg viewBox="0 0 24 24" className="w-7 h-7">
-                          <circle cx="6" cy="19" r="3.5" fill="#FBBC05" />
-                          <path
-                            d="M15.5 3.5L5.5 20l3 1.7L18.5 5.2z"
-                            fill="#4285F4"
-                          />
-                          <path
-                            d="M18.5 5.2L8.5 21.9l3 1.6L21.5 7z"
-                            fill="#34A853"
-                          />
-                          <path
-                            d="M6 16l3 1.7L18.5 5.2 15.5 3.5z"
-                            fill="#4285F4"
-                          />
-                          <circle cx="18" cy="5" r="3.5" fill="#EA4335" />
-                        </svg>
-                      </div>
-                      <div>
-                        <span className="text-[15px] font-bold text-slate-800 tracking-tight">
-                          Google Ads
-                        </span>
-                        <span className="text-[10px] text-slate-400 font-medium ml-1.5">
-                          Dashboard
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="text-[9px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-1">
-                        <span className="relative flex h-1.5 w-1.5">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-                        </span>
-                        Live
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Search Bar with typing animation */}
-                  <TypingSearchBar />
-                </div>
-
-                {/* ── Metrics Row ────────────────────────────── */}
-                <div className="px-5 py-3 grid grid-cols-3 gap-3 border-b border-slate-100/60">
-                  {adSlots.map((slot, i) => {
-                    const Icon = slot.icon;
-                    return (
-                      <motion.div
-                        key={slot.label}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.8 + i * 0.15, duration: 0.5 }}
-                        className="group/metric flex flex-col items-center text-center p-2.5 rounded-xl hover:bg-slate-50/80 transition-all duration-300 cursor-default"
-                      >
-                        <div
-                          className="w-8 h-8 rounded-lg flex items-center justify-center mb-1.5 transition-transform duration-300 group-hover/metric:scale-110"
-                          style={{ backgroundColor: `${slot.color}12` }}
-                        >
-                          <Icon
-                            className="w-4 h-4"
-                            style={{ color: slot.color }}
-                          />
-                        </div>
-                        <span className="text-[10px] text-slate-400 font-semibold tracking-wide">
-                          {slot.label}
-                        </span>
-                        <span className="text-[13px] font-[900] text-slate-800">
-                          {slot.value}
-                        </span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                {/* ── Analytics Graph ───────────────────────── */}
-                <div className="px-5 py-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <BarChart3 className="w-3.5 h-3.5 text-slate-400" />
-                      <span className="text-[11px] font-bold text-slate-600 tracking-wide">
-                        Campaign Performance
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <ChevronUp className="w-3 h-3 text-emerald-500" />
-                      <span className="text-[10px] font-bold text-emerald-500">
-                        +24.7%
-                      </span>
-                    </div>
-                  </div>
-                  <div className="h-[90px] relative">
-                    <AnimatedGraph />
-                  </div>
-                </div>
-
-                {/* ── Live Activity Feed ────────────────────── */}
-                <div className="px-5 pb-4 pt-1">
-                  <div className="bg-slate-50/60 rounded-xl px-3 py-2 border border-slate-100/60">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[9px] font-bold text-slate-400 tracking-[0.15em] uppercase">
-                        Live Activity
-                      </span>
-                      <span className="text-[9px] text-slate-300 font-medium">
-                        Just now
-                      </span>
-                    </div>
-                    <LiveAdNotifications />
-                  </div>
-                </div>
-
-                {/* ── Simulated Ad Result Preview ───────────── */}
-                <div className="px-5 pb-5">
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 1.3, duration: 0.6 }}
-                    className="group/ad relative p-3.5 rounded-xl border border-slate-100/80 bg-white hover:bg-blue-50/30 hover:border-blue-200/40 transition-all duration-300 cursor-default"
-                  >
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-[7px] font-bold text-white shadow-sm">
-                        I
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] text-slate-800 font-semibold">
-                          ikhtiyaar.com
-                        </span>
-                        <span className="text-[8px] font-bold text-white bg-[#4285F4] px-1.5 py-[1px] rounded leading-none tracking-wide">
-                          Ad
-                        </span>
-                      </div>
-                    </div>
-                    <h4 className="text-[13px] font-semibold text-blue-700 leading-snug mb-0.5 group-hover/ad:underline transition-all duration-200">
-                      Ikhtiyaar — Google Ads That Drive Real Revenue
-                    </h4>
-                    <p className="text-[10px] text-slate-500 leading-relaxed font-normal">
-                      3.5x avg ROAS. Data-driven campaigns built for growth.{" "}
-                      <span className="text-slate-700 font-medium">
-                        Free Strategy Session →
-                      </span>
-                    </p>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* ── Floating Badge — Top Right: CTR ──────────── */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5, y: 30 }}
-              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.8,
-                delay: 1.5,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="absolute top-[2%] lg:top-[20%] right-[0%] lg:right-[-15%] z-20 hidden sm:block"
-            >
-              <motion.div style={{ x: floatX1, y: floatY1 }}>
-                <motion.div
-                  animate={{ y: [-8, 10, -8], rotate: [-1, 2, -1] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 6,
-                    ease: "easeInOut",
-                  }}
-                  whileHover={{ scale: 1.08, rotate: 0 }}
-                  className="px-4 py-3 rounded-2xl bg-white/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.07)] border border-white/70 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(59,130,246,0.15)] cursor-default"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100/60 flex items-center justify-center shadow-sm">
-                      <MousePointerClick className="w-4 h-4 text-blue-600" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-slate-400 font-semibold tracking-wide">
-                        Click-Through Rate
-                      </p>
-                      <p className="text-sm font-[900] text-slate-900">
-                        <AnimatedCounter target={8} suffix="." duration={1} />
-                        <AnimatedCounter target={7} suffix="%" duration={1.5} />
-                        <span className="text-blue-500 text-[10px] font-bold ml-1">
-                          ↑ 2.3%
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-
-            {/* ── Floating Badge — Bottom Left: Conversions ── */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5, y: 30 }}
-              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.8,
-                delay: 1.7,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="absolute bottom-[4%] lg:bottom-[-6%] left-[-2%] lg:left-[-10%] z-20 hidden sm:block"
-            >
-              <motion.div style={{ x: floatX2, y: floatY2 }}>
-                <motion.div
-                  animate={{
-                    y: [10, -8, 10],
-                    rotate: [1.5, -1.5, 1.5],
-                  }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 7,
-                    ease: "easeInOut",
-                  }}
-                  whileHover={{ scale: 1.08, rotate: 0 }}
-                  className="px-4 py-3 rounded-2xl bg-white/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.07)] border border-white/70 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(34,197,94,0.15)] cursor-default"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-green-50 to-green-100/60 flex items-center justify-center shadow-sm">
-                      <TrendingUp className="w-4 h-4 text-green-600" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] text-slate-400 font-semibold tracking-wide">
-                        Monthly Conversions
-                      </p>
-                      <p className="text-sm font-[900] text-slate-900">
-                        <AnimatedCounter target={1247} duration={2} />{" "}
-                        <span className="text-green-500 text-[10px] font-bold">
-                          +186%
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          {/* ═══════════════════════════════════════════════════════
-               RIGHT SIDE — Text Content
+               LEFT SIDE — Text Content
               ═══════════════════════════════════════════════════════ */}
           <div className="w-full lg:w-[48%] flex flex-col items-start text-left z-10 order-1 lg:order-1">
             {/* Badge */}
@@ -925,6 +299,330 @@ export default function GoogleAdsHero() {
                     Conv. Growth
                   </span>
                 </div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* ═══════════════════════════════════════════════════════
+               RIGHT SIDE — Google Search Mockup (from SEO)
+              ═══════════════════════════════════════════════════════ */}
+          <div
+            className="w-full lg:w-[52%] relative flex items-center justify-center py-4 lg:py-0 order-2 lg:order-2"
+            style={{ perspective: "900px" }}
+          >
+            {/* Deep ambient glow */}
+            <motion.div
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.5, delay: 0.4, ease: "easeOut" }}
+              className="absolute w-[380px] h-[380px] lg:w-[500px] lg:h-[500px] rounded-full bg-gradient-to-br from-blue-200/25 via-blue-100/10 to-transparent blur-3xl z-0 pointer-events-none"
+            />
+
+            {/* Main 3D tilting container */}
+            <motion.div
+              initial={{ y: 50, scale: 0.92, opacity: 0, filter: "blur(12px)" }}
+              animate={
+                isInView
+                  ? { y: 0, scale: 1, opacity: 1, filter: "blur(0px)" }
+                  : { y: 50, scale: 0.92, opacity: 0, filter: "blur(12px)" }
+              }
+              transition={{
+                duration: 1.0,
+                delay: 0.6,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              style={{
+                rotateX: imageRotateX,
+                rotateY: imageRotateY,
+                x: imageX,
+                y: imageY,
+              }}
+              className="relative z-10 w-full max-w-[480px] transform-gpu [transform-style:preserve-3d]"
+            >
+              {/* Drop shadow layer */}
+              <div className="absolute inset-4 rounded-3xl bg-slate-900/[0.06] blur-2xl -z-10 translate-y-6" />
+
+              {/* ── Google Search Card ──────────────────────── */}
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl border border-slate-200/60 shadow-[0_25px_60px_rgba(0,0,0,0.08),0_6px_20px_rgba(0,0,0,0.04)] overflow-hidden">
+                {/* Google Header Bar */}
+                <div className="px-5 pt-4 pb-3 border-b border-slate-100/80">
+                  {/* Google logo + actions */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-0.5 text-[20px] font-medium select-none">
+                      <span style={{ color: "#4285F4" }}>G</span>
+                      <span style={{ color: "#EA4335" }}>o</span>
+                      <span style={{ color: "#FBBC05" }}>o</span>
+                      <span style={{ color: "#4285F4" }}>g</span>
+                      <span style={{ color: "#34A853" }}>l</span>
+                      <span style={{ color: "#EA4335" }}>e</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center">
+                        <svg
+                          className="w-3 h-3 text-slate-500"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <circle cx="12" cy="12" r="3" />
+                          <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1" />
+                        </svg>
+                      </div>
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-[10px] font-bold shadow-sm">
+                        I
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Search Bar */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.8, duration: 0.6 }}
+                    className="relative flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-slate-200/80 bg-white shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] transition-shadow duration-300"
+                  >
+                    <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                    <div className="flex-1 relative overflow-hidden">
+                      <span
+                        className="text-[13px] text-slate-700 font-medium"
+                        style={{ filter: "blur(3.5px)", userSelect: "none" }}
+                      >
+                        best digital marketing agency near me
+                      </span>
+                    </div>
+                    <div className="w-px h-5 bg-slate-200" />
+                    <div className="w-4 h-4 text-blue-500 shrink-0">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" />
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" />
+                      </svg>
+                    </div>
+                    <Search className="w-4 h-4 text-blue-500 shrink-0" />
+                  </motion.div>
+
+                  {/* Tab navigation */}
+                  <div className="flex items-center gap-5 mt-3 -mb-[13px]">
+                    {["All", "Images", "News", "Maps"].map((tab, i) => (
+                      <span
+                        key={tab}
+                        className={`text-[11px] font-medium pb-2.5 border-b-[2px] transition-colors duration-200 ${
+                          i === 0
+                            ? "text-blue-600 border-blue-600"
+                            : "text-slate-500 border-transparent hover:text-slate-700"
+                        }`}
+                      >
+                        {tab}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* ── Search Results Area ─────────────────── */}
+                <div className="px-5 py-3 space-y-3">
+                  {/* Result count */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 1.0, duration: 0.4 }}
+                    className="text-[10px] text-slate-400 font-medium"
+                  >
+                    About 2,340,000 results (0.32 seconds)
+                  </motion.p>
+
+                  {/* ── Sponsored Result 1 — Primary ──────── */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{
+                      delay: 1.1,
+                      duration: 0.6,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="group/ad relative p-3.5 -mx-1 rounded-xl hover:bg-blue-50/30 transition-all duration-300 cursor-default"
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-[9px] font-bold text-white shadow-sm">
+                        Y
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[11px] text-slate-800 font-semibold">
+                            Your Company
+                          </span>
+                          <span className="text-[9px] font-bold text-white bg-slate-800 px-1.5 py-[1px] rounded leading-none tracking-wide">
+                            Ad
+                          </span>
+                          <span className="text-[9px] font-semibold text-slate-400">
+                            · Sponsored
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-green-700 font-medium leading-tight">
+                          www.yourcompany.com/roofing
+                        </p>
+                      </div>
+                    </div>
+
+                    <h4 className="text-[15px] font-medium text-blue-700 leading-snug mb-1 group-hover/ad:underline transition-all duration-200">
+                      Apex Ridge Roofing — #1 Local Roof Replacement & Repair
+                    </h4>
+                    <p className="text-[11px] text-slate-500 leading-relaxed font-normal">
+                      Certified residential & commercial roofing specialists.
+                      Lifetime shingle warranties, 24/7 emergency leak repair &
+                      zero-down financing.{" "}
+                      <span className="text-slate-700 font-medium">
+                        Free Inspection.
+                      </span>
+                    </p>
+
+                    <div className="flex items-center gap-2.5 mt-2">
+                      {[
+                        "Roof Replacement",
+                        "Emergency Repairs",
+                        "Free Inspection",
+                      ].map((link) => (
+                        <span
+                          key={link}
+                          className="text-[10px] text-blue-600 font-medium hover:underline transition-all"
+                        >
+                          {link}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <div className="h-px bg-slate-100/80" />
+
+                  {/* ── Sponsored Result 2 — Secondary ────── */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{
+                      delay: 1.3,
+                      duration: 0.6,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className="group/res p-3.5 -mx-1 rounded-xl hover:bg-slate-50/60 transition-all duration-300 cursor-default"
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-slate-500 to-slate-600 flex items-center justify-center text-[9px] font-bold text-white shadow-sm">
+                        C
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[11px] text-slate-800 font-semibold">
+                            Your Competitor
+                          </span>
+                          <span className="text-[9px] font-bold text-white bg-slate-800 px-1.5 py-[1px] rounded leading-none tracking-wide">
+                            Ad
+                          </span>
+                          <span className="text-[9px] font-semibold text-slate-400">
+                            · Sponsored
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-green-700 font-medium leading-tight">
+                          https://www.yourcompetitor.com
+                        </p>
+                      </div>
+                    </div>
+                    <h4 className="text-[14px] font-medium text-blue-700 leading-snug mb-1 group-hover/res:underline transition-all duration-200">
+                      Summit Peak Roofing — Full-Service Commercial & Home
+                      Roofers
+                    </h4>
+                    <p className="text-[11px] text-slate-500 leading-relaxed font-normal">
+                      Over 25 years of local roofing experience. Specializing in
+                      metal, tile & architectural shingle installations. Fully
+                      licensed & insured.
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* ── Floating Stats Badge — Top Right ─────────── */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, y: 30 }}
+              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.8,
+                delay: 1.6,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="absolute top-[2%] right-[0%] lg:right-[-4%] z-20"
+            >
+              <motion.div style={{ x: floatX1, y: floatY1 }}>
+                <motion.div
+                  animate={{ y: [-8, 10, -8], rotate: [-1, 2, -1] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 6,
+                    ease: "easeInOut",
+                  }}
+                  whileHover={{ scale: 1.08, rotate: 0 }}
+                  className="px-4 py-3 rounded-2xl bg-white/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.07)] border border-white/70 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(59,130,246,0.15)] cursor-default"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-green-50 to-green-100/60 flex items-center justify-center shadow-sm">
+                      <TrendingUp className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-slate-400 font-semibold tracking-wide">
+                        #1 Position
+                      </p>
+                      <p className="text-sm font-[900] text-slate-900">
+                        47 KWs{" "}
+                        <span className="text-green-500 text-[10px] font-bold">
+                          +312%
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* ── Floating Stats Badge — Bottom Left ──────── */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5, y: 30 }}
+              animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.8,
+                delay: 1.8,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="absolute bottom-[4%] left-[-2%] lg:left-[-6%] z-20"
+            >
+              <motion.div style={{ x: floatX2, y: floatY2 }}>
+                <motion.div
+                  animate={{
+                    y: [10, -8, 10],
+                    rotate: [1.5, -1.5, 1.5],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 7,
+                    ease: "easeInOut",
+                  }}
+                  whileHover={{ scale: 1.08, rotate: 0 }}
+                  className="px-4 py-3 rounded-2xl bg-white/90 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.07)] border border-white/70 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(139,92,246,0.15)] cursor-default"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100/60 flex items-center justify-center shadow-sm">
+                      <BarChart3 className="w-4 h-4 text-purple-600" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-slate-400 font-semibold tracking-wide">
+                        Domain Authority
+                      </p>
+                      <p className="text-sm font-[900] text-slate-900">
+                        63{" "}
+                        <span className="text-purple-500 text-[10px] font-bold">
+                          +28pts
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>

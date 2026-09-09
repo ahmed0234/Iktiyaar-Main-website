@@ -154,6 +154,17 @@ export default function VideoTestimonial() {
       <div className="absolute top-1/3 -right-40 w-[550px] h-[550px] bg-gradient-to-bl from-blue-100/40 via-indigo-50/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none -z-10" />
 
+      {/* ─── PROMINENT BLUISH DOTTED BACKGROUND PATTERN ─── */}
+      <div
+        className="absolute inset-0 w-full h-full pointer-events-none -z-10"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(0, 102, 255, 0.38) 1.75px, transparent 1.75px)",
+          backgroundSize: "20px 20px",
+        }}
+        aria-hidden
+      />
+
       {/* Decorative Dot Grids */}
       <DotGrid
         className="absolute top-28 left-6 hidden xl:grid opacity-30 pointer-events-none -z-10"

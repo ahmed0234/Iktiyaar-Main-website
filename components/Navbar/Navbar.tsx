@@ -11,9 +11,9 @@ const navLinks = [
     name: "Services",
     href: "/services",
     dropdown: [
+      { name: "Google Ads", href: "/services/google-ads" },
       { name: "SEO", href: "/services/seo" },
       // { name: "Meta Ads", href: "/services/meta-ads" },
-      { name: "Google Ads", href: "/services/google-ads" },
       // { name: "AI Automation", href: "/services/ai-automation" },
       // { name: "Cold Email Marketing", href: "/services/cold-email" },
     ],
