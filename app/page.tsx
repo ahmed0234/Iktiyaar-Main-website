@@ -5,16 +5,18 @@
 // import OurProcess from "@/components/OurProcess/OurProcess";
 // import AccordionSection from "@/components/AccordionSection";
 // import GrowthCTA from "@/components/GrowthCTA";
-import NewHeroSection from '@/components/NewHeroSection';
-import Partner from '@/components/Partner';
-import VideoTestimonial from '@/components/video_testimonial/VideoTestimonial';
+import NewHeroSection from "@/components/NewHeroSection";
+import Partner from "@/components/Partner";
+import VideoTestimonial from "@/components/video_testimonial/VideoTestimonial";
 // import MyselfvideoSection from "@/components/MySelfVideo/MyselfvideoSection";
-import SEOCaseStudy from '@/components/CaseyInsuranceCaseStudy/SEOCaseStudy';
-import FAQ from '@/components/FAQ';
-import FinalCTA from '@/components/FinalCTA';
-import Positioning from '@/components/Positioning/Positioning';
-import RidgewellCaseStudy from '@/components/ridgewellCaseStudy/RidgewellCaseStudy';
-import ProblemSection from '@/public/Problem/ProblemSection';
+import SEOCaseStudy from "@/components/CaseyInsuranceCaseStudy/SEOCaseStudy";
+import FAQ from "@/components/FAQ";
+import FinalCTA from "@/components/FinalCTA";
+import Positioning from "@/components/NewPositioningSection/Positioning";
+import RidgewellCaseStudy from "@/components/ridgewellCaseStudy/RidgewellCaseStudy";
+import NewProblemSection from "@/components/NewProblemSection/NewProblemSection";
+import Offer from "@/components/TheOffer/Offer";
+// import ProblemSection from '@/public/Problem/ProblemSection';
 
 const page = () => {
   return (
@@ -23,7 +25,8 @@ const page = () => {
       <Partner />
       {/* <MyselfvideoSection /> */}
       <VideoTestimonial />
-      <ProblemSection />
+      <NewProblemSection />
+      <Offer />
       <Positioning />
       <RidgewellCaseStudy />
       <SEOCaseStudy />

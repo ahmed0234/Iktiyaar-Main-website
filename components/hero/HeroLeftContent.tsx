@@ -1,55 +1,74 @@
-'use client';
+"use client";
 
-import { ArrowRight, Check, TrendingUp } from 'lucide-react';
-import { motion } from 'motion/react';
-import Link from 'next/link';
-import { CurvedUnderline, GoogleGLogo, HostingerLogo } from './HeroLogos';
+import { ArrowRight, Check, TrendingUp } from "lucide-react";
+import { motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
+import { CurvedUnderline, GoogleGLogo } from "./HeroLogos";
+import HostingerBadgeImg from "@/public/HostingerBadge.png";
 
 const ownershipBenefits = [
-  'You own the campaigns.',
-  'You own the landing pages.',
-  'You own the data.',
+  "You own the campaigns.",
+  "You own the landing pages.",
+  "You own the data.",
 ];
 
 export default function HeroLeftContent() {
   return (
     <div className="flex flex-col items-start text-left w-full space-y-4 sm:space-y-4.5">
-      {/* 1. Top Glassy Trust Badges (Google Search Partner & Hostinger Partner) */}
+      {/* 1. Top Glossy Trust Badges (Google Search Partner & Hostinger Partner) */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-wrap items-center gap-2.5 sm:gap-3"
       >
-        {/* Google Search Partner */}
-        <div className="relative overflow-hidden inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/95 via-white/85 to-white/70 backdrop-blur-xl border border-white/90 ring-1 ring-slate-900/[0.07] shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(0,0,0,0.02)] hover:ring-blue-400/40 hover:shadow-[0_4px_20px_-2px_rgba(37,99,235,0.14),inset_0_1px_1px_rgba(255,255,255,1)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default">
-          {/* Top specular reflection line */}
-          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-90 pointer-events-none" />
+        {/* Google Search Partner Badge (Matching Compact Capsule Style) */}
+        <div className="relative group/badge inline-flex items-center cursor-default">
+          {/* Ambient soft glow on hover */}
+          <div className="absolute -inset-1 rounded-full bg-blue-500/10 blur-sm opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-          <GoogleGLogo className="w-4 h-4 shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.04)]" />
-          <div className="flex items-center gap-2 text-xs sm:text-[13px]">
-            <span className="font-bold text-slate-800 tracking-tight">
-              Google Search
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-semibold text-blue-600 px-2 py-0.5 rounded-full bg-gradient-to-b from-blue-50 to-blue-100/50 border border-blue-200/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(37,99,235,0.04)]">
-              Partner
-            </span>
+          <div className="relative overflow-hidden inline-flex items-center justify-center h-[34px] sm:h-[36px] gap-2 px-3 sm:px-3.5 rounded-full bg-gradient-to-b from-white via-[#FAFBFD] to-[#F1F6FE] backdrop-blur-xl border border-white/95 ring-1 ring-blue-500/15 shadow-[0_2px_10px_-2px_rgba(0,102,255,0.1),0_1px_2px_rgba(0,0,0,0.03),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(0,102,255,0.03)] hover:ring-blue-400/50 hover:shadow-[0_4px_16px_-2px_rgba(0,102,255,0.2),inset_0_1px_1px_rgba(255,255,255,1)] hover:-translate-y-0.5 transition-all duration-300 select-none">
+            {/* Top specular reflection line */}
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-95 pointer-events-none z-20" />
+
+            {/* Subtle diagonal glass gloss sweep */}
+            <div className="absolute -top-6 -bottom-6 -left-10 w-16 bg-gradient-to-r from-transparent via-white/40 to-transparent rotate-12 pointer-events-none z-10 transition-transform duration-700 ease-out group-hover/badge:translate-x-36" />
+
+            {/* Google Icon */}
+            <GoogleGLogo className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 drop-shadow-[0_1px_1px_rgba(0,0,0,0.05)] relative z-10 " />
+
+            {/* Clean Centered 2-Line Layout */}
+            <div className="flex flex-col items-center justify-center relative z-10 leading-none gap-1">
+              <span className="font-extrabold text-slate-800 text-[10.5px] sm:text-[11px] tracking-tight leading-tight">
+                Google Search
+              </span>
+              <span className="font-semibold text-[#0066FF] text-[8.5px] sm:text-[9px] tracking-normal leading-tight">
+                Partner
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Hostinger Partner */}
-        <div className="relative overflow-hidden inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gradient-to-b from-white/95 via-white/85 to-white/70 backdrop-blur-xl border border-white/90 ring-1 ring-slate-900/[0.07] shadow-[0_2px_12px_-2px_rgba(15,23,42,0.06),inset_0_1px_1px_rgba(255,255,255,1),inset_0_-1px_1px_rgba(0,0,0,0.02)] hover:ring-purple-400/40 hover:shadow-[0_4px_20px_-2px_rgba(103,61,230,0.14),inset_0_1px_1px_rgba(255,255,255,1)] hover:-translate-y-0.5 transition-all duration-300 group cursor-default">
-          {/* Top specular reflection line */}
-          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-90 pointer-events-none" />
+        {/* Hostinger Partner Badge (Official Asset with Matching Glossy Treatment) */}
+        <div className="relative group/badge inline-flex items-center cursor-default">
+          {/* Ambient soft glow on hover */}
+          <div className="absolute -inset-1 rounded-full bg-[#673DE6]/15 blur-sm opacity-0 group-hover/badge:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-          <HostingerLogo className="w-4.5 h-4.5 shrink-0 drop-shadow-[0_1px_2px_rgba(103,61,230,0.12)]" />
-          <div className="flex items-center gap-2 text-xs sm:text-[13px]">
-            <span className="font-bold text-slate-800 tracking-tight">
-              Hostinger
-            </span>
-            <span className="text-[10px] sm:text-[11px] font-semibold text-[#673DE6] px-2 py-0.5 rounded-full bg-gradient-to-b from-purple-50 to-purple-100/50 border border-purple-200/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_1px_2px_rgba(103,61,230,0.04)]">
-              Partner
-            </span>
+          <div className="relative overflow-hidden inline-flex items-center h-[34px] sm:h-[36px] rounded-full ring-1 ring-slate-900/[0.08] shadow-[0_2px_10px_-2px_rgba(103,61,230,0.22),0_1px_2px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.4)] hover:ring-purple-400/60 hover:shadow-[0_4px_18px_-2px_rgba(103,61,230,0.32),inset_0_1px_1px_rgba(255,255,255,0.6)] hover:-translate-y-0.5 transition-all duration-300 select-none">
+            {/* Top specular reflection line */}
+            <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none z-20" />
+
+            {/* Subtle diagonal glass gloss sweep */}
+            <div className="absolute -top-6 -bottom-6 -left-10 w-16 bg-gradient-to-r from-transparent via-white/30 to-transparent rotate-12 pointer-events-none z-10 transition-transform duration-700 ease-out group-hover/badge:translate-x-44" />
+
+            {/* Official Asset */}
+            <Image
+              src={HostingerBadgeImg}
+              alt="Hostinger Partner"
+              className="h-[34px] sm:h-[36px] w-auto object-contain block select-none pointer-events-none rounded-full"
+              priority
+            />
           </div>
         </div>
       </motion.div>
@@ -82,10 +101,10 @@ export default function HeroLeftContent() {
         transition={{ duration: 0.45, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
         className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl pt-0.5"
       >
-        We help contractors turn Google Search{' '}
+        We help contractors turn Google Search{" "}
         <strong className="font-semibold text-slate-900">
           into a predictable source of homeowner estimate requests
-        </strong>{' '}
+        </strong>{" "}
         without relying only on referrals, Angi, HomeAdvisor, or shared leads.
       </motion.p>
 
@@ -123,7 +142,7 @@ export default function HeroLeftContent() {
             <Check className="w-3.5 h-3.5 stroke-[3]" />
           </div>
           <p className="text-[15px] sm:text-base text-slate-700 leading-snug font-semibold">
-            We just build and manage the system that{' '}
+            We just build and manage the system that{" "}
             <span className="font-semibold text-[#0066FF]">
               brings the opportunities in.
             </span>
