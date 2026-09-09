@@ -16,6 +16,8 @@ import Positioning from "@/components/NewPositioningSection/Positioning";
 import RidgewellCaseStudy from "@/components/ridgewellCaseStudy/RidgewellCaseStudy";
 import NewProblemSection from "@/components/NewProblemSection/NewProblemSection";
 import Offer from "@/components/TheOffer/Offer";
+import EconomicsSection from "@/components/Economics/EconomicsSection";
+import NewProcessSection from "@/components/NewProcess/NewProcessSection";
 // import ProblemSection from '@/public/Problem/ProblemSection';
 
 const page = () => {
@@ -28,6 +30,8 @@ const page = () => {
       <NewProblemSection />
       <Offer />
       <Positioning />
+      <EconomicsSection />
+      <NewProcessSection />
       <RidgewellCaseStudy />
       <SEOCaseStudy />
       <FAQ />
