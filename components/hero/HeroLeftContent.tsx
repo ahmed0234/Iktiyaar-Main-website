@@ -1,15 +1,14 @@
-"use client";
+'use client';
 
-import React from "react";
-import { motion } from "motion/react";
-import { X, Check, TrendingUp, ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { GoogleGLogo, HostingerLogo, CurvedUnderline } from "./HeroLogos";
+import { ArrowRight, Check, TrendingUp, X } from 'lucide-react';
+import { motion } from 'motion/react';
+import Link from 'next/link';
+import { CurvedUnderline, GoogleGLogo, HostingerLogo } from './HeroLogos';
 
 const problemItems = [
-  "Not shared leads.",
-  "Not random traffic.",
-  "Not “brand awareness.”",
+  'You own the campaigns.',
+  'You own the landing pages.',
+  'You own the data.',
 ];
 
 export default function HeroLeftContent() {
@@ -55,20 +54,23 @@ export default function HeroLeftContent() {
         </div>
       </motion.div>
 
-      {/* 2. Main Headline: Exactly 2 lines on desktop, bold, powerful & wide */}
+      {/* 2. Main Headline: Exactly 2 lines across all devices, balanced & polished */}
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
         className="w-full"
       >
-        <h1 className="text-[34px] sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[52px] font-extrabold tracking-tight text-slate-900 leading-[1.12] sm:leading-[1.1] max-w-none">
-          <span className="block xl:inline whitespace-normal">
-            Stop Paying For Marketing That
-          </span>{" "}
-          <span className="relative inline-block text-[#0066FF] mt-1 sm:mt-0 whitespace-nowrap">
-            Doesn’t Turn Into Jobs.
-            <CurvedUnderline className="absolute -bottom-1.5 sm:-bottom-3.5 left-0 w-full h-3 sm:h-4 text-[#0066FF]" />
+        <h1 className="flex flex-col items-start font-extrabold tracking-tight text-left">
+          {/* Primary Heading: Line 1 */}
+          <span className="block whitespace-nowrap text-slate-900 text-[26px] min-[390px]:text-[29px] sm:text-[35px] md:text-[40px] lg:text-[38px] xl:text-[46px] 2xl:text-[50px] leading-[1.1] sm:leading-[1.08]">
+            Stop Buying Leads
+          </span>
+
+          {/* Secondary Line: Line 2 - Accent Blue & Balanced Typography */}
+          <span className="relative inline-block whitespace-nowrap text-[#0066FF] text-[17px] min-[390px]:text-[19px] min-[440px]:text-[21px] sm:text-[23px] md:text-[26px] lg:text-[25px] xl:text-[31px] 2xl:text-[34px] leading-[1.15] mt-1 sm:mt-1.5 pb-1 sm:pb-1.5">
+            Build Your Own Source of Estimates
+            <CurvedUnderline className="absolute -bottom-0.5 sm:-bottom-1 left-0 w-full h-2.5 sm:h-3.5 text-[#0066FF]" />
           </span>
         </h1>
       </motion.div>
@@ -80,10 +82,11 @@ export default function HeroLeftContent() {
         transition={{ duration: 0.45, delay: 0.14, ease: [0.16, 1, 0.3, 1] }}
         className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl pt-0.5"
       >
-        We help contractors turn Google searches into{" "}
+        We help contractors turn Google Search{' '}
         <strong className="font-semibold text-slate-900">
-          qualified homeowner inquiries, estimates and jobs
-        </strong>{" "}
+          into a predictable source of homeowner estimate requests
+        </strong>{' '}
+        without relying only on referrals, Angi, HomeAdvisor, or shared leads.
       </motion.p>
 
       {/* 4. Objection / Problem Cards (3 compact rows) */}
@@ -120,7 +123,7 @@ export default function HeroLeftContent() {
             <Check className="w-3.5 h-3.5 stroke-[3]" />
           </div>
           <p className="text-[15px] sm:text-base text-slate-700 leading-snug font-semibold">
-            We put your business in front of homeowners who are{" "}
+            We put your business in front of homeowners who are{' '}
             <span className="font-semibold text-[#0066FF]">
               already searching for the work you do.
             </span>
@@ -138,12 +141,12 @@ export default function HeroLeftContent() {
             <TrendingUp className="w-6 h-6 stroke-[2.2]" />
           </div>
           <p className="text-base sm:text-[17px] text-slate-700 leading-relaxed sm:leading-relaxed">
-            One client turned{" "}
+            One client turned{' '}
             <span className="relative inline-block font-bold text-slate-900 whitespace-nowrap">
               $7,000 in Google Ads spend
               <CurvedUnderline className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-2 sm:h-2.5 text-[#0066FF]" />
-            </span>{" "}
-            into{" "}
+            </span>{' '}
+            into{' '}
             <span className="relative inline-block font-extrabold text-lg sm:text-xl text-[#0066FF] whitespace-nowrap">
               $200,000 in revenue.
               <CurvedUnderline className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-2 sm:h-2.5 text-[#0066FF]" />
@@ -167,10 +170,10 @@ export default function HeroLeftContent() {
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
         </Link>
         <p className="text-slate-500 text-xs sm:text-[13.5px] text-center sm:text-left leading-relaxed">
-          We’ll look at your <strong>market</strong> ,{" "}
-          <strong>competition</strong>{" "}
+          We’ll look at your <strong>market</strong> ,{' '}
+          <strong>competition</strong>{' '}
           <strong>search volume and click costs</strong> , before telling you to
-          spend a dollar.{" "}
+          spend a dollar.{' '}
         </p>
       </motion.div>
     </div>

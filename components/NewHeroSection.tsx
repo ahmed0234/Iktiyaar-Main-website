@@ -37,7 +37,7 @@ export default function NewHeroSection() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[92vh] pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-white flex items-center"
+      className="relative min-h-[92vh]  pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-white flex items-center"
       style={{ perspective: "1200px" }}
     >
       {/* ─── UNIFIED AMBIENT BACKGROUND GLOWS ─── */}
