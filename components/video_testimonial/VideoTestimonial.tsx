@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Play,
@@ -129,20 +130,39 @@ const clientAvatars = [
 
 export default function VideoTestimonial() {
   const [activeModal, setActiveModal] = useState<TestimonialItem | null>(null);
+  const [mounted, setMounted] = useState(false);
 
-  // Close modal on Escape key press
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Lock background scroll and handle Escape key when modal is open
+  useEffect(() => {
+    if (!activeModal) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setActiveModal(null);
     };
-    if (activeModal) {
-      document.body.style.overflow = "hidden";
-      window.addEventListener("keydown", handleKeyDown);
-    } else {
-      document.body.style.overflow = "unset";
+
+    // Calculate scrollbar width to prevent page layout jump
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalBodyPaddingRight = document.body.style.paddingRight;
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
+
+    window.addEventListener("keydown", handleKeyDown);
+
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.paddingRight = originalBodyPaddingRight;
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [activeModal]);
@@ -251,7 +271,16 @@ export default function VideoTestimonial() {
             >
               {/* Video Thumbnail Card */}
               <div
+                role="button"
+                tabIndex={0}
+                aria-label={`Watch testimonial video from ${item.name}`}
                 onClick={() => setActiveModal(item)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveModal(item);
+                  }
+                }}
                 className="w-full relative rounded-[28px] sm:rounded-[32px] overflow-hidden bg-slate-900 border border-slate-200/80 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.12),0_0_30px_rgba(59,130,246,0.06)] hover:shadow-[0_25px_60px_-10px_rgba(0,102,255,0.18)] hover:-translate-y-1.5 transition-all duration-300 group cursor-pointer aspect-[4/3.6] flex flex-col justify-between"
               >
                 {/* Background Image */}
@@ -400,100 +429,114 @@ export default function VideoTestimonial() {
         </motion.div>
       </div>
 
-      {/* ─── INTERACTIVE LIGHTBOX VIDEO MODAL ─── */}
-      <AnimatePresence>
-        {activeModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={() => setActiveModal(null)}
-            className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 md:p-8"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/20 flex flex-col"
-            >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-slate-900/90 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-[#0066FF]">
-                    <Play className="w-4 h-4 fill-[#0066FF] ml-0.5" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
-                      {activeModal.name} ·{" "}
-                      <span className="text-blue-400 font-semibold">
-                        {activeModal.role ? `${activeModal.role}, ${activeModal.company}` : activeModal.company}
-                      </span>
-                    </h3>
-                    <p className="text-xs text-slate-400">
-                      Case Study Interview · Result:{" "}
-                      <span className="text-emerald-400 font-bold">
-                        {activeModal.statPrimary} ({activeModal.statSecondary})
-                      </span>
-                    </p>
-                  </div>
-                </div>
-
-                {/* Close Button */}
-                <button
-                  onClick={() => setActiveModal(null)}
-                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+      {/* ─── INTERACTIVE LIGHTBOX VIDEO MODAL (Rendered into document.body) ─── */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {activeModal && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                onClick={() => setActiveModal(null)}
+                className="fixed inset-0 z-[9999] overflow-y-auto overscroll-contain bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 md:p-8"
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0, y: 16 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.95, opacity: 0, y: 16 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={(e) => e.stopPropagation()}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-labelledby="video-modal-title"
+                  className="relative w-full max-w-4xl bg-slate-900 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/20 flex flex-col my-auto"
                 >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
+                  {/* Modal Header */}
+                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-slate-900/95 border-b border-white/10 shrink-0 gap-3">
+                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-blue-500/20 border border-blue-400/40 flex items-center justify-center text-[#0066FF] shrink-0">
+                        <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#0066FF] ml-0.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <h3
+                          id="video-modal-title"
+                          className="text-sm sm:text-base md:text-lg font-bold text-white leading-tight truncate"
+                        >
+                          {activeModal.name} ·{" "}
+                          <span className="text-blue-400 font-semibold">
+                            {activeModal.role
+                              ? `${activeModal.role}, ${activeModal.company}`
+                              : activeModal.company}
+                          </span>
+                        </h3>
+                        <p className="text-[11px] sm:text-xs text-slate-400 truncate">
+                          Case Study Interview · Result:{" "}
+                          <span className="text-emerald-400 font-bold">
+                            {activeModal.statPrimary} ({activeModal.statSecondary})
+                          </span>
+                        </p>
+                      </div>
+                    </div>
 
-              {/* Video Player Container */}
-              <div className="relative aspect-video w-full bg-black flex items-center justify-center">
-                {activeModal.youtubeId ? (
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${activeModal.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
-                    title={`${activeModal.name} - Testimonial Video`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    className="w-full h-full border-0"
-                  />
-                ) : activeModal.videoSrc ? (
-                  <video
-                    src={activeModal.videoSrc}
-                    poster={activeModal.thumbnail}
-                    controls
-                    autoPlay
-                    playsInline
-                    className="w-full h-full object-contain"
-                  >
-                    Your browser does not support HTML video.
-                  </video>
-                ) : (
-                  <div className="flex flex-col items-center text-center p-8 text-white">
-                    <PlayCircle className="w-16 h-16 text-blue-500 mb-4 animate-pulse" />
-                    <h4 className="text-lg font-bold">
-                      Video Testimonial Coming Soon
-                    </h4>
-                    <p className="text-sm text-slate-400 max-w-md mt-1">
-                      {activeModal.quoteSnippet}
+                    {/* Close Button */}
+                    <button
+                      type="button"
+                      onClick={() => setActiveModal(null)}
+                      aria-label="Close video modal"
+                      className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                    >
+                      <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </button>
+                  </div>
+
+                  {/* Video Player Container */}
+                  <div className="relative aspect-video w-full bg-black flex items-center justify-center">
+                    {activeModal.youtubeId ? (
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${activeModal.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                        title={`${activeModal.name} - Testimonial Video`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="w-full h-full border-0"
+                      />
+                    ) : activeModal.videoSrc ? (
+                      <video
+                        src={activeModal.videoSrc}
+                        poster={activeModal.thumbnail}
+                        controls
+                        autoPlay
+                        playsInline
+                        className="w-full h-full object-contain"
+                      >
+                        Your browser does not support HTML video.
+                      </video>
+                    ) : (
+                      <div className="flex flex-col items-center text-center p-6 sm:p-8 text-white">
+                        <PlayCircle className="w-12 h-12 sm:w-16 sm:h-16 text-blue-500 mb-3 sm:mb-4 animate-pulse" />
+                        <h4 className="text-base sm:text-lg font-bold">
+                          Video Testimonial Coming Soon
+                        </h4>
+                        <p className="text-xs sm:text-sm text-slate-400 max-w-md mt-1">
+                          {activeModal.quoteSnippet}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Modal Footer / Quote Snippet */}
+                  <div className="px-4 sm:px-6 py-3 sm:py-4 bg-slate-900/95 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-slate-300 shrink-0">
+                    <p className="italic line-clamp-2">
+                      &ldquo;{activeModal.quoteSnippet}&rdquo;
                     </p>
                   </div>
-                )}
-              </div>
-
-              {/* Modal Footer / Quote Snippet */}
-              <div className="px-5 sm:px-6 py-4 bg-slate-900/90 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-slate-300">
-                <p className="italic line-clamp-2">
-                  &ldquo;{activeModal.quoteSnippet}&rdquo;
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 }
