@@ -5,50 +5,83 @@
 // import OurProcess from "@/components/OurProcess/OurProcess";
 // import AccordionSection from "@/components/AccordionSection";
 // import GrowthCTA from "@/components/GrowthCTA";
+import dynamic from "next/dynamic";
 import NewHeroSection from "@/components/NewHeroSection";
 import Partner from "@/components/Partner";
-import VideoTestimonial from "@/components/video_testimonial/VideoTestimonial";
-// import MyselfvideoSection from "@/components/MySelfVideo/MyselfvideoSection";
-import SEOCaseStudy from "@/components/CaseyInsuranceCaseStudy/SEOCaseStudy";
-import FAQ from "@/components/FAQ";
-// import FinalCTA from "@/components/FinalCTA";
-import Positioning from "@/components/NewPositioningSection/Positioning";
-import RidgewellCaseStudy from "@/components/ridgewellCaseStudy/RidgewellCaseStudy";
-import NewProblemSection from "@/components/NewProblemSection/NewProblemSection";
-import Offer from "@/components/TheOffer/Offer";
-import EconomicsSection from "@/components/Economics/EconomicsSection";
-import NewProcessSection from "@/components/NewProcess/NewProcessSection";
-import Authority from "@/components/Authority/Authority";
-import NewFinalCTA from "@/components/NewFinalCTA";
-// import ProblemSection from '@/public/Problem/ProblemSection';
+
+// Dynamic imports for below-the-fold sections to minimize initial JavaScript bundle
+const VideoTestimonial = dynamic(
+  () => import("@/components/video_testimonial/VideoTestimonial")
+);
+const NewProblemSection = dynamic(
+  () => import("@/components/NewProblemSection/NewProblemSection")
+);
+const Offer = dynamic(
+  () => import("@/components/TheOffer/Offer")
+);
+const Positioning = dynamic(
+  () => import("@/components/NewPositioningSection/Positioning")
+);
+const EconomicsSection = dynamic(
+  () => import("@/components/Economics/EconomicsSection")
+);
+const NewProcessSection = dynamic(
+  () => import("@/components/NewProcess/NewProcessSection")
+);
+const Authority = dynamic(
+  () => import("@/components/Authority/Authority")
+);
+const RidgewellCaseStudy = dynamic(
+  () => import("@/components/ridgewellCaseStudy/RidgewellCaseStudy")
+);
+const SEOCaseStudy = dynamic(
+  () => import("@/components/CaseyInsuranceCaseStudy/SEOCaseStudy")
+);
+const FAQ = dynamic(
+  () => import("@/components/FAQ")
+);
+const NewFinalCTA = dynamic(
+  () => import("@/components/NewFinalCTA")
+);
 
 const page = () => {
   return (
     <main className="font-sans">
       <NewHeroSection />
       <Partner />
-      {/* <MyselfvideoSection /> */}
-      <VideoTestimonial />
-      <NewProblemSection />
-      <Offer />
-      <Positioning />
-      <EconomicsSection />
-      <NewProcessSection />
-      <Authority />
-      <RidgewellCaseStudy />
-      <SEOCaseStudy />
-      <FAQ />
-      <NewFinalCTA />
-
-      {/* <FinalCTA /> */}
-      <div></div>
-      {/* <TrustedCompanies /> */}
-      {/* <Services /> */}
-      {/* <Testimonials /> */}
-      {/* <WhyIkhtiyaar /> */}
-      {/* <OurProcess /> */}
-      {/* <AccordionSection /> */}
-      {/* <GrowthCTA /> */}
+      <div className="content-visibility-auto">
+        <VideoTestimonial />
+      </div>
+      <div className="content-visibility-auto">
+        <NewProblemSection />
+      </div>
+      <div className="content-visibility-auto">
+        <Offer />
+      </div>
+      <div className="content-visibility-auto">
+        <Positioning />
+      </div>
+      <div className="content-visibility-auto">
+        <EconomicsSection />
+      </div>
+      <div className="content-visibility-auto">
+        <NewProcessSection />
+      </div>
+      <div className="content-visibility-auto">
+        <Authority />
+      </div>
+      <div className="content-visibility-auto">
+        <RidgewellCaseStudy />
+      </div>
+      <div className="content-visibility-auto">
+        <SEOCaseStudy />
+      </div>
+      <div className="content-visibility-auto">
+        <FAQ />
+      </div>
+      <div className="content-visibility-auto">
+        <NewFinalCTA />
+      </div>
     </main>
   );
 };

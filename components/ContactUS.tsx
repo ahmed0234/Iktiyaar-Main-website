@@ -121,7 +121,7 @@ export default function ContactUS() {
             {/* Contact info */}
             <div className="flex flex-col gap-5">
               <ContactItem icon={Mail}    label="Email us"       value="support@ikhtiyaar.com"           href="mailto:support@ikhtiyaar.com" />
-              <ContactItem icon={Phone}   label="Call us"        value="+(251) 385-6294"                 href="tel:+12513856294" />
+              <ContactItem icon={Phone}   label="Call us"        value="+(954) 787-3401"                 href="tel:+19547873401" />
               <ContactItem icon={MapPin}  label="Visit us"       value="30 N Gould St, Sheridan, WY 82801" />
               <ContactItem icon={Clock}   label="Business hours" value="Mon–Fri, 9 AM – 6 PM (MST)" />
             </div>

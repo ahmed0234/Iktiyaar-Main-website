@@ -11,8 +11,6 @@
   --font-mono: var(--font-geist-mono);
   --font-poppins: var(--font-poppins);
   --font-caveat: var(--font-caveat);
-  --font-clash: "Clash Grotesk", sans-serif;
-  --font-satoshi: "Satoshi", sans-serif;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -122,10 +120,12 @@
 }
 
 @layer base {
+  @media (hover: hover) and (pointer: fine) {
+    html, body {
+      cursor: url("/cursor3.png") 0 0, auto;
+    }
+  }
   * {
-    cursor:
-      url("/cursor3.png") 0 0,
-      auto !important;
     @apply border-border outline-ring/50;
   }
   body {
@@ -190,11 +190,34 @@ html.lenis body {
 
 /* Firefox */
 * {
-  cursor:
-    url("/cursor3.png") 0 0,
-    auto !important;
   scrollbar-width: thin;
   scrollbar-color: #3b82f6 transparent;
+}
+
+/* ─── GPU-Accelerated Floating Animations ─────────────────────────────────── */
+@keyframes heroFloatA {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
+}
+
+@keyframes heroFloatB {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+@keyframes heroFloatC {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 7px, 0); }
+}
+
+@keyframes heroFloatD {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -7px, 0); }
+}
+
+@keyframes heroFloatE {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 8px, 0); }
 }
 
 @layer utilities {
@@ -207,5 +230,44 @@ html.lenis body {
   }
   .perspective-1000 {
     perspective: 1000px;
+  }
+
+  /* Content visibility for off-screen rendering speed */
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+  }
+
+  /* Smooth GPU-accelerated hero card floaters */
+  .animate-hero-float-1 {
+    animation: heroFloatA 4.5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .animate-hero-float-2 {
+    animation: heroFloatB 5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .animate-hero-float-3 {
+    animation: heroFloatC 5.5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .animate-hero-float-4 {
+    animation: heroFloatD 6s ease-in-out infinite;
+    will-change: transform;
+  }
+  .animate-hero-float-5 {
+    animation: heroFloatE 5.2s ease-in-out infinite;
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-float-1,
+  .animate-hero-float-2,
+  .animate-hero-float-3,
+  .animate-hero-float-4,
+  .animate-hero-float-5 {
+    animation: none !important;
+    transform: none !important;
   }
 }

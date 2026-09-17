@@ -41,7 +41,7 @@ function Reveal({
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const initial =
     direction === "up"
-      ? { opacity: 0, y: 18 }
+      ? { opacity: 0, y: 20 }
       : direction === "down"
         ? { opacity: 0, y: -16 }
         : direction === "left"
@@ -55,7 +55,7 @@ function Reveal({
       ref={ref}
       initial={initial}
       animate={animate}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}

@@ -59,7 +59,7 @@ function Reveal({
 function useCountUp(
   end: number,
   duration: number = 2000,
-  startOnView: boolean = true
+  startOnView: boolean = true,
 ) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -295,7 +295,7 @@ export default function SEOCaseStudy() {
   const visitorsCounter = useCountUp(1000, 2200);
   const leadsCounter = useCountUp(200, 2000);
   const [selectedScreenshot, setSelectedScreenshot] = useState<string | null>(
-    null
+    null,
   );
 
   // Close modal on Escape key press and manage body scroll
@@ -497,7 +497,7 @@ export default function SEOCaseStudy() {
               </div>
 
               <h3 className="text-[24px] sm:text-[28px] lg:text-[32px] font-black tracking-tight text-[#0B1220] leading-[1.12] mb-2 sm:mb-2.5">
-                 Search Console
+                Search Console
               </h3>
 
               <p className="text-[13.5px] sm:text-[14.5px] font-bold text-[#0062FF] mb-2 sm:mb-2.5">
@@ -564,7 +564,8 @@ export default function SEOCaseStudy() {
               {/* Bottom Proof Strip */}
               <div className="px-3 sm:px-4 py-2 bg-slate-50/70 border-t border-slate-100/90 flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-[12px] text-slate-500">
                 <span className="font-semibold text-slate-700 flex items-center gap-1.5">
-                  <Globe size={13} className="text-[#0062FF]" /> Live Client SEO Overview
+                  <Globe size={13} className="text-[#0062FF]" /> Live Client SEO
+                  Overview
                 </span>
                 <span className="text-[#0062FF] font-bold flex items-center gap-1">
                   <TrendingUp size={13} /> Consistent Growth
@@ -664,7 +665,8 @@ export default function SEOCaseStudy() {
                       Casey Insurance Group — Organic Search Performance
                     </p>
                     <p className="text-[11px] sm:text-[12px] text-slate-500 font-medium">
-                      Verified organic traffic, keywords &amp; search visibility overview
+                      Verified organic traffic, keywords &amp; search visibility
+                      overview
                     </p>
                   </div>
                 </div>

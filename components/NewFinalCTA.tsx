@@ -4,11 +4,8 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "motion/react";
-import { Caveat } from "next/font/google";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { DotGrid } from "@/components/hero/Hero3DVisuals";
-
-const caveat = Caveat({ subsets: ["latin"], weight: ["500", "600", "700"] });
 
 /* ─── Scroll Reveal ───────────────────────────────────────────────── */
 function Reveal({
@@ -71,7 +68,7 @@ function LetsTalkGroup({ className = "" }: { className?: string }) {
           />
         </svg>
         <span
-          className={`${caveat.className} text-[20px] sm:text-[23px] lg:text-[25px] font-bold text-[#0066FF] tracking-wide`}
+          className="font-caveat text-[20px] sm:text-[23px] lg:text-[25px] font-bold text-[#0066FF] tracking-wide"
         >
           Let&apos;s Talk About
         </span>
@@ -109,7 +106,7 @@ function RealAnswersGroup({ className = "" }: { className?: string }) {
       className={`flex flex-col items-end select-none pointer-events-none ${className}`}
     >
       <span
-        className={`${caveat.className} text-[20px] sm:text-[23px] xl:text-[25px] font-bold text-[#0066FF] -rotate-3 leading-[1.1] text-right`}
+        className="font-caveat text-[20px] sm:text-[23px] xl:text-[25px] font-bold text-[#0066FF] -rotate-3 leading-[1.1] text-right"
       >
         Real answers.
         <br />
@@ -173,7 +170,7 @@ function NoBSAnnotation({ className = "" }: { className?: string }) {
       className={`flex flex-col items-center select-none pointer-events-none ${className}`}
     >
       <span
-        className={`${caveat.className} text-[22px] sm:text-[25px] font-bold text-[#0066FF] -rotate-12 block leading-none`}
+        className="font-caveat text-[22px] sm:text-[25px] font-bold text-[#0066FF] -rotate-12 block leading-none"
       >
         No B.S.
       </span>

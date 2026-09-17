@@ -7,6 +7,8 @@ import HeroRightVisual from "./hero/HeroRightVisual";
 
 export default function NewHeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
+  const rafRef = useRef<number | null>(null);
 
   // Subtle interactive parallax for mouse movement
   const mouseX = useMotionValue(0);
@@ -20,14 +22,34 @@ export default function NewHeroSection() {
   const visualTranslateX = useTransform(springX, [-0.5, 0.5], [-6, 6]);
   const visualTranslateY = useTransform(springY, [-0.5, 0.5], [-6, 6]);
 
+  const handleMouseEnter = () => {
+    if (containerRef.current) {
+      rectRef.current = containerRef.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
-    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+    if (!rectRef.current) {
+      if (containerRef.current) {
+        rectRef.current = containerRef.current.getBoundingClientRect();
+      } else {
+        return;
+      }
+    }
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const rect = rectRef.current;
+      if (!rect || rect.width === 0 || rect.height === 0) return;
+      mouseX.set((clientX - rect.left) / rect.width - 0.5);
+      mouseY.set((clientY - rect.top) / rect.height - 0.5);
+    });
   };
 
   const handleMouseLeave = () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rectRef.current = null;
     mouseX.set(0);
     mouseY.set(0);
   };
@@ -35,6 +57,7 @@ export default function NewHeroSection() {
   return (
     <section
       ref={containerRef}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[92vh]  pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-12 overflow-hidden bg-white flex items-center"

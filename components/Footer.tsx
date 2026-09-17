@@ -69,8 +69,8 @@ const socialLinks = [
 const contactInfo = [
   {
     icon: Phone,
-    label: "(251) 385-6294",
-    href: "tel:+12513856294",
+    label: "(954) 787-3401",
+    href: "tel:+19547873401",
   },
   {
     icon: Mail,

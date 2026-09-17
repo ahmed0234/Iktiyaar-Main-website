@@ -215,13 +215,9 @@ export default function HeroRightVisual() {
         {/* ─── 2. FLOATING CHANNEL TAGS (Positioned cleanly on Top-Left corner) ─── */}
         <motion.div
           initial={{ opacity: 0, x: -14, y: 8 }}
-          animate={{ opacity: 1, x: 0, y: [0, -6, 0] }}
-          transition={{
-            opacity: { duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
-            x: { duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
-            y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 },
-          }}
-          className="absolute -top-5 -left-2 sm:-top-10 sm:-left-8 z-30 flex flex-col items-center gap-1.5 sm:gap-2.5"
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute -top-5 -left-2 sm:-top-10 sm:-left-8 z-30 flex flex-col items-center gap-1.5 sm:gap-2.5 animate-hero-float-1"
         >
           {/* Google Ads Tag */}
           <div className="flex flex-col items-center px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_10px_30px_-5px_rgba(37,99,235,0.12)]">
@@ -242,13 +238,9 @@ export default function HeroRightVisual() {
         {/* ─── 3. FLOATING "LEADS FROM GOOGLE" (Cleanly on Top-Right Corner) ─── */}
         <motion.div
           initial={{ opacity: 0, x: 14, y: 8 }}
-          animate={{ opacity: 1, x: 0, y: [0, -8, 0] }}
-          transition={{
-            opacity: { duration: 0.4, delay: 0.28, ease: [0.16, 1, 0.3, 1] },
-            x: { duration: 0.4, delay: 0.28, ease: [0.16, 1, 0.3, 1] },
-            y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 },
-          }}
-          className="absolute -top-6 -right-2 sm:-top-12 sm:-right-6 z-30 w-36 sm:w-52 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_15px_40px_-8px_rgba(37,99,235,0.14)]"
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute -top-6 -right-2 sm:-top-12 sm:-right-6 z-30 w-36 sm:w-52 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_15px_40px_-8px_rgba(37,99,235,0.14)] animate-hero-float-2"
         >
           <span className="text-[9.5px] sm:text-[11px] font-semibold text-slate-500 block">
             Leads From Google
@@ -278,13 +270,9 @@ export default function HeroRightVisual() {
         {/* ─── 4. FLOATING "LEAD QUALITY" DONUT CARD (Cleanly on Left Outer Margin) ─── */}
         <motion.div
           initial={{ opacity: 0, x: -14 }}
-          animate={{ opacity: 1, x: 0, y: [0, 7, 0] }}
-          transition={{
-            opacity: { duration: 0.4, delay: 0.36, ease: [0.16, 1, 0.3, 1] },
-            x: { duration: 0.4, delay: 0.36, ease: [0.16, 1, 0.3, 1] },
-            y: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1 },
-          }}
-          className="absolute top-[44%] -left-2 sm:-left-12 lg:-left-14 -translate-y-1/2 z-30 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_15px_40px_-8px_rgba(37,99,235,0.14)] flex flex-col items-center"
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute top-[44%] -left-2 sm:-left-12 lg:-left-14 -translate-y-1/2 z-30 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_15px_40px_-8px_rgba(37,99,235,0.14)] flex flex-col items-center animate-hero-float-3"
         >
           <span className="text-[9.5px] sm:text-[11px] font-bold text-slate-700 mb-1 sm:mb-1.5">Lead Quality</span>
           {/* Donut Chart SVG */}
@@ -319,13 +307,9 @@ export default function HeroRightVisual() {
         {/* ─── 5. FLOATING "TOP PERFORMING KEYWORDS" (Cleanly on Right Outer Margin) ─── */}
         <motion.div
           initial={{ opacity: 0, x: 14 }}
-          animate={{ opacity: 1, x: 0, y: [0, -7, 0] }}
-          transition={{
-            opacity: { duration: 0.4, delay: 0.44, ease: [0.16, 1, 0.3, 1] },
-            x: { duration: 0.4, delay: 0.44, ease: [0.16, 1, 0.3, 1] },
-            y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
-          }}
-          className="absolute top-[38%] -right-2 sm:-right-12 lg:-right-14 -translate-y-1/2 z-30 w-38 sm:w-56 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_15px_40px_-8px_rgba(37,99,235,0.14)]"
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute top-[38%] -right-2 sm:-right-12 lg:-right-14 -translate-y-1/2 z-30 w-38 sm:w-56 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-white/95 shadow-[0_15px_40px_-8px_rgba(37,99,235,0.14)] animate-hero-float-4"
         >
           <div className="flex items-center justify-between pb-1 sm:pb-2 mb-1 sm:mb-2 border-b border-slate-100">
             <span className="text-[9.5px] sm:text-[11px] font-bold text-slate-800">
@@ -349,13 +333,9 @@ export default function HeroRightVisual() {
         {/* ─── 6. FLOATING LIVE GOOGLE SEARCH & AD PREVIEW (Bottom-Right Corner) ─── */}
         <motion.div
           initial={{ opacity: 0, x: 14, y: 10 }}
-          animate={{ opacity: 1, x: 0, y: [0, 8, 0] }}
-          transition={{
-            opacity: { duration: 0.4, delay: 0.52, ease: [0.16, 1, 0.3, 1] },
-            x: { duration: 0.4, delay: 0.52, ease: [0.16, 1, 0.3, 1] },
-            y: { duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 2 },
-          }}
-          className="absolute -bottom-6 -right-1 sm:-bottom-10 sm:-right-6 z-30 w-[215px] sm:w-76 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-xl border border-white/95 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.12)]"
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.52, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute -bottom-6 -right-1 sm:-bottom-10 sm:-right-6 z-30 w-[215px] sm:w-76 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-xl border border-white/95 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.12)] animate-hero-float-5"
         >
           {/* Search Simulation Input */}
           <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-slate-50/90 border border-slate-200/90 text-xs text-slate-700 mb-1.5 sm:mb-2.5 shadow-inner">

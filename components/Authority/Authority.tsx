@@ -3,7 +3,6 @@
 import { useRef, type ComponentType } from "react";
 import Image from "next/image";
 import { motion, useInView } from "motion/react";
-import { Caveat } from "next/font/google";
 import {
   Target,
   Shield,
@@ -18,8 +17,6 @@ import { PiArrowRightBold } from "react-icons/pi";
 import { CurvedUnderline } from "@/components/hero/HeroLogos";
 import { DotGrid } from "@/components/hero/Hero3DVisuals";
 
-const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"] });
-
 const GLASS_PANEL =
   "relative overflow-hidden rounded-[28px] sm:rounded-[32px] bg-white/70 backdrop-blur-md border border-[#D7E7FB] shadow-[0_24px_50px_-18px_rgba(15,23,42,0.12),0_10px_24px_-12px_rgba(0,102,255,0.10),inset_0_1px_1px_rgba(255,255,255,0.95)]";
 
@@ -31,7 +28,6 @@ const questions = [
 ] as const;
 
 const excludedServices = [
-  "SEO.",
   "Facebook Ads.",
   "Social media management.",
   "Web design retainers.",
@@ -86,27 +82,32 @@ function Specular() {
 
 function CoolSpark({ className = "" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 28 28"
-      fill="none"
-      className={className}
-      aria-hidden
-    >
-      <path d="M14 2 L14 8" stroke="#0066FF" strokeWidth="2.2" strokeLinecap="round" />
-      <path d="M22.5 5.5 L18.5 9.5" stroke="#0066FF" strokeWidth="2.2" strokeLinecap="round" />
-      <path d="M26 14 L20 14" stroke="#0066FF" strokeWidth="2.2" strokeLinecap="round" />
+    <svg viewBox="0 0 28 28" fill="none" className={className} aria-hidden>
+      <path
+        d="M14 2 L14 8"
+        stroke="#0066FF"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M22.5 5.5 L18.5 9.5"
+        stroke="#0066FF"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M26 14 L20 14"
+        stroke="#0066FF"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
 function AnnotationArrow({ className = "" }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 72 48"
-      fill="none"
-      className={className}
-      aria-hidden
-    >
+    <svg viewBox="0 0 72 48" fill="none" className={className} aria-hidden>
       <path
         d="M8 8 C 28 10, 46 22, 54 40"
         stroke="#0066FF"
@@ -219,7 +220,11 @@ const Authority = () => {
       aria-label="Differentiation and Authority"
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <DotGrid className="absolute top-8 left-6 sm:left-14 opacity-60" rows={7} cols={7} />
+        <DotGrid
+          className="absolute top-8 left-6 sm:left-14 opacity-60"
+          rows={7}
+          cols={7}
+        />
         <div className="absolute top-1/3 left-1/5 h-[420px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.06)_0%,transparent_70%)] blur-[80px]" />
         <div className="absolute bottom-1/4 right-1/6 h-[380px] w-[460px] rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.05)_0%,transparent_70%)] blur-[80px]" />
       </div>
@@ -228,7 +233,9 @@ const Authority = () => {
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-10 2xl:gap-12 items-stretch">
           {/* ── Left: Differentiation ── */}
           <Reveal delay={0.05} direction="up">
-            <article className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9 flex flex-col justify-between`}>
+            <article
+              className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9 flex flex-col justify-between`}
+            >
               <div>
                 <Specular />
                 <div className="pointer-events-none absolute -top-16 right-8 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.08)_0%,transparent_70%)] blur-2xl" />
@@ -237,7 +244,7 @@ const Authority = () => {
                   <SectionBadge icon={Target} label="Differentiation" />
                   <div className="hidden sm:flex flex-col items-end -mt-1">
                     <span
-                      className={`${caveat.className} text-[20px] xl:text-[22px] font-bold text-[#0066FF] -rotate-2 leading-none`}
+                      className="font-caveat text-[20px] xl:text-[22px] font-bold text-[#0066FF] -rotate-2 leading-none"
                     >
                       Real results. Not just leads.
                     </span>
@@ -268,7 +275,7 @@ const Authority = () => {
                     <span className="relative inline-flex items-start">
                       <CoolSpark className="absolute -top-3 -right-4 h-6 w-6" />
                       <span
-                        className={`${caveat.className} relative text-[28px] sm:text-[32px] font-bold leading-none text-[#0066FF]`}
+                        className="font-caveat relative text-[28px] sm:text-[32px] font-bold leading-none text-[#0066FF]"
                       >
                         Cool.
                         <CoolUnderline className="absolute -bottom-1 left-0 h-3 w-full" />
@@ -328,7 +335,9 @@ const Authority = () => {
 
           {/* ── Right: Authority ── */}
           <Reveal delay={0.12} direction="up">
-            <article className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9 flex flex-col justify-between`}>
+            <article
+              className={`${GLASS_PANEL} h-full p-6 sm:p-8 lg:p-9 flex flex-col justify-between`}
+            >
               <div>
                 <Specular />
                 <div className="pointer-events-none absolute -bottom-10 left-10 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.08)_0%,transparent_70%)] blur-2xl" />
@@ -376,8 +385,8 @@ const Authority = () => {
                       </div>
                       <p className="mt-2 text-[13.5px] sm:text-[14.5px] leading-relaxed text-slate-800 font-semibold">
                         We specialize in building and managing Google Search
-                        campaigns for businesses that need more qualified inbound
-                        opportunities.
+                        campaigns for businesses that need more qualified
+                        inbound opportunities.
                       </p>
                     </div>
                   </div>
@@ -441,7 +450,9 @@ const Authority = () => {
                   </div>
 
                   <p className="relative mt-3 text-[14px] sm:text-[15px] font-bold leading-snug text-[#0A1128]">
-                    When we cut out the noise, 100% of your budget and our attention goes directly into high intent inbound searchers actively looking to hire.
+                    When we cut out the noise, 100% of your budget and our
+                    attention goes directly into high intent inbound searchers
+                    actively looking to hire.
                   </p>
 
                   <div className="relative mt-3.5 grid grid-cols-2 gap-2.5 pt-3 border-t border-[#D7E7FB]">
@@ -450,8 +461,12 @@ const Authority = () => {
                         100%
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">Focus</p>
-                        <p className="text-[12.5px] font-bold text-[#0A1128] truncate">Google Search Only</p>
+                        <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">
+                          Focus
+                        </p>
+                        <p className="text-[12.5px] font-bold text-[#0A1128] truncate">
+                          Google Search Only
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2.5 rounded-xl bg-white/80 border border-[#DCEAFB] p-2.5 shadow-2xs">
@@ -459,8 +474,12 @@ const Authority = () => {
                         0%
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">Waste</p>
-                        <p className="text-[12.5px] font-bold text-[#0A1128] truncate">Zero Agency Bloat</p>
+                        <p className="text-[10.5px] font-extrabold uppercase tracking-wider text-slate-400">
+                          Waste
+                        </p>
+                        <p className="text-[12.5px] font-bold text-[#0A1128] truncate">
+                          Zero Agency Bloat
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -474,7 +493,8 @@ const Authority = () => {
                 </span>
                 <p className="relative pt-1 text-[14.5px] sm:text-[15.5px] font-semibold leading-snug text-[#0A1128]">
                   <span className="relative inline-block">
-                    Mastering one channel produces higher return than being average at ten.
+                    Mastering one channel produces higher return than being
+                    average at ten.
                     <FooterUnderline className="absolute -bottom-1 left-0 h-3 w-[85%]" />
                   </span>
                 </p>

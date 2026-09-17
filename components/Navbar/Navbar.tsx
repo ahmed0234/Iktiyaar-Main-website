@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ArrowRight, Menu, X, Plus, Minus } from "lucide-react";
+import { ChevronDown, ArrowRight, Menu, X, Plus, Minus, Phone } from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -32,10 +32,17 @@ export default function Navbar() {
   >(null);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -94,7 +101,7 @@ export default function Navbar() {
                   }}
                   whileHover={{ rotateX: 5, rotateY: -5, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-2 relative flex items-center justify-center w-[160px] md:w-[190px] h-[44px] md:h-[50px] rounded-full bg-linear-to-b from-[#2563EB] to-[#1E3A8A] shadow-[0_4px_20px_rgba(37,99,235,0.4)] overflow-hidden transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(37,99,235,0.6)]"
+                  className="px-2 relative flex items-center justify-center w-[135px] sm:w-[155px] md:w-[165px] lg:w-[180px] xl:w-[190px] h-[40px] sm:h-[44px] md:h-[48px] xl:h-[50px] rounded-full bg-linear-to-b from-[#2563EB] to-[#1E3A8A] shadow-[0_4px_20px_rgba(37,99,235,0.4)] overflow-hidden transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(37,99,235,0.6)]"
                   style={{ transformStyle: "preserve-3d" }}
                 >
                   {/* Inner highlight for 3D effect */}
@@ -109,11 +116,11 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden md:flex items-center justify-center px-3 py-1.5 md:py-2 rounded-full bg-white/40 backdrop-blur-lg border border-slate-200/65 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
+            <nav className="hidden md:flex items-center justify-center px-2 lg:px-3 py-1.5 md:py-2 rounded-full bg-white/40 backdrop-blur-lg border border-slate-200/65 shadow-[0_2px_15px_rgba(0,0,0,0.02)]">
               {navLinks.map((link, index) => (
                 <div
                   key={link.name}
-                  className="relative flex items-center justify-center min-w-[100px] sm:min-w-[108px]"
+                  className="relative flex items-center justify-center min-w-[85px] lg:min-w-[96px] xl:min-w-[108px]"
                   onMouseEnter={() => setActiveDropdown(link.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
@@ -128,10 +135,10 @@ export default function Navbar() {
                       className="w-full flex justify-center"
                     >
                       {link.dropdown ? (
-                        <div className="flex items-center justify-center space-x-1 px-3.5 py-2 rounded-full text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group cursor-pointer whitespace-nowrap">
+                        <div className="flex items-center justify-center space-x-1 px-2.5 lg:px-3.5 py-1.5 lg:py-2 rounded-full text-[13.5px] lg:text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group cursor-pointer whitespace-nowrap">
                           <span>{link.name}</span>
                           <ChevronDown
-                            className={`w-4 h-4 transition-transform duration-300 text-slate-400 group-hover:text-blue-600 ${
+                            className={`w-3.5 h-3.5 lg:w-4 lg:h-4 transition-transform duration-300 text-slate-400 group-hover:text-blue-600 ${
                               activeDropdown === link.name ? "rotate-180" : ""
                             }`}
                           />
@@ -141,7 +148,7 @@ export default function Navbar() {
                       ) : (
                         <Link
                           href={link.href}
-                          className="flex items-center justify-center space-x-1 px-3.5 py-2 rounded-full text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group whitespace-nowrap"
+                          className="flex items-center justify-center space-x-1 px-2.5 lg:px-3.5 py-1.5 lg:py-2 rounded-full text-[13.5px] lg:text-[15px] font-medium text-slate-600 hover:text-blue-600 transition-colors duration-300 relative group whitespace-nowrap"
                         >
                           <span>{link.name}</span>
                           {/* Hover highlight line */}
@@ -195,8 +202,52 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Desktop CTA Button */}
-            <div className="hidden md:flex flex-1 justify-end">
+            {/* Desktop CTA Buttons */}
+            <div className="hidden md:flex flex-1 items-center justify-end gap-2 lg:gap-3">
+              {/* Call Now Glassmorphism CTA */}
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  scale: 0.9,
+                  x: 20,
+                  filter: "blur(8px)",
+                }}
+                animate={{ opacity: 1, scale: 1, x: 0, filter: "blur(0px)" }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.45,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="shrink-0"
+              >
+                <motion.a
+                  href="tel:+19547873401"
+                  aria-label="Call Now at (954) 787-3401"
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                  className="relative group cursor-pointer inline-flex items-center gap-2 lg:gap-2.5 px-3 md:px-3.5 lg:px-4 py-1.5 md:py-2 rounded-full bg-white/60 hover:bg-white/85 backdrop-blur-xl border border-slate-200/80 hover:border-blue-300/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.14)] transition-all duration-300 select-none shrink-0"
+                >
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-b from-white/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="relative flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-blue-50/90 text-blue-600 border border-blue-200/60 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 shrink-0 shadow-2xs">
+                    <Phone className="w-3.5 h-3.5 fill-current transition-transform duration-300 group-hover:rotate-12" />
+                    <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 ring-1 ring-white" />
+                    </span>
+                  </div>
+                  <div className="flex flex-col text-left leading-none">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-blue-600 group-hover:text-blue-700 transition-colors">
+                      Call Now
+                    </span>
+                    <span className="text-xs md:text-[12.5px] lg:text-[13.5px] font-bold text-slate-800 group-hover:text-slate-900 tracking-tight whitespace-nowrap mt-0.5">
+                      (954) 787-3401
+                    </span>
+                  </div>
+                </motion.a>
+              </motion.div>
+
+              {/* Free Analysis Primary Button */}
               <Link href={`/contact`}>
                 <motion.div
                   initial={{
@@ -208,7 +259,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, scale: 1, x: 0, filter: "blur(0px)" }}
                   transition={{
                     duration: 0.8,
-                    delay: 0.5,
+                    delay: 0.55,
                     ease: [0.16, 1, 0.3, 1],
                   }}
                   className="shrink-0 cursor-pointer"
@@ -216,10 +267,10 @@ export default function Navbar() {
                   <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="cursor-pointer relative overflow-hidden group flex items-center justify-center px-6 py-2.5 rounded-full font-medium text-white transition-all bg-gradient-to-r from-blue-600 to-blue-500 shadow-[0_4px_15px_rgba(37,99,235,0.25)] hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)]"
+                    className="cursor-pointer relative overflow-hidden group flex items-center justify-center px-4 md:px-5 lg:px-6 py-2 md:py-2.5 rounded-full font-medium text-white transition-all bg-gradient-to-r from-blue-600 to-blue-500 shadow-[0_4px_15px_rgba(37,99,235,0.25)] hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)]"
                   >
                     <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-500 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="relative z-10 flex items-center gap-2 text-sm lg:text-base">
+                    <span className="relative z-10 flex items-center gap-2 text-xs md:text-sm lg:text-base whitespace-nowrap">
                       Free Analysis
                     </span>
                   </motion.button>
@@ -227,12 +278,37 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile Toggle Button */}
-            <div className="flex md:hidden items-center gap-3">
+            {/* Mobile Actions: Call Button + Toggle */}
+            <div className="flex md:hidden items-center gap-2 sm:gap-3">
+              <motion.a
+                href="tel:+19547873401"
+                aria-label="Call Now at (954) 787-3401"
+                whileTap={{ scale: 0.95 }}
+                className="relative group cursor-pointer flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full bg-white/70 hover:bg-white/90 backdrop-blur-xl border border-slate-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.04)] text-slate-800 transition-all select-none"
+              >
+                <div className="relative flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-blue-50 text-blue-600 border border-blue-200/60 shrink-0">
+                  <Phone className="w-3 h-3 fill-current" />
+                  <span className="absolute -top-0.5 -right-0.5 flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                  </span>
+                </div>
+                <div className="flex flex-col text-left leading-none">
+                  <span className="text-[9px] font-extrabold uppercase tracking-wider text-blue-600 hidden sm:block">
+                    Call Now
+                  </span>
+                  <span className="text-[11px] sm:text-xs font-bold text-slate-800 tracking-tight whitespace-nowrap">
+                    <span className="hidden xs:inline">(954) 787-3401</span>
+                    <span className="xs:hidden">Call Now</span>
+                  </span>
+                </div>
+              </motion.a>
+
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="relative z-[110] w-10 h-10 flex items-center justify-center rounded-full bg-white/50 border border-slate-200 shadow-sm"
+                className="relative z-[110] w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/50 border border-slate-200 shadow-sm"
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               >
                 <AnimatePresence mode="wait">
                   {isMobileMenuOpen ? (
@@ -346,19 +422,50 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-10">
-                  <Link href={`/`} onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="mt-auto pt-8 flex flex-col gap-3">
+                  {/* Mobile Menu Call Now Card (Frosted Glass) */}
+                  <a
+                    href="tel:+19547873401"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    aria-label="Call Now at (954) 787-3401"
+                    className="w-full p-3.5 rounded-2xl bg-slate-50/90 hover:bg-blue-50/60 backdrop-blur-xl border border-slate-200/80 hover:border-blue-300/80 shadow-[0_4px_16px_rgba(0,0,0,0.03)] flex items-center justify-between transition-all duration-300 group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-10 h-10 rounded-xl bg-blue-50 border border-blue-200/60 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                        <Phone className="w-4 h-4 fill-current" />
+                        <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500 ring-1 ring-white" />
+                        </span>
+                      </div>
+                      <div className="flex flex-col text-left">
+                        <span className="text-[11px] font-extrabold uppercase tracking-wider text-blue-600">
+                          Call Now
+                        </span>
+                        <span className="text-sm font-bold text-slate-900 tracking-tight">
+                          (954) 787-3401
+                        </span>
+                      </div>
+                    </div>
+                    <span className="text-xs font-semibold text-blue-600 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                      Call
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </a>
+
+                  {/* Mobile Menu Free Analysis Button */}
+                  <Link href={`/contact`} onClick={() => setIsMobileMenuOpen(false)}>
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full py-4 rounded-2xl bg-linear-to-r from-blue-600 to-blue-500 text-white font-bold text-lg shadow-[0_10px_30px_rgba(37,99,235,0.3)] flex items-center justify-center gap-3"
+                      className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold text-base shadow-[0_10px_30px_rgba(37,99,235,0.25)] flex items-center justify-center gap-2"
                     >
                       Free Analysis
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4" />
                     </motion.button>
                   </Link>
 
-                  <div className="mt-8 text-center text-slate-400 text-sm">
+                  <div className="mt-4 text-center text-slate-400 text-xs">
                     <p>© 2026 Ikhtiyaar. All rights reserved.</p>
                   </div>
                 </div>

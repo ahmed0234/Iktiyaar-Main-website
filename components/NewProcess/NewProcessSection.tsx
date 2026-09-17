@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { PiCheckBold, PiInfoBold } from "react-icons/pi";
-import { Caveat } from "next/font/google";
 import { CurvedUnderline } from "@/components/hero/HeroLogos";
 import { DotGrid } from "@/components/hero/Hero3DVisuals";
 import {
@@ -17,8 +16,6 @@ import {
   DESKTOP_FLOW_GRID,
   ColumnSeparator,
 } from "@/components/NewProcess/ProcessVisuals";
-
-const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"] });
 
 function Reveal({
   children,
@@ -260,7 +257,7 @@ const NewProcessSection = () => {
           >
             <div className="flex flex-col items-end">
               <span
-                className={`${caveat.className} text-[24px] xl:text-[28px] font-bold tracking-wide text-[#0066FF] -rotate-2`}
+                className="font-caveat text-[24px] xl:text-[28px] font-bold tracking-wide text-[#0066FF] -rotate-2"
               >
                 Same strategy. Real results.
               </span>
@@ -332,7 +329,7 @@ const NewProcessSection = () => {
           </div>
 
           <p
-            className={`${caveat.className} mt-8 text-center text-[22px] font-bold text-[#0066FF] lg:hidden`}
+            className="font-caveat mt-8 text-center text-[22px] font-bold text-[#0066FF] lg:hidden"
           >
             Same strategy. Real results.
           </p>

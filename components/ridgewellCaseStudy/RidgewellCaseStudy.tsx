@@ -21,9 +21,6 @@ import {
   BarChart3,
   Globe,
 } from "lucide-react";
-import { Caveat } from "next/font/google";
-
-const caveat = Caveat({ subsets: ["latin"], weight: ["400", "600", "700"] });
 
 /* ------------------------------------------------------------------ */
 /*  Scroll-reveal animation wrapper                                    */
@@ -876,7 +873,7 @@ export default function RidgewellCaseStudy() {
 
                 {/* Handwritten script: "from just one campaign" */}
                 <p
-                  className={`${caveat.className} text-[22px] sm:text-[24px] text-[#A6CCFF] font-semibold italic mt-0.5`}
+                  className="font-caveat text-[22px] sm:text-[24px] text-[#A6CCFF] font-semibold italic mt-0.5"
                 >
                   from just one campaign
                 </p>
@@ -1023,7 +1020,7 @@ export default function RidgewellCaseStudy() {
               {/* Supporting Proof Highlights Bar */}
               <div className="mt-4 pt-3.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-slate-600 text-[12.5px] sm:text-[13.5px]">
                 <div className="flex items-center gap-2 font-medium">
-                  <span className="font-bold text-slate-900">Campaign Timeline:</span> May 1, 2024 – May 31, 2024
+                  <span className="font-bold text-slate-900">Campaign Timeline:</span> May 1, 2026 – Aug 17, 2026
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="inline-flex items-center gap-1 font-semibold text-[#0062FF]">

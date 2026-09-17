@@ -9,10 +9,7 @@ import {
   PiArrowRightBold,
   PiCheckBold,
 } from "react-icons/pi";
-import { Caveat } from "next/font/google";
 import { CurvedUnderline } from "@/components/hero/HeroLogos";
-
-const caveat = Caveat({ subsets: ["latin"], weight: ["600", "700"] });
 
 /* ─── Scroll Reveal Wrapper ───────────────────────────────────────────── */
 function Reveal({
@@ -325,7 +322,7 @@ const EconomicsSection = () => {
                 {/* Bottom-Right Handwritten Callout with Project CurvedUnderline */}
                 <div className="flex flex-col items-end mt-6 sm:mt-8 mr-1 sm:mr-3">
                   <span
-                    className={`${caveat.className} text-[23px] sm:text-[26px] md:text-[28px] text-[#0066FF] font-bold tracking-wide -rotate-1 select-none`}
+                    className="font-caveat text-[23px] sm:text-[26px] md:text-[28px] text-[#0066FF] font-bold tracking-wide -rotate-1 select-none"
                   >
                     Less leads. More profitable work.
                   </span>
